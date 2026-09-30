@@ -19,7 +19,7 @@ STATS = [
     {"value": 350, "prefix": "", "suffix": "+", "label": "Units managed"},
     {"value": 5, "prefix": "", "suffix": " yrs", "label": "UAE operations"},
     {"value": 40, "prefix": "-", "suffix": "%", "label": "Workload cut"},
-    {"value": 4, "prefix": "", "suffix": "", "label": "Live projects"},
+    {"value": 200, "prefix": "", "suffix": "+", "label": "Reviews analysed"},
 ]
 
 ABOUT = [
@@ -28,7 +28,7 @@ ABOUT = [
     "and couldn't find the key box.",
     "Over five years the portfolio grew to 350+ units, and so did my frustration with the "
     "software we had to use. Maintenance requests got lost. Guest messages took too long to "
-    "answer. So I started building, first FixHub, then GuestCare, then a full platform.",
+    "answer. So I started building software to close those gaps, starting with PaMarket, an online marketplace for my home country of Zimbabwe.",
     "I'm not pretending to be a senior engineer. I'm someone who understands property "
     "operations at a serious level, can build and ship working software, and knows exactly "
     "what problem needs solving because I've lived it.",
@@ -40,9 +40,9 @@ DIFFERENTIATORS = [
     ("I speak both languages",
      "OTA strategy and occupancy with owners; database schemas with developers."),
     ("I've managed real numbers",
-     "350+ units, -40% maintenance response time, +25% guest satisfaction, -15% costs."),
+     "350+ units, +25% review scores, -40% front desk workload, -15% costs."),
     ("I ship things",
-     "FixHub is deployed on a real portfolio. PaMarket is live. GuestCare is in active development."),
+     "PaMarket is live and open to users."),
 ]
 
 EXPERIENCE = [
@@ -100,34 +100,6 @@ EXPERIENCE = [
 
 PROJECTS = [
     {
-        "name": "FixHub",
-        "tagline": "Maintenance ticketing built for property managers.",
-        "story": (
-            "No more WhatsApp threads. Log maintenance requests, assign technicians, track "
-            "status and close jobs with documentation. Deployed on a live 350+ unit portfolio "
-            "for a 40% reduction in average maintenance response time."
-        ),
-        "tags": ["JavaScript", "Supabase", "PostgreSQL"],
-        "kind": "Operations",
-        "image": "/fixhub-dashboard.jpg",
-        "repo": "https://github.com/princechakusa/fixhub-backend",
-        "live": "",
-    },
-    {
-        "name": "GuestCare",
-        "tagline": "Guest analytics and communications for STR operators.",
-        "story": (
-            "Centralises messaging and analytics across Airbnb, Booking.com, Hostaway and "
-            "WhatsApp: response times, NPS/CSAT, complaint tracking and proactive messaging "
-            "in one dashboard."
-        ),
-        "tags": ["JavaScript", "Supabase", "REST API"],
-        "kind": "Guest Experience",
-        "image": "/guestcare-dashboard.jpg",
-        "repo": "https://github.com/princechakusa/Guestcare",
-        "live": "",
-    },
-    {
         "name": "PaMarket",
         "tagline": "Konke Endaweni Eyodwa - Everything in one place.",
         "story": (
@@ -138,20 +110,9 @@ PROJECTS = [
         "kind": "Marketplace",
         "image": "/pamarket-splash.jpg",
         "repo": "https://github.com/princechakusa/PaMarket",
-        "live": "https://princechakusa.github.io/PaMarket/",
-    },
-    {
-        "name": "GGS Platform",
-        "tagline": "Property management platform, live for a real client.",
-        "story": (
-            "Bookings, maintenance and financials in one dashboard, designed from the "
-            "operator's perspective. Deployed for Global Gamazine Solutions in South Africa."
-        ),
-        "tags": ["JavaScript", "Supabase", "Chart.js"],
-        "kind": "Operations",
-        "image": "/ggs-hero.jpg",
-        "repo": "https://github.com/princechakusa/ggs-v3-platform",
-        "live": "https://globalgamazine.co.za",
+        "live": "https://pamarketzw.com",
+        "ios": "https://apps.apple.com/app/id6794616959",
+        "android": "https://play.google.com/store/apps/details?id=com.pamarket.app",
     },
 ]
 

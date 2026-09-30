@@ -45,10 +45,10 @@ def section(id_: str, eyebrow: str, title: str, *children) -> rx.Component:
 def nav() -> rx.Component:
     links = [("About", "about"), ("Experience", "experience"), ("Projects", "projects"), ("Skills", "skills"), ("Education", "education")]
     return rx.el.nav(
-        rx.el.a("Prince", rx.el.span(".", style={"color": "var(--gold)"}), href="#top", class_name="serif", style={"fontSize": "22px", "color": "var(--cream)", "margin": 0}),
+        rx.el.a("Prince", rx.el.span(".", style={"color": "var(--gold)"}), href="#top", class_name="serif brand"),
         div(
             *[rx.el.a(label, href=f"#{anchor}") for label, anchor in links],
-            rx.el.a("Hire me", href="#contact", class_name="btn btn-gold", style={"color": "var(--espresso)", "padding": "8px 18px", "marginLeft": "22px"}),
+            rx.el.a("Hire me", href="#contact", class_name="btn btn-gold", style={"padding": "8px 18px", "marginLeft": "22px"}),
             class_name="links",
             style={"display": "flex", "alignItems": "center"},
         ),
@@ -68,7 +68,7 @@ def hero() -> rx.Component:
             rx.el.h1(
                 rx.el.span(data.HERO_LINES[0], class_name="rise d2", style={"display": "block"}),
                 rx.el.span(data.HERO_LINES[1], class_name="rise d3", style={"display": "block"}),
-                rx.el.span(data.HERO_LINES[2], class_name="rise d4 gold-text", style={"display": "block", "fontStyle": "italic"}),
+                rx.el.span(rx.el.span(data.HERO_LINES[2], class_name="gold-text"), class_name="rise d4", style={"display": "block", "fontStyle": "italic"}),
                 class_name="serif",
                 style={"fontSize": "clamp(44px,8vw,96px)", "lineHeight": "1.05", "margin": "18px 0 24px"},
             ),
@@ -172,8 +172,9 @@ def experience() -> rx.Component:
 
 
 def project_card(p: dict) -> rx.Component:
+    small = {"padding": "8px 18px", "fontSize": "14px"}
     card = div(
-        div(rx.image(src=p["image"], alt=p["name"], style={"width": "100%", "height": "100%", "objectFit": "cover"}), style={"height": "210px", "overflow": "hidden", "borderRadius": "18px 18px 0 0"}),
+        div(rx.image(src=p["image"], alt=p["name"], style={"width": "100%", "height": "100%", "objectFit": "cover", "objectPosition": "center"}), style={"minHeight": "320px", "height": "100%", "overflow": "hidden"}),
         div(
             rx.el.span(p["kind"], class_name="mono", style={"color": "var(--gold)", "fontSize": "11px", "textTransform": "uppercase", "letterSpacing": ".14em"}),
             rx.el.h3(p["name"], class_name="serif", style={"fontSize": "26px", "margin": "6px 0"}),
@@ -181,14 +182,16 @@ def project_card(p: dict) -> rx.Component:
             rx.el.p(p["story"], style={"color": "var(--muted)", "fontSize": "14px", "lineHeight": "1.65"}),
             div(*[rx.el.span(t, class_name="chip") for t in p["tags"]], style={"display": "flex", "gap": "8px", "flexWrap": "wrap", "margin": "16px 0"}),
             div(
-                rx.el.a("GitHub", href=p["repo"], target="_blank", class_name="btn btn-ghost", style={"padding": "8px 18px", "fontSize": "14px"}),
-                *([rx.el.a("Live site", href=p["live"], target="_blank", class_name="btn btn-gold", style={"padding": "8px 18px", "fontSize": "14px"})] if p["live"] else []),
-                style={"display": "flex", "gap": "10px"},
+                *([rx.el.a("Visit website", href=p["live"], target="_blank", class_name="btn btn-gold", style=small)] if p.get("live") else []),
+                *([rx.el.a("App Store", href=p["ios"], target="_blank", class_name="btn btn-ghost", style=small)] if p.get("ios") else []),
+                *([rx.el.a("Google Play", href=p["android"], target="_blank", class_name="btn btn-ghost", style=small)] if p.get("android") else []),
+                rx.el.a("GitHub", href=p["repo"], target="_blank", class_name="btn btn-ghost", style=small),
+                style={"display": "flex", "gap": "10px", "flexWrap": "wrap"},
             ),
             style={"padding": "22px"},
         ),
         class_name="card",
-        style={"overflow": "hidden"},
+        style={"overflow": "hidden", "display": "grid", "gridTemplateColumns": "repeat(auto-fit,minmax(300px,1fr))"},
     )
     return rx.cond((State.project_filter == "All") | (State.project_filter == p["kind"]), card, rx.fragment())
 
@@ -213,8 +216,8 @@ def projects() -> rx.Component:
     )
     return section(
         "projects", "Selected work", "Things I've built.",
-        filters,
-        div(*[project_card(p) for p in data.PROJECTS], style={"display": "grid", "gridTemplateColumns": "repeat(auto-fit,minmax(300px,1fr))", "gap": "22px"}),
+        *([filters] if len(kinds) > 2 else []),
+        div(*[project_card(p) for p in data.PROJECTS], style={"display": "grid", "gridTemplateColumns": "1fr", "gap": "22px"}),
     )
 
 
@@ -294,6 +297,7 @@ def footer() -> rx.Component:
 def index() -> rx.Component:
     return div(
         div(class_name="aurora"),
+        div(class_name="progress"),
         nav(),
         hero(),
         stats(),
