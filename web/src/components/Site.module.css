@@ -1,0 +1,47 @@
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 70; padding: 22px clamp(20px, 4vw, 56px);
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px;
+  color: var(--sand); background: linear-gradient(rgba(7, 8, 11, 0.94), rgba(7, 8, 11, 0.7) 70%, transparent);
+}
+.brand { white-space: nowrap; }
+.loading {
+  position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--signal); transform-origin: left;
+  animation: load 2.4s cubic-bezier(0.1, 0.7, 0.3, 1) forwards;
+}
+@keyframes load { from { transform: scaleX(0); } to { transform: scaleX(0.9); } }
+.links { display: flex; gap: 26px; justify-self: center; }
+.links a { position: relative; white-space: nowrap; color: var(--steel); transition: color 0.25s; }
+.links a:hover, .links a.active { color: var(--sand); }
+.links a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 2px; background: var(--signal);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.links a:hover::after, .links a.active::after { transform: scaleX(1); }
+.status { border-left: 2px solid var(--signal); padding-left: 10px; white-space: nowrap; }
+.burger { display: none; border: 1px solid var(--line); padding: 10px 14px; letter-spacing: 0.08em; }
+
+@media (max-width: 1240px) {
+  .status { display: none; }
+  .nav { grid-template-columns: auto 1fr; }
+  .links { justify-self: end; }
+}
+@media (max-width: 900px) {
+  .nav { grid-template-columns: 1fr auto; }
+  .burger { display: block; }
+  .links {
+    position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; align-items: flex-start; gap: 22px;
+    padding: 0 28px; background: var(--ink); opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .links a { font-size: 30px; letter-spacing: 0.02em; color: var(--sand); }
+  .open { opacity: 1; pointer-events: auto; }
+}
+
+.footer {
+  position: relative; z-index: 10; display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap;
+  padding: 48px clamp(20px, 4vw, 56px); border-top: 1px solid var(--line); background: var(--ink);
+}
+.footKicker { color: var(--steel); }
+.footLine { margin-top: 10px; font-size: 18px; }
+.footLinks { display: flex; gap: 26px; flex-wrap: wrap; }
+.footLinks a { border-bottom: 1px solid var(--signal); padding-bottom: 4px; transition: color 0.25s; }
+.footLinks a:hover { color: var(--signal); }

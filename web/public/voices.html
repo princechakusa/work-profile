@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pick a voice</title>
+  <style>
+    body { margin: 0; padding: 40px 24px; background: #07080b; color: #ece7db; font: 17px/1.5 system-ui, sans-serif; }
+    main { max-width: 640px; margin: 0 auto; }
+    h1 { font-size: 28px; margin: 0 0 8px; }
+    p { color: #7d8794; margin: 0 0 28px; }
+    .row { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(236, 231, 219, 0.14); flex-wrap: wrap; }
+    .row b { width: 130px; }
+    .row span { color: #ff5a1f; font-size: 13px; }
+    audio { flex: 1; min-width: 240px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Pick a voice</h1>
+    <p>Each one reads the same lines. Tell Claude the name you want and the films will be regenerated with it.</p>
+    <div class="row"><b>Andrew</b><audio controls src="/voice/samples/en-US-AndrewNeural.mp3"></audio></div>
+    <div class="row"><b>Brian</b><audio controls src="/voice/samples/en-US-BrianNeural.mp3"></audio></div>
+    <div class="row"><b>Christopher</b><audio controls src="/voice/samples/en-US-ChristopherNeural.mp3"></audio></div>
+    <div class="row"><b>Eric</b><audio controls src="/voice/samples/en-US-EricNeural.mp3"></audio></div>
+    <div class="row"><b>Guy</b><audio controls src="/voice/samples/en-US-GuyNeural.mp3"></audio></div>
+    <div class="row"><b>Roger</b><audio controls src="/voice/samples/en-US-RogerNeural.mp3"></audio></div>
+    <div class="row"><b>Steffan</b><audio controls src="/voice/samples/en-US-SteffanNeural.mp3"></audio><span>in use now</span></div>
+  </main>
+</body>
+</html>

@@ -24,8 +24,8 @@ export default function Cursor() {
 
     gsap.set([C, F], { xPercent: -50, yPercent: -50 });
     gsap.set(R, { opacity: 0 });
-    const fx = gsap.quickTo(F, "x", { duration: 0.32, ease: "power3" });
-    const fy = gsap.quickTo(F, "y", { duration: 0.32, ease: "power3" });
+    const fx = gsap.quickTo(F, "x", { duration: 0.1, ease: "power3" });
+    const fy = gsap.quickTo(F, "y", { duration: 0.1, ease: "power3" });
 
     const idle = gsap.to(S, { rotation: "+=360", duration: 16, repeat: -1, ease: "none" });
 
@@ -56,6 +56,11 @@ export default function Cursor() {
     };
 
     const move = (e: PointerEvent) => {
+      // films and the pop-up use the plain pointer; the reticle would sit on top of the picture
+      if ((e.target as HTMLElement).closest("[data-nocursor]")) {
+        gsap.to(R, { opacity: 0, duration: 0.15, overwrite: "auto" });
+        return;
+      }
       gsap.to(R, { opacity: 1, duration: 0.25, overwrite: "auto" });
       gsap.set(C, { x: e.clientX, y: e.clientY });
       fx(e.clientX);

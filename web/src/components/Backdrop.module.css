@@ -1,0 +1,42 @@
+.root { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: #07080b; }
+
+.sky {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 60% at 70% 100%, rgba(255, 120, 80, 0.42), transparent 60%),
+    radial-gradient(90% 50% at 20% 95%, rgba(170, 80, 150, 0.3), transparent 65%),
+    linear-gradient(180deg, #06070f 0%, #0d1026 38%, #2a1d42 68%, #6b3450 88%, #b0574c 100%);
+}
+
+.cloud {
+  position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.5;
+  background: radial-gradient(closest-side, rgba(25, 20, 45, 0.95), transparent);
+  animation: drift 90s linear infinite;
+}
+.c1 { width: 60vw; height: 16vh; top: 44vh; left: -20vw; }
+.c2 { width: 45vw; height: 12vh; top: 54vh; left: 30vw; animation-duration: 120s; animation-delay: -40s; }
+.c3 { width: 50vw; height: 14vh; top: 36vh; left: 60vw; animation-duration: 150s; animation-delay: -80s; }
+@keyframes drift { to { transform: translateX(60vw); } }
+
+.city { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 62vh; }
+.flicker { animation: flicker 9s steps(1) infinite; }
+@keyframes flicker { 0%, 100% { opacity: 0.9; } 40% { opacity: 0.15; } 70% { opacity: 0.9; } }
+.beacon { fill: #ff5a1f; animation: beacon 2s ease-in-out infinite; }
+@keyframes beacon { 50% { opacity: 0.2; } }
+.traffic { animation: cars 14s linear infinite; }
+@keyframes cars { to { transform: translateX(64px); } }
+
+.birds { position: absolute; top: 24vh; left: -140px; width: 120px; height: 60px; animation: fly 38s linear infinite; }
+.birds span {
+  position: absolute; width: 16px; height: 8px; border-top: 2px solid rgba(236, 231, 219, 0.75); border-radius: 50% 50% 0 0;
+  animation: flap 0.6s ease-in-out infinite alternate;
+}
+@keyframes fly { to { transform: translate(calc(100vw + 280px), -8vh); } }
+@keyframes flap { to { transform: scaleY(-0.6); } }
+
+/* keeps the page text readable: darker at the top where headings sit, and over the whole city a little */
+.fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7, 8, 11, 0.55), rgba(7, 8, 11, 0.25) 40%, rgba(7, 8, 11, 0.55)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud, .flicker, .beacon, .traffic, .birds, .birds span { animation: none; }
+}

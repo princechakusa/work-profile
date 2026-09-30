@@ -1,0 +1,39 @@
+.backdrop {
+  position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 20px;
+  background: rgba(7, 8, 11, 0.72); backdrop-filter: blur(5px);
+  animation: in 0.5s ease both; transition: opacity 0.45s ease;
+}
+.leaving { opacity: 0; pointer-events: none; }
+@keyframes in { from { opacity: 0; } }
+
+/* 16:9 box that fits the window with room for the close button */
+.modal {
+  position: relative; width: min(1180px, 100%, (100vh - 120px) * 16 / 9);
+  background: var(--ink); border: 1px solid var(--line); box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
+  animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes rise { from { transform: translateY(40px) scale(0.97); } }
+
+.close { position: absolute; right: 0; bottom: 100%; padding: 12px 0 12px 20px; color: var(--sand); transition: color 0.25s; }
+.close:hover { color: var(--signal); }
+
+.screen { position: relative; }
+.greet { aspect-ratio: 16 / 9; display: grid; grid-template-columns: 38% 1fr; }
+.photo { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; min-height: 0; }
+.words { display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: clamp(20px, 4vw, 56px); min-height: 0; }
+.words > p:first-child { color: var(--steel); }
+.words h2 { font-size: clamp(34px, 5.4vw, 84px); line-height: 0.9; font-weight: 900; }
+.pitch { font-size: clamp(15px, 1.5vw, 20px); line-height: 1.45; max-width: 34ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+
+.actions button, .end button {
+  border: 1px solid var(--line); padding: 14px 20px; background: rgba(7, 8, 11, 0.7);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.actions button:hover, .end button:hover, .primary.primary { background: var(--signal); border-color: var(--signal); color: var(--ink); }
+.end { position: absolute; left: 0; right: 0; bottom: 22%; display: flex; justify-content: center; gap: 14px; }
+
+@media (max-width: 640px) {
+  .greet { aspect-ratio: auto; grid-template-columns: 1fr; }
+  .photo { aspect-ratio: 4 / 3; }
+}

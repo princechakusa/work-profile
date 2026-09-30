@@ -1,0 +1,95 @@
+/* Shared layout for the inner pages (work, projects, education, why me, contact). */
+
+.page { position: relative; min-height: 100vh; padding: 150px clamp(20px, 4vw, 56px) 110px; }
+.inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 90px; }
+
+.head { display: flex; flex-direction: column; gap: 18px; animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(30px); } }
+.kicker { color: var(--signal); }
+.title { font-size: clamp(56px, 10vw, 150px); line-height: 0.86; font-weight: 900; }
+.lede { max-width: 62ch; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.55; color: var(--sand); }
+
+.section { display: flex; flex-direction: column; gap: 28px; }
+.sectionTitle { font-size: clamp(34px, 4.6vw, 64px); line-height: 0.92; font-weight: 900; }
+.sectionKicker { color: var(--steel); }
+
+.film { border: 1px solid var(--line); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5); }
+.filmNote { color: var(--steel); font-size: 15px; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.stat { background: rgba(10, 11, 18, 0.85); padding: 26px 24px; }
+.statN { font-size: clamp(48px, 5.4vw, 80px); line-height: 0.9; font-weight: 900; }
+.statL { margin-top: 10px; color: var(--steel); line-height: 1.4; }
+.glance { margin-top: 10px; font-size: 20px; line-height: 1.35; }
+
+/* work timeline */
+.roles, .studies { background: rgba(7, 8, 11, 0.78); backdrop-filter: blur(6px); padding: 0 clamp(16px, 2.5vw, 34px); border: 1px solid var(--line); }
+.roles { display: flex; flex-direction: column; }
+.role:first-child, .study:first-child { border-top: 0; }
+.role { display: grid; grid-template-columns: 220px 1fr; gap: 36px; padding: 44px 0; border-top: 1px solid var(--line); }
+.roleWhen { color: var(--steel); padding-top: 8px; }
+.roleWhen b { display: inline-block; margin-top: 10px; color: var(--ink); background: var(--signal); padding: 4px 8px; font-weight: 500; }
+.roleTitle { font-size: clamp(30px, 3.4vw, 50px); line-height: 0.95; font-weight: 800; }
+.roleCompany { color: var(--signal); margin-top: 10px; font-weight: 600; font-size: 19px; }
+.roleCols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 30px; }
+.col h4 { color: var(--steel); margin-bottom: 14px; }
+.col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; line-height: 1.5; }
+.col li { padding-left: 18px; position: relative; }
+.col li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 8px; height: 2px; background: var(--signal); }
+.col p { line-height: 1.5; }
+.learned { border-left: 2px solid var(--signal); padding-left: 16px; font-size: 19px; }
+.note { margin-top: 22px; color: var(--steel); line-height: 1.5; font-size: 15px; }
+
+/* cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.card { border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; gap: 12px; line-height: 1.5; background: rgba(10, 11, 18, 0.82); backdrop-filter: blur(6px); }
+.cardTitle { font-size: clamp(24px, 2.4vw, 32px); line-height: 1; font-weight: 800; }
+.cardNum { color: var(--signal); }
+.muted { color: var(--steel); }
+
+/* education */
+.studies { display: flex; flex-direction: column; }
+.study { display: grid; grid-template-columns: 1fr 1.25fr; gap: 40px; padding: 40px 0; border-top: 1px solid var(--line); }
+.studyName { font-size: clamp(26px, 2.8vw, 40px); line-height: 1; font-weight: 800; }
+.badge { display: inline-block; margin-top: 14px; padding: 5px 10px; border: 1px solid var(--line); color: var(--steel); }
+.badgeDone { border-color: var(--signal); color: var(--signal); }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 14px; }
+
+/* projects */
+.shots { display: grid; grid-template-columns: 2.2fr 1fr 1fr; gap: 18px; align-items: start; }
+.shotDesktop { grid-column: 1 / -1; }
+.frame { border: 1px solid var(--line); background: #0e1015; overflow: hidden; }
+.frame img { display: block; width: 100%; height: auto; }
+.browserBar { display: flex; gap: 7px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.browserBar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.phone { border-radius: 30px; padding: 10px; border: 1px solid var(--line); background: #0e1015; }
+.phone img { display: block; width: 100%; height: auto; border-radius: 22px; }
+.phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.links { display: flex; gap: 26px; flex-wrap: wrap; }
+.links a { border-bottom: 1px solid var(--signal); padding-bottom: 4px; transition: color 0.25s; }
+.links a:hover { color: var(--signal); }
+.cta {
+  align-self: flex-start; border: 1px solid var(--signal); padding: 16px 24px; background: var(--signal); color: var(--ink);
+  transition: background 0.3s, color 0.3s;
+}
+.cta:hover { background: transparent; color: var(--sand); }
+.ghost { align-self: flex-start; border: 1px solid var(--line); padding: 16px 24px; transition: border-color 0.3s; }
+.ghost:hover { border-color: var(--signal); }
+.actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.quote { border-left: 2px solid var(--signal); padding-left: 26px; max-width: 900px; }
+.quote p { font-size: clamp(19px, 2vw, 26px); line-height: 1.5; }
+.quote footer { margin-top: 18px; color: var(--steel); display: flex; gap: 18px; flex-wrap: wrap; align-items: baseline; }
+.quote footer a { color: var(--sand); border-bottom: 1px solid var(--signal); }
+
+.big { font-size: clamp(22px, 3vw, 40px); line-height: 1.3; border-bottom: 1px solid var(--signal); align-self: flex-start; }
+
+@media (max-width: 900px) {
+  .role, .study { grid-template-columns: 1fr; gap: 16px; }
+  .roleCols { grid-template-columns: 1fr; }
+  .shots, .phones { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .phones { grid-template-columns: 1fr; }
+}

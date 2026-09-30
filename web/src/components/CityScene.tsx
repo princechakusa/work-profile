@@ -2,18 +2,15 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
-import { Grid } from "@react-three/drei";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { scrollState } from "@/lib/scrollState";
 import { pulseState } from "@/lib/pulseState";
+import { COLS, ROWS, SPACING } from "@/lib/cityGrid";
+import CityLife from "./CityLife";
 
 export type HoverFn = (unit: number | null, x: number, y: number) => void;
 
-/** One tower per managed unit: 25 x 14 = 350. */
-const COLS = 25;
-const ROWS = 14;
-const SPACING = 1.7;
 const RISE = 1.5;
 const PULSE_SPEED = 9;
 const PULSE_LIFE = 4.5;
@@ -78,22 +75,26 @@ const eased = (t: Tower, time: number, reduce: boolean) => {
   return { k, e: 1 - (1 - k) ** 3 };
 };
 
-/** Standard material + procedural lit windows on every facade (no textures needed). */
-function useCityMaterial() {
+/**
+ * Standard material + procedural glass facades (no textures needed): most windows lit, each building
+ * with its own light colour, and some towers carrying corner light strips and a glowing crown.
+ */
+export function useCityMaterial() {
   const uTime = useMemo(() => ({ value: 0 }), []);
   const material = useMemo(() => {
-    const m = new THREE.MeshStandardMaterial({ roughness: 0.5, metalness: 0.3 });
+    const m = new THREE.MeshStandardMaterial({ roughness: 0.42, metalness: 0.35 });
     m.onBeforeCompile = (sh) => {
       sh.uniforms.uTime = uTime;
       sh.vertexShader = sh.vertexShader
-        .replace("#include <common>", "#include <common>\nvarying vec3 vWPos;\nvarying vec3 vWN;\nvarying vec2 vSeed;")
+        .replace("#include <common>", "#include <common>\nvarying vec3 vWPos;\nvarying vec3 vWN;\nvarying vec2 vSeed;\nvarying vec3 vLocal;")
         .replace(
           "#include <begin_vertex>",
           `#include <begin_vertex>
            mat4 iM = modelMatrix * instanceMatrix;
            vWPos = (iM * vec4(transformed, 1.0)).xyz;
            vWN = normalize(mat3(iM) * normal);
-           vSeed = instanceMatrix[3].xz;`,
+           vSeed = instanceMatrix[3].xz;
+           vLocal = position;`,
         );
       sh.fragmentShader = sh.fragmentShader
         .replace(
@@ -103,6 +104,7 @@ function useCityMaterial() {
            varying vec3 vWPos;
            varying vec3 vWN;
            varying vec2 vSeed;
+           varying vec3 vLocal;
            float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }`,
         )
         .replace(
@@ -110,14 +112,23 @@ function useCityMaterial() {
           `#include <emissivemap_fragment>
            float side = 1.0 - step(0.5, abs(vWN.y));
            float along = abs(vWN.x) > 0.5 ? vWPos.z : vWPos.x;
-           vec2 cell = vec2(along * 2.4, vWPos.y * 2.7);
+           vec2 cell = vec2(along * 4.6, vWPos.y * 5.2);
            vec2 cid = floor(cell);
            vec2 f = fract(cell);
-           float win = step(0.22, f.x) * step(f.x, 0.78) * step(0.28, f.y) * step(f.y, 0.72);
+           float win = step(0.2, f.x) * step(f.x, 0.8) * step(0.3, f.y) * step(f.y, 0.74);
            float r = h21(cid + floor(vSeed * 3.0) + vec2(vWN.x * 7.0, vWN.z * 3.0));
-           float on = step(0.72, r) * (0.75 + 0.25 * sin(uTime * 0.8 + r * 40.0));
-           vec3 warm = mix(vec3(1.0, 0.72, 0.42), vec3(0.7, 0.85, 1.0), step(0.9, r));
-           totalEmissiveRadiance += warm * win * on * side * 1.1 * smoothstep(0.15, 0.6, vWPos.y);`,
+           float on = step(0.46, r) * (0.8 + 0.2 * sin(uTime * 0.8 + r * 40.0));
+           float bld = h21(floor(vSeed * 3.0) + 17.0);
+           vec3 tint = bld < 0.45 ? vec3(1.0, 0.76, 0.46) : bld < 0.7 ? vec3(0.78, 0.88, 1.0) : bld < 0.86 ? vec3(0.45, 0.9, 0.95) : vec3(1.0, 0.68, 0.22);
+           vec3 warm = mix(tint, vec3(1.0, 0.9, 0.75), step(0.85, r) * 0.6);
+           totalEmissiveRadiance += warm * win * on * side * (0.35 + r * 0.75) * smoothstep(0.1, 0.5, vWPos.y);
+           // landmark towers: light strips down the corners and a glowing crown
+           float across = abs(vWN.x) > 0.5 ? vLocal.z : vLocal.x;
+           float landmark = step(0.86, h21(floor(vSeed * 3.0) + 5.0));
+           vec3 accent = bld < 0.5 ? vec3(1.0, 0.72, 0.2) : bld < 0.8 ? vec3(0.3, 0.8, 1.0) : vec3(0.85, 0.35, 1.0);
+           float strip = step(0.47, abs(across)) * side;
+           float crown = step(0.47, vLocal.y) * side;
+           totalEmissiveRadiance += accent * landmark * (strip * 1.2 + crown * 1.8) * smoothstep(0.2, 0.8, vWPos.y);`,
         );
     };
     return m;
@@ -125,7 +136,11 @@ function useCityMaterial() {
   return { material, uTime };
 }
 
-function Skyline({ onHover }: { onHover: HoverFn }) {
+/**
+ * The 350 towers. By default they run on the canvas clock; pass `time` to drive the rise from outside
+ * (the films do this so the city follows the narration and can be scrubbed backwards).
+ */
+export function Skyline({ onHover, time: timeFn }: { onHover: HoverFn; time?: () => number }) {
   const towers = useMemo(buildCity, []);
   const parts = useMemo(() => buildParts(towers), [towers]);
   const byTower = useMemo(() => {
@@ -135,7 +150,7 @@ function Skyline({ onHover }: { onHover: HoverFn }) {
   }, [towers, parts]);
   const litIdx = useMemo(() => towers.flatMap((t, i) => (t.lit ? [i] : [])), [towers]);
   const baseColors = useMemo(
-    () => towers.map((t) => new THREE.Color().setHSL(0.6, 0.15, 0.07 + t.tone * 0.07)),
+    () => towers.map((t) => new THREE.Color().setHSL(0.6 + t.tone * 0.06, 0.3, 0.07 + t.tone * 0.06)),
     [towers],
   );
   const { material, uTime } = useCityMaterial();
@@ -163,12 +178,12 @@ function Skyline({ onHover }: { onHover: HoverFn }) {
     const m = mesh.current;
     const b = beacons.current;
     if (!m || !b) return;
-    const time = clock.elapsedTime;
-    uTime.value = time;
+    const time = timeFn ? timeFn() : clock.elapsedTime;
+    uTime.value = clock.elapsedTime;
 
     const pulseAge = time - pulseState.t0;
     const pulsing = pulseAge >= 0 && pulseAge < PULSE_LIFE;
-    const needs = !settled.current || pulsing || wasPulsing.current;
+    const needs = !!timeFn || !settled.current || pulsing || wasPulsing.current;
 
     if (needs) {
       let done = true;
@@ -208,7 +223,7 @@ function Skyline({ onHover }: { onHover: HoverFn }) {
 
     (b.material as THREE.MeshBasicMaterial).color
       .set("#ff5a1f")
-      .multiplyScalar(2.4 + 0.7 * Math.sin(time * 2.2) + (pulsing ? 1.4 * Math.exp(-pulseAge) : 0));
+      .multiplyScalar(2.4 + 0.7 * Math.sin(clock.elapsedTime * 2.2) + (pulsing ? 1.4 * Math.exp(-pulseAge) : 0));
   });
 
   const move = (e: ThreeEvent<PointerEvent>) => {
@@ -247,6 +262,9 @@ function Skyline({ onHover }: { onHover: HoverFn }) {
   );
 }
 
+/** Drag state shared by the camera rig and the click shockwave (a drag is not a click). */
+const spin = { dragging: false, lastX: 0, startX: 0, startY: 0, theta: 0 };
+
 /** Click anywhere (not on a link) to send a shockwave through the city from that ground point. */
 function PulseListener() {
   const { camera, gl, clock } = useThree();
@@ -254,8 +272,9 @@ function PulseListener() {
     const ray = new THREE.Raycaster();
     const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
     const hit = new THREE.Vector3();
-    const down = (e: PointerEvent) => {
-      if ((e.target as HTMLElement).closest("a, button")) return;
+    const up = (e: PointerEvent) => {
+      if ((e.target as HTMLElement).closest("a, button, [data-nocursor]")) return;
+      if (Math.hypot(e.clientX - spin.startX, e.clientY - spin.startY) > 6) return;
       const r = gl.domElement.getBoundingClientRect();
       ray.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
       if (ray.ray.intersectPlane(plane, hit)) {
@@ -264,16 +283,46 @@ function PulseListener() {
         pulseState.t0 = clock.elapsedTime;
       }
     };
-    window.addEventListener("pointerdown", down);
-    return () => window.removeEventListener("pointerdown", down);
+    window.addEventListener("pointerup", up);
+    return () => window.removeEventListener("pointerup", up);
   }, [camera, gl, clock]);
   return null;
 }
 
-/** Camera: idle drift + mouse parallax + a dolly-in intro + scroll-driven fly-through. */
+/** Drag anywhere outside links and films to turn the whole city around its centre. */
+function SpinListener() {
+  useEffect(() => {
+    const down = (e: PointerEvent) => {
+      if ((e.target as HTMLElement).closest("a, button, [data-nocursor]")) return;
+      spin.dragging = true;
+      spin.lastX = spin.startX = e.clientX;
+      spin.startY = e.clientY;
+    };
+    const move = (e: PointerEvent) => {
+      if (!spin.dragging) return;
+      spin.theta -= (e.clientX - spin.lastX) * 0.006;
+      spin.lastX = e.clientX;
+    };
+    const up = () => (spin.dragging = false);
+    window.addEventListener("pointerdown", down);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    return () => {
+      window.removeEventListener("pointerdown", down);
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+    };
+  }, []);
+  return null;
+}
+
+const CENTRE_Z = -8;
+
+/** Camera: idle drift + mouse parallax + a dolly-in intro + scroll-driven fly-through, turned by the 360 spin. */
 function Rig() {
   const { camera, pointer } = useThree();
   const p = useRef(0);
+  const angle = useRef(0);
   const look = useMemo(() => new THREE.Vector3(), []);
 
   useFrame(({ clock }, dt) => {
@@ -283,51 +332,55 @@ function Rig() {
     const intro = (1 - Math.min(1, t / 2.8)) ** 3 * 8;
     const f = Math.min(1, dt * 2);
 
-    const tx = pointer.x * 1.8 + Math.sin(t * 0.25) * 0.6;
-    const ty = THREE.MathUtils.lerp(9.5, 3.4, e) + pointer.y * 0.5 + Math.sin(t * 0.3) * 0.15;
-    const tz = THREE.MathUtils.lerp(23, 4, e) + intro;
+    if (!spin.dragging) spin.theta += dt * 0.03;
+    // turning fades out as the camera flies down into the streets, so it never swings into a tower
+    angle.current += (spin.theta * (1 - e) - angle.current) * Math.min(1, dt * 4);
+    const cos = Math.cos(angle.current), sin = Math.sin(angle.current);
+    const turn = (x: number, z: number): [number, number] => [x * cos + (z - CENTRE_Z) * sin, CENTRE_Z - x * sin + (z - CENTRE_Z) * cos];
+
+    const [tx, tz] = turn(pointer.x * 1.8 + Math.sin(t * 0.25) * 0.6, THREE.MathUtils.lerp(23, 4, e) + intro);
+    const ty = THREE.MathUtils.lerp(8.6, 3.2, e) + pointer.y * 0.5 + Math.sin(t * 0.3) * 0.15;
     camera.position.x += (tx - camera.position.x) * f;
     camera.position.y += (ty - camera.position.y) * f;
     camera.position.z += (tz - camera.position.z) * f;
 
-    look.set(pointer.x * 0.8, THREE.MathUtils.lerp(1.6, 2.2, e), THREE.MathUtils.lerp(-6, -18, e));
+    const [lx, lz] = turn(pointer.x * 0.8, THREE.MathUtils.lerp(-10, -20, e));
+    look.set(lx, THREE.MathUtils.lerp(4.4, 3.2, e), lz);
     camera.lookAt(look);
   });
   return null;
+}
+
+/** Dusk lighting shared by the site and the film: cool sky fill, warm sunset from behind the skyline, haze. */
+export function CityLights() {
+  return (
+    <>
+      <color attach="background" args={["#0b0a18"]} />
+      <fog attach="fog" args={["#2a1d38", 40, 170]} />
+      <hemisphereLight args={["#6a5ea6", "#120e18", 0.8]} />
+      <directionalLight position={[-10, 14, 12]} intensity={0.9} color="#aab8ff" />
+      <directionalLight position={[4, 6, -40]} intensity={1.7} color="#ff9468" />
+    </>
+  );
 }
 
 export default function CityScene({ onHover }: { onHover: HoverFn }) {
   return (
     <Canvas
       dpr={[1, 1.75]}
-      camera={{ position: [0, 9.5, 32], fov: 36, near: 0.1, far: 100 }}
+      camera={{ position: [0, 8.6, 32], fov: 36, near: 0.1, far: 220 }}
       gl={{ antialias: false, powerPreference: "high-performance" }}
     >
-      <color attach="background" args={["#07080b"]} />
-      <fog attach="fog" args={["#07080b", 26, 62]} />
-      <ambientLight intensity={0.5} color="#8ea0c0" />
-      <directionalLight position={[-8, 12, 6]} intensity={2.4} color="#f3e6cf" />
-      <directionalLight position={[8, 5, -22]} intensity={1.1} color="#ff5a1f" />
-
-      <Grid
-        position={[0, 0, -10]}
-        args={[90, 90]}
-        cellSize={SPACING}
-        cellThickness={0.7}
-        cellColor="#252c3a"
-        sectionSize={SPACING * 5}
-        sectionThickness={1}
-        sectionColor="#3a2a24"
-        fadeDistance={60}
-        fadeStrength={1.6}
-      />
+      <CityLights />
+      <CityLife />
 
       <Skyline onHover={onHover} />
       <Rig />
       <PulseListener />
+      <SpinListener />
 
       <EffectComposer multisampling={4}>
-        <Bloom mipmapBlur luminanceThreshold={1} intensity={1.15} radius={0.7} />
+        <Bloom mipmapBlur luminanceThreshold={1} intensity={0.95} radius={0.7} />
         <Vignette eskil={false} offset={0.2} darkness={0.85} />
       </EffectComposer>
     </Canvas>
