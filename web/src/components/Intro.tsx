@@ -1,8 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Film, { preloadVoice } from "./Film";
+import dynamic from "next/dynamic";
 import s from "./Intro.module.css";
+
+// the film player is the heaviest part of the site; the greeting shows at once and the player loads behind it
+const Film = dynamic(() => import("./Film"), { ssr: false });
 
 /**
  * The opening film as a pop-up over the site. It greets with Prince's photo and waits for a click
@@ -24,7 +27,7 @@ export default function Intro({ onDone }: { onDone: (openWork: boolean) => void 
   );
 
   useEffect(() => {
-    preloadVoice();
+    const warm = window.setTimeout(() => import("./Film").then((m) => m.preloadVoice()), 1200);
     const html = document.documentElement;
     const prev = html.style.overflow;
     const previousFocus = document.activeElement as HTMLElement | null;
@@ -47,6 +50,7 @@ export default function Intro({ onDone }: { onDone: (openWork: boolean) => void 
     window.addEventListener("keydown", onKey);
     window.requestAnimationFrame(() => dialog.current?.querySelector<HTMLElement>("button")?.focus());
     return () => {
+      window.clearTimeout(warm);
       html.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
       previousFocus?.focus();

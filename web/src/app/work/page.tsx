@@ -18,8 +18,8 @@ export default function WorkPage() {
           <p className={`${s.kicker} mono`}>Work</p>
           <h1 className={`${s.title} display`}>From the front desk to supervisor.</h1>
           <p className={s.lede}>
-            Since 2023 I have worked in four holiday home companies in the UAE. For each role you can see what I was responsible
-            for, the value I added to the company, and what the role taught me.
+            Four UAE holiday home companies since 2023. Each role below sets out the responsibilities, the achievements and
+            the key learning.
           </p>
         </header>
 
@@ -61,7 +61,7 @@ export default function WorkPage() {
                   <p className={s.roleCompany}>{r.company}</p>
                   <div className={s.roleCols}>
                     <div className={s.col}>
-                      <h4 className="mono">What I did</h4>
+                      <h4 className="mono">Responsibilities</h4>
                       <ul>
                         {r.did.map((d) => (
                           <li key={d}>{d}</li>
@@ -69,7 +69,7 @@ export default function WorkPage() {
                       </ul>
                     </div>
                     <div className={s.col}>
-                      <h4 className="mono">Value I added</h4>
+                      <h4 className="mono">Achievements</h4>
                       <ul>
                         {r.added.map((d) => (
                           <li key={d}>{d}</li>
@@ -77,7 +77,7 @@ export default function WorkPage() {
                       </ul>
                     </div>
                     <div className={s.col}>
-                      <h4 className="mono">What I learned</h4>
+                      <h4 className="mono">Key learning</h4>
                       <p className={s.learned}>{r.learned}</p>
                     </div>
                   </div>

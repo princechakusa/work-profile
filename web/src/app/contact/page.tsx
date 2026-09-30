@@ -18,8 +18,8 @@ export default function ContactPage() {
           <p className={`${s.kicker} mono`}>Contact</p>
           <h1 className={`${s.title} display`}>Let&apos;s build something that runs.</h1>
           <p className={s.lede}>
-            I am based in {CONTACT.location} and {CONTACT.open.charAt(0).toLowerCase() + CONTACT.open.slice(1)}. The quickest way to
-            reach me is by email.
+            I am based in {CONTACT.location} and {CONTACT.open.charAt(0).toLowerCase() + CONTACT.open.slice(1)}. You can reach me by
+            email or on WhatsApp.
           </p>
         </header>
 
@@ -29,6 +29,7 @@ export default function ContactPage() {
           </a>
           <div className={`${s.actions} mono`}>
             <a className={s.cta} href={`mailto:${CONTACT.email}?subject=Role%20for%20Prince%20Chakusa`}>Email me about a role →</a>
+            <a className={s.ghost} href={CONTACT.whatsapp} target="_blank" rel="noreferrer">WhatsApp {CONTACT.phone} ↗</a>
             <Link className={s.ghost} href="/cv">View my CV</Link>
           </div>
           <div className={s.grid}>

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Intro from "./Intro";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -11,7 +12,6 @@ import { ABOUT, CAREER_STATS, CONTACT, DRIVES, STRENGTHS } from "@/lib/content";
 import s from "./Home.module.css";
 
 const CityScene = dynamic(() => import("./CityScene"), { ssr: false });
-const Intro = dynamic(() => import("./Intro"), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,7 +29,7 @@ function Letters({ text }: { text: string }) {
 }
 
 const EXPLORE = [
-  { href: "/work", t: "Work", d: "Every role: what I did, the value I added, and what I learned." },
+  { href: "/work", t: "Work", d: "Every role: responsibilities, achievements and key learning." },
   { href: "/projects", t: "Projects", d: "PaMarket and FixHub: products built from real problems." },
   { href: "/education", t: "Education", d: "My qualifications, and how each one helps me at work." },
   { href: "/why-me", t: "Why me", d: "Four reasons to hire me, and what a colleague says." },

@@ -4,6 +4,8 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { CF_BEACON_TOKEN, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const display = Big_Shoulders({ subsets: ["latin"], weight: ["700", "800", "900"], variable: "--font-display" });
@@ -11,6 +13,14 @@ const body = Familjen_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600"
 const mono = Martian_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  openGraph: {
+    type: "website",
+    siteName: "Prince Chakusa",
+    title: "Prince Chakusa | Holiday Home Operations Leader",
+    description: "Guest experience and property operations leader in the UAE who also builds software. 350+ units, a team of 12, +25% guest review scores.",
+  },
+  twitter: { card: "summary_large_image" },
   title: {
     default: "Prince Chakusa | Holiday Home Operations Leader",
     template: "%s | Prince Chakusa",
@@ -54,7 +64,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <SiteFooter />
         </SmoothScroll>
+        <WhatsAppButton />
         <Cursor />
+        {CF_BEACON_TOKEN && (
+          <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: CF_BEACON_TOKEN })} />
+        )}
       </body>
     </html>
   );

@@ -12,6 +12,9 @@ export default function SiteFooter() {
       </div>
       <div className={`${s.footLinks} mono`}>
         <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+        <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer">
+          WhatsApp {CONTACT.phone} ↗
+        </a>
         <a href={CONTACT.linkedin} target="_blank" rel="noreferrer">
           LinkedIn ↗
         </a>
