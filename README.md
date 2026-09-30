@@ -1,19 +1,14 @@
-# Work Profile
+﻿# Work Profile
 
-Interactive portfolio for Prince Chakusa, built entirely in Python with [Reflex](https://reflex.dev).
+Interactive 3D portfolio for Prince Chakusa.
 
-## Run it
+**Stack:** Next.js, TypeScript, React Three Fiber (Three.js), GSAP + ScrollTrigger, Lenis.
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\pip install -r requirements.txt
-.\.venv\Scripts\reflex run      # http://localhost:3000
+```bash
+cd web
+npm install
+npm run dev   # http://localhost:3000
 ```
 
-## Layout
-
-- `work_profile/data.py` - all content (experience, projects, skills). Edit here.
-- `work_profile/work_profile.py` - page sections and interactive state (project filter, expandable roles).
-- `assets/motion.css` - theme and animations (pure CSS: aurora glow, count-up stats, scroll reveals, skill bars).
-- `legacy-html/` - the previous static HTML site, kept for reference.
-- `PORTFOLIO_AND_ROADMAP.md` - GitHub profile audit and 90-day plan.
+- `web/` - the site. The home page is a 3D skyline of 350 towers (one per managed unit).
+- `archive/` - earlier static-HTML and Python/Reflex versions, kept for reference.

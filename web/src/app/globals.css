@@ -1,0 +1,35 @@
+:root {
+  --ink: #07080b;
+  --ink-2: #0e1015;
+  --sand: #ece7db;
+  --steel: #7d8794;
+  --signal: #ff5a1f;
+  --line: rgba(236, 231, 219, 0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--ink); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  background: var(--ink);
+  color: var(--sand);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; }
+
+.display { font-family: var(--font-display), Impact, sans-serif; text-transform: uppercase; letter-spacing: -0.01em; }
+.mono { font-family: var(--font-mono), monospace; text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
+
+/* custom cursor only where a real pointer exists */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button { cursor: none; }
+}
+
+::selection { background: var(--signal); color: var(--ink); }
