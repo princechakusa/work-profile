@@ -2,225 +2,174 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Prince Chakusa - Resume</title>
+<title>Prince Chakusa - CV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
 <style>
   @page { size: A4; margin: 0; }
-  :root { --ink: #0b0d11; --text: #1f232a; --muted: #5b636e; --rule: #cfd3d8; --accent: #e8531c; }
+  :root { --ink: #111418; --text: #2a2f36; --muted: #69717c; --rule: #dde0e4; --accent: #e8531c; --tint: #f6f4ef; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: #fff; color: var(--text); font-family: "Open Sans", Arial, sans-serif; font-size: 9pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .page { width: 210mm; height: 297mm; padding: 12mm 15mm 10mm; display: flex; flex-direction: column; overflow: hidden; page-break-after: always; }
-  .page:last-child { page-break-after: auto; }
+  html, body { background: #fff; color: var(--text); font-family: "Open Sans", Arial, sans-serif; font-size: 8.7pt; line-height: 1.42; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; padding: 11mm 13mm 9mm; display: flex; flex-direction: column; overflow: hidden; }
 
   /* header */
-  header { display: grid; grid-template-columns: 27mm 1fr; gap: 6mm; align-items: center; padding-bottom: 4mm; border-bottom: 0.8mm solid var(--ink); }
-  header img { width: 27mm; height: 31mm; object-fit: cover; object-position: center 15%; }
-  h1 { font-family: "Open Sans", Impact, sans-serif; font-weight: 800; font-size: 26pt; line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink); }
-  .title { margin-top: 2mm; font-weight: 700; font-size: 10.4pt; color: var(--accent); text-transform: uppercase; letter-spacing: 0.02em; }
-  .contact { margin-top: 2mm; color: var(--muted); font-size: 8.7pt; }
-  .contact span + span::before { content: "|"; margin: 0 2.2mm; color: var(--rule); }
-  .mini { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 2mm; border-bottom: 0.8mm solid var(--ink); margin-bottom: 6mm; }
-  .mini b { font-family: "Open Sans", sans-serif; font-weight: 700; font-size: 15pt; text-transform: uppercase; color: var(--ink); }
-  .mini span { color: var(--muted); font-size: 8.5pt; }
+  header { display: flex; gap: 6mm; align-items: flex-end; }
+  header img { width: 25mm; height: 29mm; object-fit: cover; object-position: center 15%; border-radius: 2mm; }
+  .who { flex: 1; }
+  h1 { font-size: 25pt; font-weight: 800; line-height: 1; color: var(--ink); letter-spacing: 0.01em; }
+  .headline { margin-top: 1.6mm; font-size: 10.5pt; font-weight: 600; color: var(--ink); }
+  .headline span { color: var(--accent); }
+  .contact { margin-top: 2mm; color: var(--muted); font-size: 8.2pt; }
+  .contact b { color: var(--ink); font-weight: 600; }
 
-  /* sections */
-  section { margin-top: 3.8mm; }
-  h2 { font-size: 10pt; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); font-family: "Open Sans", sans-serif; font-size: 11pt; padding-bottom: 1.2mm; margin-bottom: 2.2mm; border-bottom: 0.3mm solid var(--rule); display: flex; align-items: center; gap: 2.5mm; }
-  h2::before { content: ""; width: 2.4mm; height: 2.4mm; background: var(--accent); }
-  p.lead { color: var(--text); }
+  .summary { margin-top: 4.5mm; font-size: 9.2pt; color: var(--text); padding-left: 3.5mm; border-left: 1mm solid var(--accent); }
 
-  .comp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6mm 6mm; }
-  .comp li { list-style: none; padding-left: 3.2mm; position: relative; }
-  .comp li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 1.3mm; height: 0.35mm; background: var(--accent); }
+  /* results strip */
+  .results { margin-top: 4.5mm; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--tint); border-radius: 2mm; }
+  .results div { padding: 3mm 3.5mm; border-right: 0.3mm solid var(--rule); }
+  .results div:last-child { border-right: 0; }
+  .results b { display: block; font-size: 17pt; font-weight: 800; line-height: 1; color: var(--accent); }
+  .results span { display: block; margin-top: 1mm; font-size: 7.8pt; color: var(--text); line-height: 1.3; }
 
-  ul.b { padding-left: 4.2mm; }
-  ul.b li { margin-bottom: 0.9mm; }
-  ul.b li::marker { color: var(--accent); }
-  ul.b b { color: var(--ink); }
+  /* two columns */
+  .cols { margin-top: 5mm; display: grid; grid-template-columns: 1fr 58mm; gap: 7mm; flex: 1; }
+  h2 { font-size: 8.4pt; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); margin-bottom: 2.6mm; padding-bottom: 1.2mm; border-bottom: 0.5mm solid var(--ink); }
 
-  .job { margin-bottom: 3.6mm; break-inside: avoid; }
-  .job-h { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
-  .job-h h3 { font-size: 10.4pt; font-weight: 700; color: var(--ink); }
-  .job-h .when { color: var(--muted); font-size: 8.8pt; white-space: nowrap; font-weight: 400; }
-  .co { font-weight: 400; color: var(--accent); margin: 0.3mm 0 1.3mm; }
-  .co em { font-style: normal; color: var(--muted); font-weight: 400; }
+  .role { margin-bottom: 3.6mm; }
+  .role-top { display: flex; justify-content: space-between; gap: 3mm; align-items: baseline; }
+  .role h3 { font-size: 9.8pt; font-weight: 700; color: var(--ink); }
+  .when { font-size: 7.8pt; color: var(--muted); white-space: nowrap; }
+  .where { font-size: 8.3pt; font-weight: 600; color: var(--accent); margin: 0.2mm 0 1.2mm; }
+  .role ul { padding-left: 3.6mm; }
+  .role li { margin-bottom: 0.7mm; }
+  .role li::marker { color: var(--accent); }
+  .role li b { color: var(--ink); font-weight: 700; }
 
-  .edu { display: grid; grid-template-columns: 1fr auto; gap: 1.4mm 6mm; }
-  .edu b { color: var(--ink); font-weight: 700; }
-  .edu .s { color: var(--muted); text-align: right; white-space: nowrap; }
-  .edu .wip { color: var(--accent); font-weight: 700; }
+  aside section { margin-bottom: 5mm; }
+  .item { margin-bottom: 2.6mm; }
+  .item b { display: block; color: var(--ink); font-weight: 700; font-size: 8.8pt; }
+  .item p { color: var(--text); }
+  .item .meta { color: var(--muted); font-size: 7.8pt; }
+  .tag { display: inline-block; margin-top: 0.6mm; padding: 0.2mm 1.6mm; border-radius: 1mm; font-size: 7.4pt; font-weight: 700; }
+  .tag.done { background: var(--tint); color: var(--ink); }
+  .tag.wip { background: #fde7df; color: var(--accent); }
+  .skills p { margin-bottom: 1.6mm; }
+  .skills b { color: var(--ink); font-weight: 700; }
 
-  .proj { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
-  .proj b { color: var(--ink); font-size: 10pt; }
-  .proj .l { color: var(--muted); font-size: 8.5pt; margin-top: 0.8mm; }
-
-  .foot { margin-top: auto; padding-top: 3mm; border-top: 0.3mm solid var(--rule); display: flex; justify-content: space-between; color: var(--muted); font-size: 8pt; }
+  footer { margin-top: auto; padding-top: 2.5mm; border-top: 0.3mm solid var(--rule); display: flex; justify-content: space-between; color: var(--muted); font-size: 7.6pt; }
 </style>
 </head>
 <body>
-
-<!-- PAGE 1 -->
 <div class="page">
+
   <header>
     <img src="../public/prince.jpg" alt="Prince Chakusa" />
-    <div>
-      <h1>Prince Chakusa</h1>
-      <p class="title">Guest Relations &amp; Property Operations Leader</p>
+    <div class="who">
+      <h1>PRINCE CHAKUSA</h1>
+      <p class="headline">Guest Experience and Property Operations Leader <span>who also builds software</span></p>
       <p class="contact">
-        <span>Abu Dhabi, UAE</span><span>+971 58 977 2645</span><span>chakusaprince@gmail.com</span>
-      </p>
-      <p class="contact">
-        <span>linkedin.com/in/princechakusa</span><span>github.com/princechakusa</span><span>UAE Driving Licence</span>
+        <b>Abu Dhabi, UAE</b> &nbsp;|&nbsp; +971 58 977 2645 &nbsp;|&nbsp; chakusaprince@gmail.com<br />
+        linkedin.com/in/princechakusa &nbsp;|&nbsp; github.com/princechakusa &nbsp;|&nbsp; UAE driving licence
       </p>
     </div>
   </header>
 
-  <section>
-    <h2>Professional Profile</h2>
-    <p class="lead">
-      Guest relations and property operations professional with experience across four UAE holiday home companies since 2023.
-      Progressed from front desk to leading a team of 12 responsible for more than 350 short-term rental units, and now
-      supervise guest relations at The Authors Holiday Homes. Skilled in guest experience, team leadership, DTCM compliance,
-      SOP development and vendor management. Also a software builder: designed and built PaMarket, a live marketplace for
-      Zimbabwe on the web, the App Store and Google Play.
-    </p>
-  </section>
+  <p class="summary">
+    I started at the front desk in 2023 and have grown through four UAE holiday home companies to lead teams and a
+    portfolio of more than 350 units. I focus on the guest: fast responses, consistent standards and problems fixed at
+    the source. When the right tool does not exist, I build it.
+  </p>
 
-  <section>
-    <h2>Key Competencies</h2>
-    <ul class="comp">
-      <li>Guest experience management</li>
-      <li>Team leadership and coaching</li>
-      <li>Operations coordination</li>
-      <li>SOP development and compliance</li>
-      <li>DTCM holiday home compliance</li>
-      <li>Vendor and SLA management</li>
-      <li>Service recovery and escalations</li>
-      <li>Data-driven reporting and KPIs</li>
-      <li>Guest review analysis</li>
-      <li>Property inspections</li>
-      <li>Inventory and stock control</li>
-      <li>Cross-department communication</li>
-    </ul>
-  </section>
+  <div class="results">
+    <div><b>350+</b><span>short-term rental units under my responsibility</span></div>
+    <div><b>12</b><span>people led across concierge, maintenance and housekeeping</span></div>
+    <div><b>+25%</b><span>guest review scores after redesigning check-in</span></div>
+    <div><b>15%</b><span>lower annual operating costs from standard SOPs</span></div>
+  </div>
 
-  <section>
-    <h2>Career Achievements</h2>
-    <ul class="b">
-      <li><b>Portfolio leadership:</b> Responsible for more than 350 short-term rental units at Stonetree, leading a multidisciplinary team of 12 across concierge, maintenance and housekeeping.</li>
-      <li><b>Cost control:</b> Standardised SOPs across the operations team, reducing annual operational costs by 15% while maintaining service levels.</li>
-      <li><b>Guest satisfaction:</b> Raised guest review scores by 25% and CSAT/NPS satisfaction by 20% at Daniels Holiday Homes, and cut front desk workload by 40% with digital concierge tools.</li>
-      <li><b>Promotion:</b> Joined Stonetree as a Customer Care Agent and was promoted to Team Leader of Property Operations.</li>
-    </ul>
-  </section>
+  <div class="cols">
+    <main>
+      <h2>Experience</h2>
 
-  <section>
-    <h2>Professional Experience</h2>
-
-    <div class="job">
-      <div class="job-h"><h3>Guest Relations Executive Supervisor</h3><span class="when">April 2026 - Present</span></div>
-      <p class="co">The Authors Holiday Homes, Abu Dhabi, UAE</p>
-      <ul class="b">
-        <li>Supervise the guest relations team, ensuring every guest is looked after from arrival to departure.</li>
-        <li>Handle escalated guest issues and coach the team to resolve problems at first contact.</li>
-        <li>Improved the company's operating systems and team management, so service standards hold on every shift.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="job-h"><h3>Guest Experience Lead</h3><span class="when">January 2026 - March 2026</span></div>
-      <p class="co">Luxury Homevy Vacation Homes Rental LLC, Dubai, UAE</p>
-      <ul class="b">
-        <li>Led guest experience operations across a 40-property short-term rental portfolio listed on Airbnb and Booking.com.</li>
-        <li>Managed a 5-person guest service team, overseeing daily SLA and SOP compliance across Hostaway and WhatsApp.</li>
-        <li>Built SLA/SOP compliance tracking to monitor response and resolution times across priority tiers.</li>
-        <li>Ran a guest review analytics programme covering more than 200 reviews to find recurring issues and service improvements.</li>
-      </ul>
-    </div>
-  </section>
-
-  <div class="foot"><span>Prince Chakusa &middot; Resume</span><span>Page 1 of 2</span></div>
-</div>
-
-<!-- PAGE 2 -->
-<div class="page">
-  <div class="mini"><b>Prince Chakusa</b><span>chakusaprince@gmail.com &nbsp;|&nbsp; +971 58 977 2645</span></div>
-
-  <section>
-    <div class="job">
-      <div class="job-h"><h3>Team Leader - Property Operations</h3><span class="when">November 2024 - December 2025</span></div>
-      <p class="co">Stonetree Vacation Homes Rental LLC, Dubai, UAE, joined as Customer Care Agent</p>
-      <ul class="b">
-        <li>Directed day-to-day operations for more than 350 short-term rental units, ensuring guest satisfaction and operational efficiency.</li>
-        <li>Led a cross-functional team of 12 across concierge, maintenance and housekeeping.</li>
-        <li>Developed, implemented and monitored SOPs across all property and maintenance functions.</li>
-        <li>Conducted regular property inspections to maintain standards and plan preventive maintenance.</li>
-        <li>Oversaw vendor and contractor performance, negotiated contracts and managed service level agreements.</li>
-        <li>Analysed performance metrics and prepared management reports, identifying process improvements.</li>
-        <li>Drove service recovery, resolving guest complaints promptly to protect brand reputation.</li>
-        <li>Ensured full DTCM compliance across property listings, permits and regulatory documentation.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="job-h"><h3>Guest Relations Officer</h3><span class="when">January 2023 - October 2024</span></div>
-      <p class="co">Daniels Holiday Homes Rental LLC, Dubai, UAE</p>
-      <ul class="b">
-        <li>Optimised guest check-in and check-out processes, improving review scores by 25%.</li>
-        <li>Integrated digital concierge tools, reducing front desk workload by 40%.</li>
-        <li>Implemented a CSAT and NPS feedback system, improving response time and guest satisfaction by 20%.</li>
-        <li>Conducted service audits based on guest surveys to guide operational improvements.</li>
-        <li>Mentored new team members, reducing onboarding time by 20%.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h2>Projects</h2>
-    <div class="proj">
-      <div>
-        <b>PaMarket</b>: Designer and developer
-        <p>Online marketplace and jobs board for Zimbabwe: buy and sell, find work and discover verified businesses across all 10 provinces, priced in US dollars or ZiG. Live on the web, the App Store and Google Play.</p>
-        <p class="l">pamarketzw.com</p>
+      <div class="role">
+        <div class="role-top"><h3>Guest Relations Executive Supervisor</h3><span class="when">Apr 2026 to Present</span></div>
+        <p class="where">The Authors Holiday Homes, Abu Dhabi</p>
+        <ul>
+          <li>Lead the guest relations team day to day and own every escalated guest issue until it is resolved.</li>
+          <li>Strengthened the company's systems and the way the team is managed, so standards hold on every shift.</li>
+          <li>Coach the team to solve guest problems at the first contact.</li>
+        </ul>
       </div>
-      <div>
-        <b>FixHub</b>: Developer
-        <p>Maintenance ticketing system for property managers: log a job, assign it and track it until it is fixed, so requests no longer get lost in group chats.</p>
-        <p class="l">github.com/princechakusa</p>
+
+      <div class="role">
+        <div class="role-top"><h3>Guest Experience Lead</h3><span class="when">Jan 2026 to Mar 2026</span></div>
+        <p class="where">Luxury Homevy Vacation Homes, Dubai</p>
+        <ul>
+          <li>Ran the guest experience for <b>40 properties</b> on Airbnb and Booking.com with a team of 5.</li>
+          <li>Built SLA and SOP tracking for response and resolution times across Hostaway and WhatsApp.</li>
+          <li>Turned <b>200+ guest reviews</b> into a clear list of recurring issues and fixes for the operations team.</li>
+        </ul>
       </div>
-    </div>
-  </section>
 
-  <section>
-    <h2>Education &amp; Certifications</h2>
-    <div class="edu">
-      <span><b>Bachelor of Business Administration</b></span><span class="s wip">In progress</span>
-      <span><b>AML-CFT Certificate</b> &middot; Anti-Money Laundering and Countering the Financing of Terrorism</span><span class="s wip">In progress</span>
-      <span><b>Associate of Science in Computer Science</b> &middot; University of the People</span><span class="s">Completed 2026</span>
-      <span><b>Diploma in Business Management</b> &middot; Lyceum College, South Africa</span><span class="s">Completed</span>
-      <span><b>CompTIA A+ Core 1 Certification</b></span><span class="s">Certified</span>
-      <span><b>UAE Driving Licence</b></span><span class="s">Valid until 2029</span>
-    </div>
-  </section>
+      <div class="role">
+        <div class="role-top"><h3>Team Leader, Property Operations</h3><span class="when">Nov 2024 to Dec 2025</span></div>
+        <p class="where">Stonetree Vacation Homes, Dubai</p>
+        <ul>
+          <li>Promoted from Customer Care Agent to run property operations for <b>350+ units</b>.</li>
+          <li>Led a team of <b>12</b> across concierge, maintenance and housekeeping.</li>
+          <li>Standardised SOPs across the team, cutting annual operating costs by <b>15%</b>.</li>
+          <li>Kept the portfolio DTCM compliant, and managed vendor contracts and service level agreements.</li>
+          <li>Ran property inspections and service recovery, and reported performance to management.</li>
+        </ul>
+      </div>
 
-  <section>
-    <h2>Skills &amp; Tools</h2>
-    <ul class="b">
-      <li><b>Property and guest platforms:</b> Hostaway, Airbnb, Booking.com, WhatsApp guest communication, digital concierge tools, queue management systems</li>
-      <li><b>Business tools:</b> Bitrix24 CRM, Slack, Notion, Microsoft 365</li>
-      <li><b>Technology:</b> Software development, JavaScript, HTML and CSS, Supabase and PostgreSQL, IT support</li>
-    </ul>
-  </section>
+      <div class="role">
+        <div class="role-top"><h3>Guest Relations Officer</h3><span class="when">Jan 2023 to Oct 2024</span></div>
+        <p class="where">Daniels Holiday Homes, Dubai</p>
+        <ul>
+          <li>Redesigned check-in and check-out, raising guest review scores by <b>25%</b>.</li>
+          <li>Introduced digital concierge tools that cut front desk workload by <b>40%</b>.</li>
+          <li>Set up CSAT and NPS feedback, lifting guest satisfaction by <b>20%</b>.</li>
+          <li>Mentored new staff, cutting onboarding time by <b>20%</b>.</li>
+        </ul>
+      </div>
+    </main>
 
-  <section>
-    <h2>References</h2>
-    <p>Available on request. LinkedIn recommendation from Anna Wilcox, Chief Accountant.</p>
-  </section>
+    <aside>
+      <section>
+        <h2>What I Built</h2>
+        <div class="item">
+          <b>PaMarket</b>
+          <p>A marketplace and jobs board for Zimbabwe, live on the web, the App Store and Google Play. I designed and built it.</p>
+          <p class="meta">pamarketzw.com</p>
+        </div>
+        <div class="item">
+          <b>FixHub</b>
+          <p>Maintenance ticketing for property managers: log, assign and track every job until it is fixed.</p>
+          <p class="meta">github.com/princechakusa</p>
+        </div>
+      </section>
 
-  <div class="foot"><span>Prince Chakusa &middot; Resume</span><span>Page 2 of 2</span></div>
+      <section>
+        <h2>Education</h2>
+        <div class="item"><b>Bachelor of Business Administration</b><span class="tag wip">In progress</span></div>
+        <div class="item"><b>AML-CFT Certificate</b><span class="tag wip">In progress</span></div>
+        <div class="item"><b>Associate of Science, Computer Science</b><p class="meta">University of the People</p><span class="tag done">Completed 2026</span></div>
+        <div class="item"><b>Diploma in Business Management</b><p class="meta">Lyceum College, South Africa</p></div>
+        <div class="item"><b>CompTIA A+ Core 1</b></div>
+      </section>
+
+      <section class="skills">
+        <h2>Skills</h2>
+        <p><b>Operations:</b> guest relations, team leadership, DTCM compliance, SOPs, vendor SLAs, reporting, review analysis</p>
+        <p><b>Platforms:</b> Hostaway, Airbnb, Booking.com, WhatsApp, Bitrix24, Slack, Notion, Microsoft 365</p>
+        <p><b>Technology:</b> JavaScript, HTML and CSS, Supabase and PostgreSQL, IT support</p>
+      </section>
+    </aside>
+  </div>
+
+  <footer><span>References available on request</span><span>Prince Chakusa</span></footer>
 </div>
-
 </body>
 </html>
