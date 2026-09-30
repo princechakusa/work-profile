@@ -90,3 +90,9 @@ Next: CV page with PDF export (Playwright), skills.
 - `reflex init` once wiped `assets/`; images restored from git. The root `assets/` folder holds old screenshots/photo, currently unused by the Next app (`web/public` is the place for new assets).
 - Some old screenshots (GuestCare) were empty "Loading" states; irrelevant now.
 - Screenshots: use Chrome with `--use-angle=swiftshader --enable-unsafe-swiftshader --ignore-gpu-blocklist` when headless so WebGL renders.
+
+## CV (2026-09-30)
+- Source of truth: `web/cv/cv.html` (2-page A4 resume, Open Sans, no em or en dashes, per Prince). Render it to `web/public/Prince-Chakusa-CV.pdf` with Playwright (`page.pdf(format="A4", print_background=True, prefer_css_page_size=True)`); check both pages have zero overflow first.
+- `web/public/Prince-Chakusa-CV.pdf` is what the site's "Download PDF" button (`CvActions.tsx`) serves. `web/scripts/build_cv_pdf.py` writes an older text-only CV to the same path, so do not run it unless it is updated to render `cv.html`.
+- Canva copy: design "PrinceChakusa_Resume_2026_v4.pdf" in Prince's Canva (imported from the PDF). Canva's PDF import swaps Open Sans for a fallback font and drops a few spaces (company lines, phone number); those lines need fixing by hand in Canva. Earlier import attempts (v1 to v3, Prince-Chakusa-CV.pdf, Prince-Chakusa-Resume.pdf, and the half-built "PRINCE CHAKUSA" design) can be deleted once Prince confirms.
+- Canva access is through a normal Chrome started with `--remote-debugging-port=9333 --user-data-dir=%TEMP%\canva-chrome` (Google blocks sign-in in Playwright-launched Chrome); connect with `connect_over_cdp`.

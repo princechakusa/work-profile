@@ -5,13 +5,13 @@ import Backdrop from "@/components/Backdrop";
 import s from "@/components/Page.module.css";
 
 export const metadata: Metadata = {
-  title: "Why me · Prince Chakusa",
+  title: "Why me",
   description: "Why hire Prince Chakusa: experience at every level, measurable results, operations and technology together.",
 };
 
 export default function WhyMePage() {
   return (
-    <main className={s.page}>
+    <main id="main-content" className={s.page}>
       <Backdrop />
       <div className={s.inner}>
         <header className={s.head}>
@@ -76,6 +76,9 @@ export default function WhyMePage() {
             <a className={s.cta} href={`mailto:${CONTACT.email}?subject=Role%20for%20Prince%20Chakusa`}>
               Email me about a role →
             </a>
+            <Link className={s.ghost} href="/cv">
+              View my CV
+            </Link>
             <Link className={s.ghost} href="/work">
               See my work
             </Link>

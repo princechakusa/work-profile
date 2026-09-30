@@ -15,3 +15,7 @@ assets/pamarket-app.png
 .states/
 __pycache__/
 *.py[cod]
+
+# build artefacts
+output/
+tmp/

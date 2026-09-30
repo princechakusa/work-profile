@@ -14,6 +14,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const path = usePathname();
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, anchors: true });
     lenisRef.current = lenis;
     lenis.on("scroll", ScrollTrigger.update);
@@ -28,7 +29,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
   // every page starts at the top, and scroll-driven effects re-measure the new page
   useEffect(() => {
-    lenisRef.current?.scrollTo(0, { immediate: true });
+    if (lenisRef.current) lenisRef.current.scrollTo(0, { immediate: true });
+    else window.scrollTo({ top: 0, behavior: "instant" });
     ScrollTrigger.refresh();
   }, [path]);
 

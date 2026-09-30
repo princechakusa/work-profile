@@ -5,14 +5,14 @@ import Backdrop from "@/components/Backdrop";
 import s from "@/components/Page.module.css";
 
 export const metadata: Metadata = {
-  title: "Projects · Prince Chakusa",
+  title: "Projects",
   description: "PaMarket, the marketplace Prince Chakusa built for Zimbabwe: why he built it, what it does and who it helps.",
 };
 
 export default function ProjectsPage() {
   const [desktop, ...phones] = PAMARKET.shots;
   return (
-    <main className={s.page}>
+    <main id="main-content" className={s.page}>
       <Backdrop />
       <div className={s.inner}>
         <header className={s.head}>

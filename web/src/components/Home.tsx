@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { scrollState } from "@/lib/scrollState";
-import { ABOUT, CONTACT, DRIVES, STRENGTHS } from "@/lib/content";
+import { ABOUT, CAREER_STATS, CONTACT, DRIVES, STRENGTHS } from "@/lib/content";
 import s from "./Home.module.css";
 
 const CityScene = dynamic(() => import("./CityScene"), { ssr: false });
@@ -30,7 +30,7 @@ function Letters({ text }: { text: string }) {
 
 const EXPLORE = [
   { href: "/work", t: "Work", d: "Every role: what I did, the value I added, and what I learned." },
-  { href: "/projects", t: "Projects", d: "PaMarket, the marketplace I built for Zimbabwe." },
+  { href: "/projects", t: "Projects", d: "PaMarket and FixHub: products built from real problems." },
   { href: "/education", t: "Education", d: "My qualifications, and how each one helps me at work." },
   { href: "/why-me", t: "Why me", d: "Four reasons to hire me, and what a colleague says." },
 ];
@@ -90,14 +90,17 @@ export default function Home() {
   };
 
   return (
-    <main ref={root} className={s.root}>
+    <main id="main-content" ref={root} className={s.root}>
       {introOpen && <Intro onDone={onIntroDone} />}
 
       {/* the 3D city rests while the pop-up is open, so the film and the pointer stay smooth */}
       <div className={s.canvas}>{!introOpen && <CityScene onHover={onHover} />}</div>
 
       <section className={s.hero}>
-        <p className={`${s.kicker} mono ${s.fadeIn}`}>Operations leader / Software builder / Abu Dhabi</p>
+        <div className={`${s.heroMeta} ${s.fadeIn}`}>
+          <p className={`${s.kicker} mono`}>Guest experience / Property operations / Software builder</p>
+          <span className={`${s.available} mono`}>Open to work</span>
+        </div>
         <h1 className={`${s.name} display`}>
           <Letters text="Prince" />
           <Letters text="Chakusa" />
@@ -108,13 +111,24 @@ export default function Home() {
             keeps them running. Every tower behind me stands for one of them.
           </p>
           <div className={`${s.heroActions} ${s.fadeIn}`}>
+            <a className={`${s.cta} ${s.primaryCta} mono`} href={`mailto:${CONTACT.email}?subject=Role%20for%20Prince%20Chakusa`}>
+              Email me about a role
+            </a>
+            <Link href="/cv" className={`${s.cta} mono`}>
+              View CV
+            </Link>
             <button className={`${s.cta} mono`} onClick={() => setIntroOpen(true)}>
               ▶ Watch my story
             </button>
-            <Link href="#about" className={`${s.cta} mono`}>
-              About me ↓
-            </Link>
           </div>
+        </div>
+        <div className={`${s.proofStrip} ${s.fadeIn}`} aria-label="Career highlights">
+          {CAREER_STATS.slice(1).map((item) => (
+            <div key={item.l}>
+              <strong className="display">{item.n}</strong>
+              <span>{item.l}</span>
+            </div>
+          ))}
         </div>
         <p className={`${s.hint} mono ${s.fadeIn}`}>Drag to turn the city · Hover a tower · Scroll to fly in</p>
       </section>
@@ -183,6 +197,21 @@ export default function Home() {
               <p>{e.d}</p>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className={`${s.panel} ${s.solid} ${s.closingPanel}`}>
+        <div className={s.reveal}>
+          <p className={`${s.kicker} mono`}>Available for the right team</p>
+          <h2 className={`${s.closer} display`}>Need an operator who can improve the system too?</h2>
+          <p className={s.closingCopy}>
+            I am open to guest experience, property operations and team leadership roles across the UAE, the GCC and remotely.
+          </p>
+          <div className={s.links}>
+            <a href={`mailto:${CONTACT.email}?subject=Role%20for%20Prince%20Chakusa`}>Email me about a role</a>
+            <Link href="/cv">View my CV</Link>
+            <a href={CONTACT.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          </div>
         </div>
       </section>
     </main>

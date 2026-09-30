@@ -11,7 +11,7 @@
 .tip em { font-style: normal; color: var(--signal); }
 
 .hero {
-  position: relative; z-index: 10; min-height: 100vh; padding: 0 clamp(20px, 4vw, 56px) 40px;
+  position: relative; z-index: 10; min-height: 100svh; padding: 110px clamp(20px, 4vw, 56px) 32px;
   display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none;
 }
 .hero a { pointer-events: auto; }
@@ -22,7 +22,10 @@
 }
 
 .kicker { color: var(--steel); margin-bottom: 18px; }
-.hero .kicker { align-self: flex-start; padding: 6px 10px; background: rgba(7, 8, 11, 0.75); color: var(--sand); }
+.heroMeta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.hero .kicker { align-self: flex-start; margin-bottom: 0; padding: 6px 10px; background: rgba(7, 8, 11, 0.75); color: var(--sand); }
+.available { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; background: var(--signal); color: var(--ink); }
+.available::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
 .name { font-size: clamp(72px, 13.5vw, 250px); line-height: 0.82; font-weight: 900; display: flex; flex-direction: column; }
 .line { display: flex; }
 .mask { display: inline-block; overflow: hidden; padding-top: 0.06em; }
@@ -35,6 +38,16 @@
   background: rgba(7, 8, 11, 0.5); backdrop-filter: blur(6px);
 }
 .cta:hover { background: var(--signal); border-color: var(--signal); color: var(--ink); }
+.primaryCta { background: var(--signal); border-color: var(--signal); color: var(--ink); }
+.primaryCta:hover { background: var(--sand); border-color: var(--sand); }
+.proofStrip {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(760px, 100%); margin-top: 26px;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(7, 8, 11, 0.45); backdrop-filter: blur(8px);
+}
+.proofStrip > div { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px; padding: 12px 14px; border-right: 1px solid var(--line); }
+.proofStrip > div:last-child { border-right: 0; }
+.proofStrip strong { color: var(--signal); font-size: clamp(24px, 3vw, 36px); line-height: 1; }
+.proofStrip span { color: var(--sand); font-size: 13px; line-height: 1.25; }
 .hint { margin-top: 28px; color: var(--steel); }
 .fadeIn { will-change: transform, opacity; }
 
@@ -109,7 +122,19 @@
 .strength h3 { font-size: 26px; font-weight: 800; color: var(--signal); }
 .explore { transition: border-color 0.3s, transform 0.3s; }
 .explore:hover { border-color: var(--signal); transform: translateY(-4px); }
+.closingPanel { min-height: 78vh; justify-content: center; }
+.closingCopy { max-width: 58ch; margin-top: 24px; color: var(--steel); font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; }
 @media (max-width: 800px) {
   .aboutGrid { grid-template-columns: 1fr; }
   .photo { max-width: 360px; }
+}
+@media (max-width: 640px) {
+  .hero { padding-top: 96px; padding-bottom: 24px; }
+  .heroFoot { margin-top: 22px; gap: 20px; }
+  .lede { font-size: 16px; }
+  .heroActions { gap: 8px; }
+  .cta { padding: 12px 14px; font-size: 10px; }
+  .proofStrip { grid-template-columns: 1fr; }
+  .proofStrip > div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .proofStrip > div:last-child { border-bottom: 0; }
 }

@@ -11,6 +11,7 @@ const LINKS = [
   { href: "/projects", t: "Projects" },
   { href: "/education", t: "Education" },
   { href: "/why-me", t: "Why me" },
+  { href: "/cv", t: "CV" },
   { href: "/contact", t: "Contact" },
 ];
 
@@ -25,12 +26,19 @@ export default function SiteNav() {
     setGoing(null);
   }, [path]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header className={`${s.nav} mono`}>
       <Link href="/" className={s.brand}>
         Prince Chakusa
       </Link>
-      <nav className={`${s.links} ${open ? s.open : ""}`} aria-label="Main">
+      <nav id="main-navigation" className={`${s.links} ${open ? s.open : ""}`} aria-label="Main">
         {LINKS.map((l) => (
           <Link
             key={l.href}
@@ -45,7 +53,7 @@ export default function SiteNav() {
       </nav>
       <span className={s.status}>Open to roles · UAE · GCC · Remote</span>
       {going && <span className={s.loading} aria-hidden />}
-      <button className={s.burger} onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label={open ? "Close menu" : "Open menu"}>
+      <button className={s.burger} onClick={() => setOpen((o) => !o)} aria-controls="main-navigation" aria-expanded={open} aria-label={open ? "Close menu" : "Open menu"}>
         {open ? "Close" : "Menu"}
       </button>
     </header>

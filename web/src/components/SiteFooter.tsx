@@ -18,6 +18,7 @@ export default function SiteFooter() {
         <a href={CONTACT.github} target="_blank" rel="noreferrer">
           GitHub ↗
         </a>
+        <Link href="/cv">CV</Link>
         <Link href="/contact">Contact →</Link>
       </div>
     </footer>

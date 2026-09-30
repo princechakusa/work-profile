@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CONTACT } from "@/lib/content";
 import Backdrop from "@/components/Backdrop";
 import s from "@/components/Page.module.css";
 
 export const metadata: Metadata = {
-  title: "Contact · Prince Chakusa",
+  title: "Contact",
   description: "Contact Prince Chakusa in Abu Dhabi. Open to roles in the UAE, the GCC and remote.",
 };
 
 export default function ContactPage() {
   return (
-    <main className={s.page}>
+    <main id="main-content" className={s.page}>
       <Backdrop />
       <div className={s.inner}>
         <header className={s.head}>
@@ -26,6 +27,10 @@ export default function ContactPage() {
           <a className={`${s.big} display`} href={`mailto:${CONTACT.email}?subject=Role%20for%20Prince%20Chakusa`}>
             {CONTACT.email}
           </a>
+          <div className={`${s.actions} mono`}>
+            <a className={s.cta} href={`mailto:${CONTACT.email}?subject=Role%20for%20Prince%20Chakusa`}>Email me about a role →</a>
+            <Link className={s.ghost} href="/cv">View my CV</Link>
+          </div>
           <div className={s.grid}>
             <a className={s.card} href={CONTACT.linkedin} target="_blank" rel="noreferrer">
               <span className={`${s.cardNum} mono`}>LinkedIn ↗</span>

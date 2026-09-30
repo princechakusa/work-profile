@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Film, { preloadVoice } from "./Film";
 import s from "./Intro.module.css";
 
@@ -9,6 +9,7 @@ import s from "./Intro.module.css";
  * (browsers only allow the voice after one), and can be closed at any point.
  */
 export default function Intro({ onDone }: { onDone: (openWork: boolean) => void }) {
+  const dialog = useRef<HTMLDivElement>(null);
   const [run, setRun] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [ended, setEnded] = useState(false);
@@ -26,12 +27,29 @@ export default function Intro({ onDone }: { onDone: (openWork: boolean) => void 
     preloadVoice();
     const html = document.documentElement;
     const prev = html.style.overflow;
+    const previousFocus = document.activeElement as HTMLElement | null;
     html.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && leave(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") return leave(false);
+      if (e.key !== "Tab" || !dialog.current) return;
+      const focusable = Array.from(dialog.current.querySelectorAll<HTMLElement>("button, a[href], [tabindex]:not([tabindex='-1'])"));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     window.addEventListener("keydown", onKey);
+    window.requestAnimationFrame(() => dialog.current?.querySelector<HTMLElement>("button")?.focus());
     return () => {
       html.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
+      previousFocus?.focus();
     };
   }, [leave]);
 
@@ -39,7 +57,7 @@ export default function Intro({ onDone }: { onDone: (openWork: boolean) => void 
 
   return (
     <div className={`${s.backdrop} ${leaving ? s.leaving : ""}`} data-lenis-prevent data-nocursor onClick={() => leave(false)}>
-      <div className={s.modal} role="dialog" aria-modal="true" aria-label="Prince Chakusa, a short film" onClick={(e) => e.stopPropagation()}>
+      <div ref={dialog} className={s.modal} role="dialog" aria-modal="true" aria-label="Prince Chakusa, a short film" onClick={(e) => e.stopPropagation()}>
         <button className={`${s.close} mono`} onClick={() => leave(false)} aria-label="Close the film">
           Close ✕
         </button>
@@ -47,6 +65,7 @@ export default function Intro({ onDone }: { onDone: (openWork: boolean) => void 
         {playing ? (
           <div className={s.screen}>
             <Film key={run} name="intro" autoPlay onEnded={onEnded} />
+            <p className={`${s.rotateHint} mono`}>For the clearest view on a phone, turn it sideways.</p>
             {ended && (
               <div className={`${s.end} mono`}>
                 <button className={s.primary} onClick={() => leave(true)}>
@@ -62,7 +81,7 @@ export default function Intro({ onDone }: { onDone: (openWork: boolean) => void 
             <img src="/prince.jpg" alt="Prince Chakusa" className={s.photo} />
             <div className={s.words}>
               <p className="mono">Operations leader · Software builder · Abu Dhabi</p>
-              <h2 className="display">Hi, I&apos;m Prince Chakusa.</h2>
+              <h2 id="intro-title" className="display">Hi, I&apos;m Prince Chakusa.</h2>
               <p className={s.pitch}>Before you scroll, give me two minutes and I will walk you through my work.</p>
               <div className={`${s.actions} mono`}>
                 <button className={s.primary} onClick={() => setPlaying(true)}>

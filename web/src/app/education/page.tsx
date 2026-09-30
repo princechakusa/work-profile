@@ -5,13 +5,13 @@ import Backdrop from "@/components/Backdrop";
 import s from "@/components/Page.module.css";
 
 export const metadata: Metadata = {
-  title: "Education · Prince Chakusa",
+  title: "Education",
   description: "Prince Chakusa's qualifications, the roles each one applies to, and how each one helped him level up.",
 };
 
 export default function EducationPage() {
   return (
-    <main className={s.page}>
+    <main id="main-content" className={s.page}>
       <Backdrop />
       <div className={s.inner}>
         <header className={s.head}>
