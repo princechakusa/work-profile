@@ -1,2 +1,3 @@
 
 reflex==0.9.12
+playwright==1.63.0
