@@ -27,7 +27,9 @@ export default function Intro({ onDone }: { onDone: (openWork: boolean) => void 
   );
 
   useEffect(() => {
-    const warm = window.setTimeout(() => import("./Film").then((m) => m.preloadVoice()), 1200);
+    // desktops warm the film up behind the greeting; phones only download it if the visitor presses Play
+    const desktop = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 900px)").matches;
+    const warm = desktop ? window.setTimeout(() => import("./Film").then((m) => m.preloadVoice()), 1200) : 0;
     const html = document.documentElement;
     const prev = html.style.overflow;
     const previousFocus = document.activeElement as HTMLElement | null;

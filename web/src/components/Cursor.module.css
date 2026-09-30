@@ -1,4 +1,6 @@
 .root { position: fixed; inset: 0; z-index: 100; pointer-events: none; }
+/* touch screens have no pointer to follow */
+@media not all and (hover: hover) and (pointer: fine) { .root { display: none; } }
 
 /* exact-position crosshair */
 .cross { position: absolute; top: 0; left: 0; width: 18px; height: 18px; mix-blend-mode: difference; }

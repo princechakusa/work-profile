@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
@@ -365,9 +365,11 @@ export function CityLights() {
 }
 
 export default function CityScene({ onHover }: { onHover: HoverFn }) {
+  // phones and small screens render fewer pixels and skip the extra anti-aliasing pass
+  const [light] = useState(() => typeof window !== "undefined" && window.matchMedia("(pointer: coarse), (max-width: 900px)").matches);
   return (
     <Canvas
-      dpr={[1, 1.75]}
+      dpr={light ? [1, 1.25] : [1, 1.75]}
       camera={{ position: [0, 8.6, 32], fov: 36, near: 0.1, far: 220 }}
       gl={{ antialias: false, powerPreference: "high-performance" }}
     >
@@ -379,7 +381,7 @@ export default function CityScene({ onHover }: { onHover: HoverFn }) {
       <PulseListener />
       <SpinListener />
 
-      <EffectComposer multisampling={4}>
+      <EffectComposer multisampling={light ? 0 : 4}>
         <Bloom mipmapBlur luminanceThreshold={1} intensity={0.95} radius={0.7} />
         <Vignette eskil={false} offset={0.2} darkness={0.85} />
       </EffectComposer>
