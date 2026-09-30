@@ -32,7 +32,6 @@ const PROOF = [
 
 export default function Home() {
   const root = useRef<HTMLElement>(null);
-  const tip = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -58,27 +57,14 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
-  const onHover = (unit: number | null, x: number, y: number) => {
-    const el = tip.current;
-    if (!el) return;
-    if (unit === null) {
-      el.style.opacity = "0";
-      return;
-    }
-    el.style.opacity = "1";
-    el.style.transform = `translate(${x + 18}px, ${y + 18}px)`;
-    el.firstElementChild!.textContent = `UNIT ${String(unit + 1).padStart(3, "0")}`;
+  const onHover = (unit: number | null) => {
+    window.dispatchEvent(new CustomEvent("cursor:unit", { detail: unit }));
   };
 
   return (
     <main ref={root} className={s.root}>
       <div className={s.canvas}>
         <CityScene onHover={onHover} />
-      </div>
-
-      <div ref={tip} className={`${s.tip} mono`}>
-        <span />
-        <em>1 of 350</em>
       </div>
 
       <header className={`${s.nav} mono`}>

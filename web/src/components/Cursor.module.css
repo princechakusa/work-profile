@@ -1,0 +1,24 @@
+.root { position: fixed; inset: 0; z-index: 100; pointer-events: none; }
+
+/* exact-position crosshair */
+.cross { position: absolute; top: 0; left: 0; width: 18px; height: 18px; mix-blend-mode: difference; }
+.cross i { position: absolute; background: #fff; }
+.cross i:nth-child(1) { left: 0; right: 0; top: 50%; height: 1px; }
+.cross i:nth-child(2) { top: 0; bottom: 0; left: 50%; width: 1px; }
+
+/* trailing bracket frame */
+.frame { position: absolute; top: 0; left: 0; width: 44px; height: 44px; color: var(--signal); transition: color 0.25s; }
+.frame[data-mode="unit"] { color: var(--sand); }
+.spin { position: absolute; inset: 0; }
+.spin b { position: absolute; width: 30%; height: 30%; border: 0 solid currentColor; }
+.spin b:nth-child(1) { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.spin b:nth-child(2) { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.spin b:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.spin b:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+.frame[data-mode="link"]::before {
+  content: ""; position: absolute; inset: 0; background: rgba(255, 90, 31, 0.16); backdrop-filter: blur(2px);
+}
+
+.label { position: absolute; left: calc(100% + 12px); top: 0; white-space: nowrap; color: currentColor; font-size: 10px; }
+.coord { position: absolute; left: calc(100% + 12px); top: 16px; white-space: nowrap; color: var(--steel); font-size: 9px; }
+.frame[data-mode="link"] .coord { opacity: 0; }
