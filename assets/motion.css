@@ -1,0 +1,132 @@
+/* Theme + motion. Pure CSS: no JavaScript is needed for any animation on this site. */
+:root {
+  --espresso: #1d1714;
+  --espresso-2: #2c2420;
+  --gold: #d4a017;
+  --gold-soft: #b8860b;
+  --cream: #f9f7f2;
+  --muted: #b9aea3;
+  --line: rgba(249, 247, 242, 0.12);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--espresso);
+  color: var(--cream);
+  font-family: "Inter", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+.serif { font-family: "Playfair Display", Georgia, serif; }
+.mono { font-family: "JetBrains Mono", monospace; }
+
+/* animated background glow that follows a slow orbit */
+.aurora {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(600px circle at 15% 20%, rgba(212, 160, 23, 0.16), transparent 60%),
+    radial-gradient(700px circle at 85% 70%, rgba(184, 134, 11, 0.12), transparent 60%);
+  animation: drift 22s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from { transform: translate3d(-2%, -1%, 0) scale(1); }
+  to   { transform: translate3d(2%, 2%, 0) scale(1.08); }
+}
+
+/* hero headline lines rise in one after another */
+.rise { opacity: 0; transform: translateY(40px); animation: rise 0.9s cubic-bezier(.2,.8,.2,1) forwards; }
+.d1 { animation-delay: 0.15s; } .d2 { animation-delay: 0.4s; } .d3 { animation-delay: 0.65s; }
+.d4 { animation-delay: 0.9s; } .d5 { animation-delay: 1.15s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+.gold-text {
+  background: linear-gradient(100deg, #f2c94c, #d4a017 40%, #f2c94c 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shine 5s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+
+/* rotating role text (4 roles, each visible ~2.5s) */
+.roles { display: inline-block; height: 1.4em; overflow: hidden; vertical-align: bottom; }
+.roles > span { display: block; animation: roll 10s infinite; color: var(--cream); }
+.roles > span > span { display: block; height: 1.4em; line-height: 1.4em; }
+@keyframes roll {
+  0%, 22%   { transform: translateY(0); }
+  25%, 47%  { transform: translateY(-1.4em); }
+  50%, 72%  { transform: translateY(-2.8em); }
+  75%, 97%  { transform: translateY(-4.2em); }
+  100%      { transform: translateY(0); }
+}
+
+/* count-up numbers via registered custom property */
+@property --n { syntax: "<integer>"; initial-value: 0; inherits: false; }
+.count { counter-reset: num var(--n); animation: count 2.2s ease-out 0.6s forwards; --n: 0; }
+.count::after { content: counter(num); }
+@keyframes count { to { --n: var(--to); } }
+
+/* scroll reveal (scroll-driven where supported, plain fade-in elsewhere) */
+.reveal { opacity: 0; transform: translateY(36px); animation: rise 0.9s ease forwards; animation-delay: 0.3s; }
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal linear both; animation-timeline: view();
+    animation-range: entry 0% entry 45%; animation-delay: 0s;
+  }
+  @keyframes reveal { from { opacity: 0; transform: translateY(48px) scale(.98); } to { opacity: 1; transform: none; } }
+  .bar-fill { animation: barfill linear both; animation-timeline: view(); animation-range: entry 10% entry 70%; }
+  @keyframes barfill { from { width: 0; } to { width: var(--w); } }
+}
+.bar-fill { width: var(--w); height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold-soft), #f2c94c); }
+
+/* cards */
+.card {
+  background: rgba(44, 36, 32, 0.6); border: 1px solid var(--line); border-radius: 18px;
+  backdrop-filter: blur(8px);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, box-shadow .35s;
+}
+.card:hover { transform: translateY(-8px); border-color: rgba(212, 160, 23, .6); box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+.card img { transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.card:hover img { transform: scale(1.06); }
+
+.chip {
+  display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 12px;
+  border: 1px solid var(--line); color: var(--muted); transition: all .25s;
+}
+.chip:hover { color: var(--espresso); background: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
+.chip-gold { color: var(--gold); border-color: rgba(212, 160, 23, .5); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px; border-radius: 999px;
+  font-weight: 600; cursor: pointer; text-decoration: none;
+  transition: transform .25s, box-shadow .25s, background .25s;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn-gold { background: var(--gold); color: var(--espresso); }
+.btn-gold:hover { box-shadow: 0 10px 30px rgba(212, 160, 23, .4); }
+.btn-ghost { border: 1px solid var(--line); color: var(--cream); background: transparent; }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* nav */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 14px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(29, 23, 20, .72); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line);
+}
+.nav a { color: var(--muted); text-decoration: none; margin-left: 22px; font-size: 14px; transition: color .2s; }
+.nav a:hover { color: var(--gold); }
+@media (max-width: 720px) { .nav .links { display: none; } }
+
+/* timeline */
+.timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--line); }
+.dot { position: absolute; left: -37px; top: 8px; width: 16px; height: 16px; border-radius: 50%; background: var(--gold); }
+.dot.live { animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,160,23,.6); } 100% { box-shadow: 0 0 0 16px rgba(212,160,23,0); } }
+
+/* scroll cue */
+.cue { animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(10px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal, .rise { opacity: 1; transform: none; }
+  .bar-fill { width: var(--w); }
+}

@@ -1,4 +1,17 @@
+.states
+*.db
+__pycache__/
+assets/external/
+*.py[cod]
+.web
 # Source images - compressed JPG versions are committed instead
 assets/pamarket-splash.png
 assets/pamarket-account.png
 assets/pamarket-app.png
+
+# Python / Reflex
+.venv/
+.web/
+.states/
+__pycache__/
+*.py[cod]
