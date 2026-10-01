@@ -51,7 +51,7 @@ def ascii_portrait():
 
 INFO = [
     ("title", "prince@chakusa"),
-    ("kv", "Role", "Guest Relations Executive Supervisor"),
+    ("kv", "Role", "Guest Relations Supervisor"),
     ("kv", "Company", "The Authors Holiday Homes"),
     ("kv", "Location", "Abu Dhabi, UAE"),
     ("kv", "Uptime", "UAE holiday homes since 2023"),

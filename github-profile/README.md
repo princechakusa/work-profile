@@ -2,9 +2,9 @@
 
 <h1>Prince Chakusa</h1>
 
-**Guest Experience and Property Operations Leader who also builds software** · Abu Dhabi, UAE
+**Guest Relations Supervisor** · Hospitality and property operations · Software developer · Abu Dhabi, UAE
 
-Guest Relations Executive Supervisor at The Authors Holiday Homes. Since 2023 I have worked across four UAE holiday home companies, from the front desk to leading a team of 12 responsible for more than 350 short-term rental units. When the right tool does not exist, I build it.
+Guest Relations Supervisor at The Authors Holiday Homes. Since 2023 I have worked across four UAE holiday home companies, from the front desk to leading a team of 12 responsible for more than 350 short-term rental units. When the right tool does not exist, I build it.
 
 | 350+ | 12 | +25% | 15% |
 |:---:|:---:|:---:|:---:|
@@ -24,6 +24,7 @@ Guest Relations Executive Supervisor at The Authors Holiday Homes. Since 2023 I 
 **Platforms:** Hostaway, Airbnb, Booking.com, WhatsApp, Bitrix24, Slack, Notion, Microsoft 365
 **Technology:** TypeScript, JavaScript, React Native, Expo, React, Next.js, Three.js, Supabase and PostgreSQL
 
-**Studying:** Bachelor of Business Administration and an AML-CFT certificate (both in progress). Associate of Science in Computer Science (completed 2026).
+**Education:** Associate of Science in Computer Science (University of the People, completed 2026), Diploma in Business Management (Lyceum College), CompTIA A+ Core 1.
+**Studying:** Bachelor of Business Administration, and an AML-CFT certificate as professional development in compliance (both in progress).
 
-Open to guest experience, property operations and PropTech roles in the UAE, the GCC and remote.
+Open to guest relations, guest experience, hospitality and property operations, and PropTech roles in the UAE, the GCC and remote.

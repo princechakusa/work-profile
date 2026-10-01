@@ -5,6 +5,9 @@ import Cursor from "@/components/Cursor";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import JsonLd from "@/components/JsonLd";
+import { PROFILE } from "@/lib/profile";
+import { OG_IMAGE, personSchema, websiteSchema } from "@/lib/seo";
 import { CF_BEACON_TOKEN, SITE_URL, asset } from "@/lib/site";
 import "./globals.css";
 
@@ -15,43 +18,15 @@ const mono = Martian_Mono({ subsets: ["latin"], weight: ["400", "500"], variable
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: { icon: asset("/icon.png") },
-  openGraph: {
-    type: "website",
-    siteName: "Prince Chakusa",
-    title: "Prince Chakusa | Holiday Home Operations Leader",
-    description: "Guest experience and property operations leader in the UAE who also builds software. 350+ units, a team of 12, +25% guest review scores.",
-  },
-  twitter: { card: "summary_large_image" },
-  title: {
-    default: "Prince Chakusa | Holiday Home Operations Leader",
-    template: "%s | Prince Chakusa",
-  },
-  description:
-    "From the front desk to leading the team: Prince Chakusa has run 350+ holiday homes in Dubai and builds the software that keeps them running.",
-  keywords: [
-    "holiday home operations",
-    "guest experience",
-    "property operations",
-    "hospitality team leader",
-    "Dubai hospitality",
-    "Abu Dhabi hospitality",
-    "Prince Chakusa",
-  ],
-  authors: [{ name: "Prince Chakusa" }],
-  creator: "Prince Chakusa",
+  // defaults only; every page sets its own title, description, canonical URL and social cards (lib/seo.ts)
+  openGraph: { type: "website", siteName: PROFILE.name, images: [OG_IMAGE] },
+  twitter: { card: "summary_large_image", images: [OG_IMAGE.url] },
+  title: `${PROFILE.name} | ${PROFILE.currentRole}, ${PROFILE.location.label}`,
+  description: `${PROFILE.name}: ${PROFILE.short}`,
+  authors: [{ name: PROFILE.name, url: SITE_URL }],
+  creator: PROFILE.name,
   category: "portfolio",
   robots: { index: true, follow: true },
-};
-
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Prince Chakusa",
-  jobTitle: "Guest Relations Executive Supervisor",
-  email: "mailto:chakusaprince@gmail.com",
-  address: { "@type": "PostalAddress", addressLocality: "Abu Dhabi", addressCountry: "AE" },
-  sameAs: ["https://linkedin.com/in/princechakusa", "https://github.com/princechakusa"],
-  knowsAbout: ["Guest experience", "Holiday home operations", "Property operations", "Team leadership", "DTCM compliance", "Software development"],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -59,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body>
         <a className="skip-link" href="#main-content">Skip to main content</a>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema).replace(/</g, "\\u003c") }} />
+        <JsonLd blocks={[personSchema, websiteSchema]} />
         <SmoothScroll>
           <SiteNav />
           {children}

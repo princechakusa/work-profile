@@ -60,7 +60,7 @@ LINES = {
     "l4": ("I analysed more than two hundred guest reviews to understand what guests value most.",
            "I analysed more than 200 guest reviews to understand what guests value most."),
     "l5": ("This role taught me how to use guest feedback to improve our service.", None),
-    "a1": ("Today, I am the Guest Relations Executive Supervisor at The Authors Holiday Homes.", None),
+    "a1": ("Today, I am a Guest Relations Supervisor at The Authors Holiday Homes.", None),
     "a2": ("I supervise the guest relations team, and I make sure that every guest is looked after from arrival to departure.", None),
     "a3": ("I handle escalated guest issues, and I coach the team to resolve problems the first time.", None),
     "a4": ("I have also improved the company's systems and the way the team is managed.", None),

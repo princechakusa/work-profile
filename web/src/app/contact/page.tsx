@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { CONTACT } from "@/lib/content";
 import Backdrop from "@/components/Backdrop";
+import { pageMeta } from "@/lib/seo";
 import s from "@/components/Page.module.css";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contact Prince Chakusa in Abu Dhabi. Open to roles in the UAE, the GCC and remote.",
-};
+export const metadata = pageMeta({
+  path: "/contact",
+  title: "Contact Prince Chakusa | Guest Relations Supervisor, Abu Dhabi",
+  description: "Contact Prince Chakusa by email, WhatsApp or LinkedIn. Based in Abu Dhabi and open to roles in the UAE, the GCC and remote.",
+});
 
 export default function ContactPage() {
   return (

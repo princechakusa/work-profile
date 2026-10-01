@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import FilmClient from "@/components/FilmClient";
-import { CAREER_STATS, ROLES } from "@/lib/content";
+import { CAREER_STATS, COMPLIANCE, ROLES } from "@/lib/content";
+import { pageMeta } from "@/lib/seo";
 import Backdrop from "@/components/Backdrop";
 import s from "@/components/Page.module.css";
 
-export const metadata: Metadata = {
-  title: "Work",
-  description: "Prince Chakusa's experience in UAE holiday homes: what he did in each role, the value he added, and what he learned.",
-};
+export const metadata = pageMeta({
+  path: "/work",
+  title: "Prince Chakusa | Hospitality and Property Operations Experience",
+  description:
+    "Prince Chakusa's UAE holiday home career: Guest Relations Supervisor, Guest Experience Lead, and Team Leader of Property Operations for 350+ units.",
+});
 
 export default function WorkPage() {
   return (
@@ -58,7 +61,9 @@ export default function WorkPage() {
                 </p>
                 <div>
                   <h3 className={`${s.roleTitle} display`}>{r.title}</h3>
-                  <p className={s.roleCompany}>{r.company}</p>
+                  <p className={s.roleCompany}>
+                    {r.company} · {r.location}
+                  </p>
                   <div className={s.roleCols}>
                     <div className={s.col}>
                       <h4 className="mono">Responsibilities</h4>
@@ -85,6 +90,31 @@ export default function WorkPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="compliance" className={s.section} aria-labelledby="compliance-heading">
+          <p className={`${s.sectionKicker} mono`}>Compliance</p>
+          <h2 id="compliance-heading" className={`${s.sectionTitle} display`}>Compliance and operational controls</h2>
+          <p className={s.lede}>
+            Running regulated holiday home portfolios means keeping every unit compliant and every process controlled. This is
+            the part of my operations work that my <Link href="/education#aml-cft">AML-CFT studies</Link> build on.
+          </p>
+          <div className={s.grid}>
+            {COMPLIANCE.map((c) => (
+              <div key={c.t} className={s.card}>
+                <h3 className={`${s.cardTitle} display`}>{c.t}</h3>
+                <p className={s.muted}>{c.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className={`${s.actions} mono`}>
+            <Link className={s.cta} href="/cv">
+              Read my full CV →
+            </Link>
+            <Link className={s.ghost} href="/projects">
+              See what I have built
+            </Link>
           </div>
         </section>
       </div>

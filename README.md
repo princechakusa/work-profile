@@ -4,7 +4,7 @@
 
 # Prince Chakusa · Interactive 3D Portfolio
 
-**Guest Experience and Property Operations Leader who also builds software**
+**Guest Relations Supervisor · Hospitality and property operations · Software developer**
 Abu Dhabi, UAE · Open to roles in the UAE, the GCC and remote
 
 <a href="docs/media/prince-chakusa-film.mp4"><img alt="Watch the film" src="https://img.shields.io/badge/%E2%96%B6%20Watch%20the%20film-2%20min%2C%20with%20voice-ff5a1f?style=for-the-badge" /></a>
@@ -50,7 +50,7 @@ Every film is rendered straight from the site's code with Remotion (`cd web && n
 
 ### Experience
 
-**Guest Relations Executive Supervisor** · The Authors Holiday Homes, Abu Dhabi · *Apr 2026 to Present*
+**Guest Relations Supervisor** · The Authors Holiday Homes, Abu Dhabi · *Apr 2026 to Present*
 - Supervise the guest relations team, ensuring every guest is looked after from arrival to departure.
 - Handle escalated guest issues and coach the team to resolve problems at first contact.
 - Improved the company's operating systems and team management, so service standards hold on every shift.

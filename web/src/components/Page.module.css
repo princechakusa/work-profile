@@ -46,12 +46,14 @@
 .cardTitle { font-size: clamp(24px, 2.4vw, 32px); line-height: 1; font-weight: 800; }
 .cardNum { color: var(--signal); }
 .muted { color: var(--steel); }
+.plainList { display: flex; flex-direction: column; gap: 8px; padding-left: 20px; line-height: 1.5; }
+.lede a, .card a { color: var(--sand); border-bottom: 1px solid var(--signal); }
 
 /* education */
 .studies { display: flex; flex-direction: column; }
 .study { display: grid; grid-template-columns: 1fr 1.25fr; gap: 40px; padding: 40px 0; border-top: 1px solid var(--line); }
 .studyName { font-size: clamp(26px, 2.8vw, 40px); line-height: 1; font-weight: 800; }
-.badge { display: inline-block; margin-top: 14px; padding: 5px 10px; border: 1px solid var(--line); color: var(--steel); }
+.badge { align-self: flex-start; display: inline-block; margin-top: 14px; padding: 5px 10px; border: 1px solid var(--line); color: var(--steel); }
 .badgeDone { border-color: var(--signal); color: var(--signal); }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 14px; }

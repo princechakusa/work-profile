@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
 import CvActions from "@/components/CvActions";
-import { CAREER_STATS, CONTACT, FIXHUB, PAMARKET, ROLES, SKILLS, STUDY } from "@/lib/content";
+import { AML, CAREER_STATS, CONTACT, FIXHUB, PAMARKET, ROLES, SKILLS, STUDY } from "@/lib/content";
+import { PROFILE } from "@/lib/profile";
+import { pageMeta } from "@/lib/seo";
 import s from "./Cv.module.css";
 
-export const metadata: Metadata = {
-  title: "CV",
-  description: "Prince Chakusa's CV: guest experience, property operations, team leadership and software projects in the UAE.",
-};
+export const metadata = pageMeta({
+  path: "/cv",
+  title: "Prince Chakusa CV | Guest Relations Supervisor, Hospitality and Technology",
+  description:
+    "CV of Prince Chakusa, Guest Relations Supervisor in Abu Dhabi: 350+ units, teams of up to 12, DTCM compliance, PaMarket and AML-CFT studies.",
+});
 
 export default function CvPage() {
   return (
@@ -19,9 +22,11 @@ export default function CvPage() {
       <article className={s.sheet}>
         <header className={s.header}>
           <div>
-            <p className={`${s.eyebrow} mono`}>Guest experience · Property operations · Team leadership</p>
-            <h1 className="display">Prince Chakusa</h1>
-            <p className={s.role}>Guest Relations Executive Supervisor &amp; Software Builder</p>
+            <p className={`${s.eyebrow} mono`}>Guest relations · Hospitality and property operations · Team leadership</p>
+            <h1 className="display">{PROFILE.name}</h1>
+            <p className={s.role}>
+              {PROFILE.currentRole}, {PROFILE.currentEmployer} · Software developer
+            </p>
           </div>
           <address className={s.contact}>
             <span>{CONTACT.location}</span>
@@ -37,9 +42,10 @@ export default function CvPage() {
             <h2 id="profile-heading">Operations leadership grounded in frontline experience.</h2>
           </div>
           <p>
-            UAE holiday home professional with experience from guest check-in through team and portfolio leadership. I have
-            been responsible for more than 350 units, led teams of up to 12 people and improved guest review scores by 25%.
-            I also build software, including PaMarket and FixHub, to solve operational problems at the source.
+            {PROFILE.currentRole} in {PROFILE.location.label}, with experience in UAE holiday homes from guest check-in
+            through team and portfolio leadership. I have been responsible for more than 350 units, led teams of up to 12
+            people, kept a portfolio DTCM compliant and improved guest review scores by 25%. I also develop software,
+            including PaMarket, to solve operational problems at the source.
           </p>
         </section>
 
@@ -66,9 +72,11 @@ export default function CvPage() {
                 </div>
                 <div>
                   <h3>{role.title}</h3>
-                  <p className={s.company}>{role.company}</p>
+                  <p className={s.company}>
+                    {role.company} · {role.location}
+                  </p>
                   <ul>
-                    {[...role.did.slice(0, 2), ...role.added].map((line) => <li key={line}>{line}</li>)}
+                    {[...role.did, ...role.added].map((line) => <li key={line}>{line}</li>)}
                   </ul>
                 </div>
               </article>
@@ -85,6 +93,9 @@ export default function CvPage() {
             <article className={s.project}>
               <h3>PaMarket</h3>
               <p>{PAMARKET.summary}</p>
+              <p>
+                <strong>Role:</strong> product design and software development. <strong>Built with:</strong> {PAMARKET.techSummary}.
+              </p>
               <a href="https://pamarketzw.com" target="_blank" rel="noreferrer">pamarketzw.com ↗</a>
             </article>
             <article className={s.project}>
@@ -118,11 +129,25 @@ export default function CvPage() {
             {STUDY.map((item) => (
               <article key={item.name}>
                 <h3>{item.name}</h3>
+                {item.institution && <p>{item.institution}</p>}
                 <p className={item.done ? s.complete : s.progress}>{item.status}</p>
                 <p>{item.what}</p>
               </article>
             ))}
           </div>
+        </section>
+
+        <section className={s.section} aria-labelledby="development-heading">
+          <div className={s.sectionHead}>
+            <p className={`${s.label} mono`}>05</p>
+            <h2 id="development-heading" className="display">Professional development</h2>
+          </div>
+          <article className={s.project}>
+            <h3>AML-CFT Certificate ({AML.status.toLowerCase()})</h3>
+            <p>{AML.covers}</p>
+            <p>{AML.why}</p>
+            <p>{AML.note}</p>
+          </article>
         </section>
 
         <footer className={s.cvFooter}>

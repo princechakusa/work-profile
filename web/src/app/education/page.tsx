@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import FilmClient from "@/components/FilmClient";
-import { STUDY } from "@/lib/content";
+import { AML, STUDY } from "@/lib/content";
+import { pageMeta } from "@/lib/seo";
 import Backdrop from "@/components/Backdrop";
 import s from "@/components/Page.module.css";
 
-export const metadata: Metadata = {
-  title: "Education",
-  description: "Prince Chakusa's qualifications, the roles each one applies to, and how each one helped him level up.",
-};
+export const metadata = pageMeta({
+  path: "/education",
+  title: "Prince Chakusa | Education, Computer Science and AML-CFT",
+  description:
+    "Associate of Science in Computer Science, Business Management Diploma and CompTIA A+ Core 1; a BBA and an AML-CFT certificate are in progress.",
+});
 
 export default function EducationPage() {
   return (
@@ -40,6 +43,7 @@ export default function EducationPage() {
               <article key={q.name} className={s.study}>
                 <div>
                   <h3 className={`${s.studyName} display`}>{q.name}</h3>
+                  {q.institution && <p className={s.roleCompany}>{q.institution}</p>}
                   <span className={`${s.badge} ${q.done ? s.badgeDone : ""} mono`}>{q.status}</span>
                   <p className={s.muted} style={{ marginTop: 14 }}>
                     {q.what}
@@ -61,6 +65,31 @@ export default function EducationPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="aml-cft" className={s.section} aria-labelledby="aml-heading">
+          <p className={`${s.sectionKicker} mono`}>Professional development</p>
+          <h2 id="aml-heading" className={`${s.sectionTitle} display`}>AML-CFT certificate: in progress</h2>
+          <div className={s.card}>
+            <span className={`${s.badge} mono`}>{AML.status}</span>
+            <p>{AML.covers}</p>
+            <p>{AML.why}</p>
+            <h3 className={`${s.sectionKicker} mono`}>Experience it builds on</h3>
+            <ul className={s.plainList}>
+              {AML.builds.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+            <p className={s.muted}>{AML.note}</p>
+          </div>
+          <div className={`${s.actions} mono`}>
+            <Link className={s.cta} href="/work#compliance">
+              See my compliance work →
+            </Link>
+            <Link className={s.ghost} href="/cv">
+              Read my full CV
+            </Link>
           </div>
         </section>
       </div>

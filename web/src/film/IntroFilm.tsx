@@ -228,7 +228,7 @@ function Authors() {
           return <Person key={x} frame={f + i * 9} x={x} s={0.8 * ramp(f, at, at + 14)} flip shirt={TEAM_SHIRT[i % 3]} skin={SKIN[(i + 2) % 3]} />;
         })}
       </Svg>
-      <Header frame={f} kicker="Chapter 04 · Apr 2026 to now" title="Executive Supervisor" sub="Guest Relations · The Authors Holiday Homes" />
+      <Header frame={f} kicker="Chapter 04 · Apr 2026 to now" title="Supervisor" sub="Guest Relations · The Authors Holiday Homes" />
       <Tag frame={f} at={20} x={560} y={452} text="Prince · Supervisor" />
       <div
         style={{

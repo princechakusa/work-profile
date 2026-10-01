@@ -8,7 +8,8 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { scrollState } from "@/lib/scrollState";
-import { ABOUT, CAREER_STATS, CONTACT, DRIVES, STRENGTHS } from "@/lib/content";
+import { ABOUT, ANSWERS, CAREER_STATS, CONTACT, DRIVES, STRENGTHS } from "@/lib/content";
+import { PROFILE } from "@/lib/profile";
 import s from "./Home.module.css";
 import { asset } from "@/lib/site";
 
@@ -16,13 +17,16 @@ const CityScene = dynamic(() => import("./CityScene"), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger);
 
-/** Splits text into per-letter spans so each glyph can rise out of a mask. */
+/**
+ * Splits text into per-letter spans so each glyph can rise out of a mask. Letters are drawn from a data attribute,
+ * so the heading's text stays exactly "Prince Chakusa" for screen readers and crawlers.
+ */
 function Letters({ text }: { text: string }) {
   return (
-    <span className={s.line} aria-label={text}>
+    <span className={s.line} aria-hidden>
       {text.split("").map((c, i) => (
         <span key={i} className={s.mask} aria-hidden>
-          <span className={`${s.glyph} glyph`}>{c}</span>
+          <span className={`${s.glyph} glyph`} data-c={c} />
         </span>
       ))}
     </span>
@@ -99,10 +103,12 @@ export default function Home() {
 
       <section className={s.hero}>
         <div className={`${s.heroMeta} ${s.fadeIn}`}>
-          <p className={`${s.kicker} mono`}>Guest experience / Property operations / Software builder</p>
+          <p className={`${s.kicker} mono`}>{PROFILE.currentRole} / Hospitality operations / Software builder</p>
           <span className={`${s.available} mono`}>Open to work</span>
         </div>
         <h1 className={`${s.name} display`}>
+          {/* the visible name is split into animated letters; this is the name read by screen readers and crawlers */}
+          <span className="sr-only">{PROFILE.name}</span>
           <Letters text="Prince" />
           <Letters text="Chakusa" />
         </h1>
@@ -137,7 +143,7 @@ export default function Home() {
       <section id="about" className={`${s.panel} ${s.solid}`}>
         <div className={`${s.aboutGrid} ${s.reveal}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={asset("/prince.jpg")} alt="Prince Chakusa" className={s.photo} />
+          <img src={asset("/prince.jpg")} alt="Portrait of Prince Chakusa" className={s.photo} />
           <div>
             <p className={`${s.kicker} mono`}>About me</p>
             <h2 className={`${s.title} display`}>Hospitality at heart. Builder by habit.</h2>
@@ -152,6 +158,27 @@ export default function Home() {
               <li>{CONTACT.open}</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section id="profile" className={`${s.panel} ${s.solid}`} aria-labelledby="profile-heading">
+        <div className={s.reveal}>
+          <p className={`${s.kicker} mono`}>Profile at a glance</p>
+          <h2 id="profile-heading" className={`${s.title} display`}>Prince Chakusa in brief</h2>
+          <p className={s.profileSummary}>{PROFILE.summary}</p>
+        </div>
+        <div className={s.answers}>
+          {ANSWERS.map((x) => (
+            <div key={x.q} className={s.answer}>
+              <h3>{x.q}</h3>
+              <p>{x.a}</p>
+              {x.link && (
+                <Link href={x.link.href} className="mono">
+                  {x.link.t} →
+                </Link>
+              )}
+            </div>
+          ))}
         </div>
       </section>
 

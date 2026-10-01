@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { CONTACT, QUOTE, REASONS, SKILLS } from "@/lib/content";
 import Backdrop from "@/components/Backdrop";
+import { pageMeta } from "@/lib/seo";
 import s from "@/components/Page.module.css";
 
-export const metadata: Metadata = {
-  title: "Why me",
-  description: "Why hire Prince Chakusa: experience at every level, measurable results, operations and technology together.",
-};
+export const metadata = pageMeta({
+  path: "/why-me",
+  title: "Why Hire Prince Chakusa | Hospitality Operations and Technology",
+  description:
+    "Why hire Prince Chakusa: guest relations experience at every level, measurable results, team leadership, and the software skills to fix problems at the source.",
+});
 
 export default function WhyMePage() {
   return (

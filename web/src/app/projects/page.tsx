@@ -1,18 +1,22 @@
-import type { Metadata } from "next";
 import FilmClient from "@/components/FilmClient";
+import JsonLd from "@/components/JsonLd";
 import { FIXHUB, PAMARKET } from "@/lib/content";
+import { pageMeta, pamarketSchema } from "@/lib/seo";
 import Backdrop from "@/components/Backdrop";
 import s from "@/components/Page.module.css";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description: "PaMarket, the marketplace Prince Chakusa built for Zimbabwe: why he built it, what it does and who it helps.",
-};
+export const metadata = pageMeta({
+  path: "/projects",
+  title: "Prince Chakusa Projects | PaMarket and Software Development",
+  description:
+    "PaMarket, the marketplace for Zimbabwe that Prince Chakusa designed and developed for the web, iOS and Android with React Native, Expo and Supabase, plus FixHub.",
+});
 
 export default function ProjectsPage() {
   const [desktop, ...phones] = PAMARKET.shots;
   return (
     <main id="main-content" className={s.page}>
+      <JsonLd blocks={[pamarketSchema]} />
       <Backdrop />
       <div className={s.inner}>
         <header className={s.head}>
@@ -36,6 +40,20 @@ export default function ProjectsPage() {
               <p className={s.glance}>{g.v}</p>
             </div>
           ))}
+        </section>
+
+        <section className={s.section} aria-labelledby="build-heading">
+          <p className={`${s.sectionKicker} mono`}>My role</p>
+          <h2 id="build-heading" className={`${s.sectionTitle} display`}>How I built it</h2>
+          <p className={s.lede}>{PAMARKET.role}</p>
+          <div className={s.grid}>
+            {PAMARKET.stack.map((t) => (
+              <div key={t.t} className={s.card}>
+                <h3 className={`${s.cardTitle} display`}>{t.t}</h3>
+                <p className={s.muted}>{t.d}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className={s.section}>

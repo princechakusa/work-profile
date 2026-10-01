@@ -1,19 +1,21 @@
 import { asset } from "@/lib/site";
+import { PROFILE } from "@/lib/profile";
 
 /**
  * Every fact on the site lives here, so the pages never disagree with each other.
  * Numbers and wording are confirmed by Prince (2026-10-01).
  */
 
+// contact details come from the canonical profile
 export const CONTACT = {
-  email: "chakusaprince@gmail.com",
-  linkedin: "https://linkedin.com/in/princechakusa",
-  github: "https://github.com/princechakusa",
-  phone: "+971 58 977 2645",
-  whatsapp: "https://wa.me/971589772645?text=Hi%20Prince%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20talk%20about%20a%20role.",
-  location: "Abu Dhabi, UAE",
-  from: "Zimbabwe",
-  open: "Open to roles in the UAE, the GCC and remote",
+  email: PROFILE.email,
+  linkedin: PROFILE.linkedin,
+  github: PROFILE.github,
+  phone: PROFILE.phone,
+  whatsapp: PROFILE.whatsapp,
+  location: PROFILE.location.label,
+  from: PROFILE.from,
+  open: PROFILE.availability,
 };
 
 export type Role = {
@@ -21,6 +23,7 @@ export type Role = {
   when: string;
   title: string;
   company: string;
+  location: string;
   current?: boolean;
   did: string[];
   added: string[];
@@ -32,8 +35,9 @@ export const ROLES: Role[] = [
   {
     id: "authors",
     when: "Apr 2026 to now",
-    title: "Guest Relations Executive Supervisor",
-    company: "The Authors Holiday Homes",
+    title: PROFILE.currentRole,
+    company: PROFILE.currentEmployer,
+    location: "Abu Dhabi, UAE",
     current: true,
     did: [
       "Supervise the guest relations team, ensuring every guest is looked after from arrival to departure.",
@@ -49,7 +53,8 @@ export const ROLES: Role[] = [
     id: "homevy",
     when: "Jan 2026 to Mar 2026",
     title: "Guest Experience Lead",
-    company: "Luxury Homevy",
+    company: "Luxury Homevy Vacation Homes",
+    location: "Dubai, UAE",
     did: [
       "Led guest experience operations across a 40-property short-term rental portfolio with a team of 5.",
       "Managed guest communication across Hostaway and WhatsApp, maintaining daily SLA and SOP compliance.",
@@ -65,7 +70,8 @@ export const ROLES: Role[] = [
     id: "stonetree",
     when: "Nov 2024 to Dec 2025",
     title: "Customer Care Agent, promoted to Team Leader of Property Operations",
-    company: "Stonetree",
+    company: "Stonetree Vacation Homes",
+    location: "Dubai, UAE",
     did: [
       "Promoted from Customer Care Agent to Team Leader of Property Operations.",
       "Directed day-to-day operations for more than 350 short-term rental units, ensuring guest satisfaction and operational efficiency.",
@@ -83,6 +89,7 @@ export const ROLES: Role[] = [
     when: "Jan 2023 to Oct 2024",
     title: "Guest Relations Officer",
     company: "Daniels Holiday Homes",
+    location: "Dubai, UAE",
     did: ["Delivered guest check-in and front desk support, looking after guests throughout their stay.", "Conducted service audits based on guest surveys to guide operational improvements."],
     added: [
       "Optimised check-in and check-out processes, improving guest review scores by 25%.",
@@ -94,6 +101,24 @@ export const ROLES: Role[] = [
   },
 ];
 
+/** Compliance and operational-control work across his roles, all taken from the role history above and his CV. */
+export const COMPLIANCE = [
+  { t: "DTCM compliance", d: "Kept property listings, permits and regulatory documentation compliant with Dubai's DTCM holiday home rules across 350+ units at Stonetree." },
+  { t: "Standard operating procedures", d: "Standardised SOPs across every unit at Stonetree, cutting annual operating costs by 15%." },
+  { t: "Vendor management and SLAs", d: "Managed vendor contracts and service level agreements at Stonetree, and reported performance to management." },
+  { t: "SLA and SOP monitoring", d: "Built tracking for response and resolution times across Hostaway and WhatsApp at Luxury Homevy." },
+  { t: "Audits and inspections", d: "Ran service audits from guest surveys at Daniels Holiday Homes, and property inspections and service recovery at Stonetree." },
+];
+
+/** AML-CFT is professional development in progress, not a current role or a completed certificate. */
+export const AML = {
+  status: "In progress",
+  covers: "Anti-money laundering (AML) and countering the financing of terrorism (CFT): customer due diligence, recognising suspicious activity, record keeping and reporting obligations.",
+  why: "I am studying for an AML-CFT certificate to build on the compliance side of my operations work: regulatory documentation, operational controls, SOPs, monitoring against agreed standards, and an eye for risk.",
+  builds: ["DTCM compliance and regulatory documentation", "SOPs and operational controls", "SLA monitoring and reporting", "Audits, inspections and risk awareness"],
+  note: "The certificate is still in progress. It is professional development alongside my hospitality career; I have not held an AML role.",
+};
+
 export const CAREER_STATS = [
   { n: "4", l: "UAE holiday home companies" },
   { n: "350+", l: "Units I was responsible for" },
@@ -103,6 +128,7 @@ export const CAREER_STATS = [
 
 export type Study = {
   name: string;
+  institution?: string;
   status: string;
   done: boolean;
   what: string;
@@ -114,6 +140,7 @@ export type Study = {
 export const STUDY: Study[] = [
   {
     name: "Associate of Science in Computer Science",
+    institution: "University of the People",
     status: "Completed 2026",
     done: true,
     what: "Programming, systems and software development.",
@@ -123,6 +150,7 @@ export const STUDY: Study[] = [
   },
   {
     name: "Business Management Diploma",
+    institution: "Lyceum College, South Africa",
     status: "Completed",
     done: true,
     what: "Planning, organising people and running operations.",
@@ -131,7 +159,8 @@ export const STUDY: Study[] = [
       "It gave me the structure to plan and lead. I used it when I led a team of 12 across 350+ units at Stonetree, and I use it now as a supervisor.",
   },
   {
-    name: "CompTIA A+",
+    name: "CompTIA A+ Core 1",
+    institution: "CompTIA",
     status: "Completed",
     done: true,
     what: "IT support: hardware, software, networks and troubleshooting.",
@@ -151,7 +180,7 @@ export const STUDY: Study[] = [
     name: "AML-CFT Certificate",
     status: "In progress",
     done: false,
-    what: "Anti-money laundering and countering the financing of terrorism.",
+    what: "Anti-money laundering and countering the financing of terrorism: professional development, currently in progress.",
     applied: ["Stonetree", "The Authors Holiday Homes"],
     levelUp: "It builds on the DTCM compliance work that I did at Stonetree, and it strengthens the checks I bring to every operation.",
   },
@@ -166,8 +195,18 @@ export const PAMARKET = {
     { k: "Where", v: "Zimbabwe, across all 10 provinces" },
     { k: "Platforms", v: "Website, App Store and Google Play" },
     { k: "Currencies", v: "US dollars and ZiG, with a live rate" },
-    { k: "My role", v: "I designed and built it" },
+    { k: "My role", v: "Product design and software development: apps, website and backend" },
+    { k: "Built with", v: "React Native, Expo, TypeScript, Supabase, PostgreSQL" },
     { k: "Status", v: "Live, with real listings" },
+  ],
+  // from the project's repository and README
+  role: "I designed the product and developed it end to end: the iPhone and Android apps, the website and the backend.",
+  techSummary: "React Native, Expo and TypeScript (apps); a JavaScript progressive web app (website); Supabase and PostgreSQL (backend); Firebase (notifications)",
+  stack: [
+    { t: "Mobile apps", d: "React Native and Expo, in TypeScript, published on the App Store and Google Play" },
+    { t: "Website", d: "A JavaScript progressive web app at pamarketzw.com" },
+    { t: "Backend", d: "Supabase and PostgreSQL" },
+    { t: "Notifications", d: "Firebase" },
   ],
   categories: ["Vehicles", "Property and rentals", "Phones and electronics", "Agriculture and farming", "Services and trades", "Jobs", "Campus gear", "Businesses", "Institutions"],
   why: [
@@ -192,7 +231,7 @@ export const PAMARKET = {
     { t: "Website", h: "https://pamarketzw.com" },
     { t: "App Store", h: "https://apps.apple.com/app/id6794616959" },
     { t: "Google Play", h: "https://play.google.com/store/apps/details?id=com.pamarket.app" },
-    { t: "Code", h: "https://github.com/princechakusa/PaMarket" },
+    { t: "Source code", h: "https://github.com/princechakusa/PaMarket" },
   ],
   shots: [
     { src: asset("/pamarket/web-desktop.jpg"), alt: "PaMarket website home page", kind: "desktop" },
@@ -205,7 +244,7 @@ export const PAMARKET = {
 export const FIXHUB = {
   summary:
     "A maintenance ticketing system for property managers. A manager can log a job, assign it and track it until it is fixed. I built it because maintenance requests were getting lost in group chats.",
-  links: [{ t: "Code", h: "https://github.com/princechakusa" }],
+  links: [{ t: "GitHub profile", h: "https://github.com/princechakusa" }],
 };
 
 // Home page about lines, confirmed by Prince.
@@ -214,6 +253,62 @@ export const ABOUT = [
   "I have worked in UAE holiday homes since 2023. I started at the front desk, checking guests in, and I have moved up to lead teams, run a portfolio of more than 350 units, and supervise guest relations.",
   "I also build software. PaMarket, my marketplace for Zimbabwe, is live on the web, the App Store and Google Play.",
   "I have completed a degree in computer science, and I am now studying business administration.",
+];
+
+/**
+ * Direct answers for the home page: the questions search engines and AI assistants are asked about Prince.
+ * Every answer restates facts already on the site; AML-CFT is described as study in progress, never as a role.
+ */
+export const ANSWERS: { q: string; a: string; link?: { href: string; t: string } }[] = [
+  {
+    q: "Who is Prince Chakusa?",
+    a: `Prince Chakusa is a ${PROFILE.currentRole} at ${PROFILE.currentEmployer} in ${PROFILE.location.label}. He works in hospitality and property operations, and he also develops software, including the PaMarket marketplace.`,
+  },
+  {
+    q: "What does Prince Chakusa do?",
+    a: "He supervises the guest relations team at The Authors Holiday Homes: he makes sure every guest is looked after from arrival to departure, handles escalated guest issues, coaches the team, and has improved the company's operating systems and team management.",
+    link: { href: "/work", t: "See his work history" },
+  },
+  {
+    q: "Where is Prince Chakusa based?",
+    a: `He is based in ${PROFILE.location.city}, United Arab Emirates. He is originally from ${PROFILE.from}.`,
+  },
+  {
+    q: "What is Prince Chakusa's professional background?",
+    a: "He started in 2023 as a Guest Relations Officer at Daniels Holiday Homes in Dubai, joined Stonetree Vacation Homes as a Customer Care Agent and was promoted to Team Leader of Property Operations, led guest experience at Luxury Homevy Vacation Homes, and became Guest Relations Supervisor at The Authors Holiday Homes in April 2026.",
+  },
+  {
+    q: "What experience does Prince Chakusa have in hospitality operations?",
+    a: "At Stonetree he directed day-to-day operations for more than 350 short-term rental units, including DTCM compliance, standard operating procedures, vendor SLAs and performance reporting; standardising procedures cut annual operating costs by 15%. At Luxury Homevy he led guest experience for a 40-property portfolio, and at Daniels Holiday Homes he raised guest review scores by 25%.",
+  },
+  {
+    q: "What leadership experience does Prince Chakusa have?",
+    a: "He led a team of 12 across concierge, maintenance and housekeeping at Stonetree, a team of 5 at Luxury Homevy, and now supervises the guest relations team at The Authors Holiday Homes. At Daniels Holiday Homes he mentored new staff, cutting onboarding time by 20%.",
+  },
+  {
+    q: "What technology projects has Prince Chakusa built?",
+    a: "PaMarket, a live marketplace and jobs board for Zimbabwe; FixHub, a maintenance ticketing tool for property managers; and this interactive portfolio, built with Next.js, TypeScript and Three.js.",
+    link: { href: "/projects", t: "See his projects" },
+  },
+  {
+    q: "What is PaMarket?",
+    a: "PaMarket is an online marketplace and jobs board for Zimbabwe, live on the web, the App Store and Google Play. People use it to buy and sell across all 10 provinces, find work, buy or rent cars and discover verified businesses. Prince designed it and developed the apps (React Native and Expo), the website and the Supabase and PostgreSQL backend.",
+  },
+  {
+    q: "What education does Prince Chakusa have?",
+    a: "An Associate of Science in Computer Science from the University of the People (completed 2026), a Diploma in Business Management from Lyceum College, and CompTIA A+ Core 1. He is studying for a Bachelor of Business Administration.",
+    link: { href: "/education", t: "See his education" },
+  },
+  {
+    q: "What AML-CFT development does Prince Chakusa have?",
+    a: "He is studying for an AML-CFT (anti-money laundering and countering the financing of terrorism) certificate, which is in progress. It builds on his compliance experience in property operations, such as DTCM compliance, regulatory documentation, SOPs and operational controls. He has not held an AML role.",
+    link: { href: "/education#aml-cft", t: "About his AML-CFT studies" },
+  },
+  {
+    q: "Is Prince Chakusa open to new opportunities?",
+    a: `Yes. He is open to ${PROFILE.seeking}, in the UAE, the GCC and remote.`,
+    link: { href: "/contact", t: "Contact him" },
+  },
 ];
 
 export const DRIVES = [
@@ -252,8 +347,8 @@ export const REASONS = [
 
 export const SKILLS = [
   { t: "Operations", items: ["Guest relations", "Check-in and guest support", "Team leadership and coaching", "DTCM compliance", "SOPs", "Vendor SLAs", "Reporting", "Review analysis"] },
-  { t: "Tools", items: ["Hostaway", "WhatsApp for guest communication", "Digital concierge tools"] },
-  { t: "Technology", items: ["Software development", "JavaScript", "HTML and CSS", "Supabase and PostgreSQL", "IT support (CompTIA A+)"] },
+  { t: "Platforms", items: ["Hostaway", "Airbnb", "Booking.com", "WhatsApp", "Bitrix24", "Slack", "Notion", "Microsoft 365", "Digital concierge tools"] },
+  { t: "Technology", items: ["Software development", "TypeScript", "JavaScript", "React Native and Expo", "Next.js and React", "HTML and CSS", "Supabase and PostgreSQL", "IT support (CompTIA A+ Core 1)"] },
 ];
 
 export const QUOTE = {
