@@ -1,9 +1,8 @@
 /**
  * Public address of the portfolio: canonical URLs, structured data, link previews, the sitemap and robots.txt.
- * Live at https://princechakusa.github.io/work-profile (set by the deploy workflow). When a custom domain is
- * connected, set NEXT_PUBLIC_SITE_URL to it and drop NEXT_PUBLIC_BASE_PATH.
+ * Live at https://princechakusa.com (Cloudflare DNS pointing at GitHub Pages; set by the deploy workflow).
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://princechakusa.github.io/work-profile").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://princechakusa.com").replace(/\/$/, "");
 
 /** Cloudflare Web Analytics token (free, cookie-free). Leave unset to ship without analytics. */
 export const CF_BEACON_TOKEN = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN || "";

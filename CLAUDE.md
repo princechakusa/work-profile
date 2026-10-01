@@ -97,7 +97,7 @@ Next: CV page with PDF export (Playwright), skills.
 - Canva access is through a normal Chrome started with `--remote-debugging-port=9333 --user-data-dir=%TEMP%\canva-chrome` (Google blocks sign-in in Playwright-launched Chrome); connect with `connect_over_cdp`.
 
 ## Launch setup (2026-09-30)
-- Set `NEXT_PUBLIC_SITE_URL` (for example `https://princechakusa.com`) at deploy time; it feeds link previews (`app/opengraph-image.tsx`), `sitemap.xml` and `robots.txt` (`lib/site.ts`, defaults to https://princechakusa.com). Prince has not bought the domain yet; `.portfolio` does not exist as a TLD.
+- Set `NEXT_PUBLIC_SITE_URL` (for example `https://princechakusa.com`) at deploy time; it feeds link previews (`app/opengraph-image.tsx`), `sitemap.xml` and `robots.txt` (`lib/site.ts`, defaults to https://princechakusa.com). Prince bought princechakusa.com on 2026-10-01 (Cloudflare Registrar; DNS in Cloudflare).
 - Set `NEXT_PUBLIC_CF_BEACON_TOKEN` to turn on Cloudflare Web Analytics (free, cookie-free); unset means no analytics script. If hosted on Cloudflare Pages, analytics can also be switched on in the dashboard without the token.
 - WhatsApp: `CONTACT.whatsapp` (+971 58 977 2645, from Prince's resume), floating button on every page (`WhatsAppButton.tsx`), plus Contact page and footer links.
 - Role bullets on /work are written in professional resume style (action verbs, no "I"), per Prince. Labels are Responsibilities / Achievements / Key learning.
@@ -105,7 +105,7 @@ Next: CV page with PDF export (Playwright), skills.
 
 ## Films as MP4 and GitHub Pages (2026-10-01)
 - Prince: never screen-record the films. Render them from code: `cd web && npm run films` (Remotion CLI, `remotion/index.tsx`, `remotion.config.ts`) writes `docs/media/prince-chakusa-film.mp4`, `projects-film.mp4` and `education-film.mp4`. The entry loads the site fonts with `@remotion/google-fonts`; `remotion.config.ts` maps `@` to `src` and sets `NEXT_PUBLIC_BASE_PATH=/public` so `asset()` paths resolve in the render. The "hover a building" hint is hidden while rendering.
-- Deploy: `.github/workflows/deploy.yml` builds the static export with `NEXT_PUBLIC_BASE_PATH=/work-profile` and publishes to https://princechakusa.github.io/work-profile. Every public file path must go through `asset()` from `lib/site.ts`. Pages source must be "GitHub Actions" (the old branch build ran Jekyll and failed on `archive/`). When princechakusa.com is connected, drop the base path env and set `NEXT_PUBLIC_SITE_URL`.
+- Deploy: `.github/workflows/deploy.yml` builds the static export with `NEXT_PUBLIC_SITE_URL=https://princechakusa.com` (no base path) and publishes to GitHub Pages with the custom domain (`web/public/CNAME`). Keep every public file path going through `asset()` from `lib/site.ts` so a base path still works if ever needed. Pages source must be "GitHub Actions" (the old branch build ran Jekyll and failed on `archive/`).
 
 
 ## SEO, AEO and identity (2026-10-01)
@@ -114,6 +114,6 @@ Next: CV page with PDF export (Playwright), skills.
 - **Structured data:** `Person` + `WebSite` on every page (layout), `ProfilePage` on the home page (`app/page.tsx`), `SoftwareApplication` for PaMarket on /projects. All reference the Person by `@id` `${SITE_URL}/#person`. Only verified facts: alumniOf and credentials come from the resume (University of the People, Lyceum College, CompTIA A+ Core 1). AML-CFT is never a credential or a role; it is "in progress" professional development.
 - **Link preview image:** `app/og.png/route.tsx` builds `/og.png` (the old extension-less `opengraph-image` was served by GitHub Pages as `application/octet-stream`).
 - **Home page answers:** the "Prince Chakusa in brief" section (summary + `ANSWERS` in content.ts) is the AEO block. Keep answers factual and in sync with the role data.
-- **Live domain:** https://princechakusa.github.io/work-profile (deploy workflow). `princechakusa.com` does not resolve; `lib/site.ts` now defaults to the GitHub Pages URL. robots.txt under a sub-path is not read by crawlers (only host-root robots count); submit the sitemap in Google Search Console instead, or move to a custom domain.
+- **Live domain:** https://princechakusa.com (Cloudflare DNS: apex A/AAAA records to GitHub Pages, `www` CNAME to princechakusa.github.io, DNS only / grey cloud). The old https://princechakusa.github.io/work-profile redirects there. Google Search Console is verified with the HTML file `web/public/google2a4e6e8e32c2d30b.html`; do not delete it.
 - **Stale public copy outside this repo:** the old portfolio at https://princechakusa.github.io/ (repo princechakusa.github.io) still shows "Operations Leader and PropTech Builder", Dubai and GuestCare. It competes with this site for "Prince Chakusa" searches. Not changed without Prince's go-ahead.
 - Checks: `validate.py`-style audit of `web/out` (titles, canonicals, JSON-LD, headings, sitemap). Build from PowerShell: Git Bash rewrites `NEXT_PUBLIC_BASE_PATH=/work-profile` into a Windows path.

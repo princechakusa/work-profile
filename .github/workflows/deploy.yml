@@ -21,9 +21,8 @@ jobs:
       run:
         working-directory: web
     env:
-      # served at https://princechakusa.github.io/work-profile until the custom domain is connected
-      NEXT_PUBLIC_BASE_PATH: /work-profile
-      NEXT_PUBLIC_SITE_URL: https://princechakusa.github.io/work-profile
+      # served at the custom domain (Cloudflare DNS -> GitHub Pages), so no base path
+      NEXT_PUBLIC_SITE_URL: https://princechakusa.com
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
