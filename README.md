@@ -10,6 +10,7 @@ Abu Dhabi, UAE · Open to roles in the UAE, the GCC and remote
 <a href="docs/media/prince-chakusa-film.mp4"><img alt="Watch the film" src="https://img.shields.io/badge/%E2%96%B6%20Watch%20the%20film-2%20min%2C%20with%20voice-ff5a1f?style=for-the-badge" /></a>
 <a href="web/public/Prince-Chakusa-CV.pdf"><img alt="Download CV" src="https://img.shields.io/badge/Download-CV%20(PDF)-ece7db?style=for-the-badge&labelColor=07080b" /></a>
 <a href="https://linkedin.com/in/princechakusa"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-princechakusa-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://github.com/princechakusa"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-princechakusa-181717?style=for-the-badge&logo=github" /></a>
 <a href="https://wa.me/971589772645"><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-%2B971%2058%20977%202645-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" /></a>
 
 <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs" />
@@ -24,14 +25,20 @@ Abu Dhabi, UAE · Open to roles in the UAE, the GCC and remote
 
 ---
 
-## 🎬 The film
+## 🎬 The films
 
-A two-minute narrated film walks through my career, one chapter per role. The Stonetree chapter flies over a real 3D city of the 350+ units I was responsible for, with the team of 12 in front of it.
+Every film is rendered straight from the site's code with Remotion (`cd web && npm run films`), not screen recorded. A narrated film walks through my career, one chapter per role. The Stonetree chapter flies over a real 3D city of the 350+ units I was responsible for, with the team of 12 in front of it.
 
 <p align="center">
   <a href="docs/media/prince-chakusa-film.mp4"><img src="docs/media/film-teaser.gif" alt="Team Leader chapter: Prince and his team of 12 in front of the 3D city of 350+ units" width="100%" /></a>
-  <br /><sub>▶ <a href="docs/media/prince-chakusa-film.mp4"><b>Watch the full film with sound (MP4, 2:37)</b></a></sub>
+  <br /><sub>▶ <a href="docs/media/prince-chakusa-film.mp4"><b>Watch the full film with sound (MP4, 2:36)</b></a></sub>
 </p>
+
+| Film | Length | What it shows | Download |
+|---|---|---|---|
+| My story | 2:36 | Every role, from the front desk to supervisor, then why hire me | [prince-chakusa-film.mp4](docs/media/prince-chakusa-film.mp4) |
+| Projects | 0:50 | PaMarket, the marketplace live in Zimbabwe | [projects-film.mp4](docs/media/projects-film.mp4) |
+| Education | 0:42 | Finished qualifications as towers, unfinished ones under construction | [education-film.mp4](docs/media/education-film.mp4) |
 
 ---
 
@@ -157,6 +164,6 @@ github-profile/     profile README and the ASCII profile card generator
 
 <div align="center">
 
-**Let's talk.** chakusaprince@gmail.com · [LinkedIn](https://linkedin.com/in/princechakusa) · [WhatsApp](https://wa.me/971589772645)
+**Let's talk.** chakusaprince@gmail.com · [LinkedIn](https://linkedin.com/in/princechakusa) · [GitHub](https://github.com/princechakusa) · [WhatsApp](https://wa.me/971589772645)
 
 </div>

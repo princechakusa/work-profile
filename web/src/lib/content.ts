@@ -31,7 +31,7 @@ export type Role = {
 export const ROLES: Role[] = [
   {
     id: "authors",
-    when: "Apr 2026 — Now",
+    when: "Apr 2026 to now",
     title: "Guest Relations Executive Supervisor",
     company: "The Authors Holiday Homes",
     current: true,
@@ -47,7 +47,7 @@ export const ROLES: Role[] = [
   },
   {
     id: "homevy",
-    when: "Jan 2026 — Mar 2026",
+    when: "Jan 2026 to Mar 2026",
     title: "Guest Experience Lead",
     company: "Luxury Homevy",
     did: [
@@ -63,7 +63,7 @@ export const ROLES: Role[] = [
   },
   {
     id: "stonetree",
-    when: "Nov 2024 — Dec 2025",
+    when: "Nov 2024 to Dec 2025",
     title: "Customer Care Agent, promoted to Team Leader of Property Operations",
     company: "Stonetree",
     did: [
@@ -80,7 +80,7 @@ export const ROLES: Role[] = [
   },
   {
     id: "daniels",
-    when: "Jan 2023 — Oct 2024",
+    when: "Jan 2023 to Oct 2024",
     title: "Guest Relations Officer",
     company: "Daniels Holiday Homes",
     did: ["Delivered guest check-in and front desk support, looking after guests throughout their stay.", "Conducted service audits based on guest surveys to guide operational improvements."],

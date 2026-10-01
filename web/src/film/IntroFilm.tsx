@@ -96,7 +96,7 @@ function Daniels() {
           <rect x={10} y={-4} width={34} height={8} fill={C.signal} />
         </g>
       </Svg>
-      <Header frame={f} kicker="Chapter 01 · Jan 2023 — Oct 2024" title="Guest Relations Officer" sub="Daniels Holiday Homes" />
+      <Header frame={f} kicker="Chapter 01 · Jan 2023 to Oct 2024" title="Guest Relations Officer" sub="Daniels Holiday Homes" />
       <Bubble frame={f} from={d2.from} to={key - 6} x={930} y={440} text="Welcome! I'm here to assist you with your check-in." />
       <Bubble frame={f} from={bye} to={leave + 44} x={960} y={440} text="Have a great stay!" />
       <Stat frame={f} at={part(d3, 0.42)} x={1240} y={100} n="+25%" label="Guest review scores" />
@@ -185,7 +185,7 @@ function Homevy() {
           return <Person key={x} frame={f + i * 9} x={x} s={0.8 * ramp(f, at, at + 14)} flip shirt={TEAM_SHIRT[i % 3]} skin={SKIN[(i + 1) % 3]} />;
         })}
       </Svg>
-      <Header frame={f} kicker="Chapter 03 · Jan 2026 — Mar 2026" title="Guest Experience Lead" sub="Luxury Homevy" />
+      <Header frame={f} kicker="Chapter 03 · Jan 2026 to Mar 2026" title="Guest Experience Lead" sub="Luxury Homevy" />
       <div style={{ position: "absolute", left: 720, top: 392, width: 460, display: "flex", flexDirection: "column", gap: 18 }}>
         {THREAD.map((msg) => {
           const p = ramp(f, part(l3, msg.k), part(l3, msg.k) + 14);
@@ -228,7 +228,7 @@ function Authors() {
           return <Person key={x} frame={f + i * 9} x={x} s={0.8 * ramp(f, at, at + 14)} flip shirt={TEAM_SHIRT[i % 3]} skin={SKIN[(i + 2) % 3]} />;
         })}
       </Svg>
-      <Header frame={f} kicker="Chapter 04 · Apr 2026 — Now" title="Executive Supervisor" sub="Guest Relations · The Authors Holiday Homes" />
+      <Header frame={f} kicker="Chapter 04 · Apr 2026 to now" title="Executive Supervisor" sub="Guest Relations · The Authors Holiday Homes" />
       <Tag frame={f} at={20} x={560} y={452} text="Prince · Supervisor" />
       <div
         style={{

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "films": "remotion render remotion/index.tsx intro ../docs/media/prince-chakusa-film.mp4 --public-dir=public && remotion render remotion/index.tsx projects ../docs/media/projects-film.mp4 --public-dir=public && remotion render remotion/index.tsx education ../docs/media/education-film.mp4 --public-dir=public"
+    "films": "remotion render remotion/index.tsx intro ../docs/media/prince-chakusa-film.mp4 --public-dir=public --crf=26 && remotion render remotion/index.tsx projects ../docs/media/projects-film.mp4 --public-dir=public --crf=26 && remotion render remotion/index.tsx education ../docs/media/education-film.mp4 --public-dir=public --crf=26"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

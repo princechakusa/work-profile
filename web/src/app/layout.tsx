@@ -5,7 +5,7 @@ import Cursor from "@/components/Cursor";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { CF_BEACON_TOKEN, SITE_URL } from "@/lib/site";
+import { CF_BEACON_TOKEN, SITE_URL, asset } from "@/lib/site";
 import "./globals.css";
 
 const display = Big_Shoulders({ subsets: ["latin"], weight: ["700", "800", "900"], variable: "--font-display" });
@@ -14,6 +14,7 @@ const mono = Martian_Mono({ subsets: ["latin"], weight: ["400", "500"], variable
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: { icon: asset("/icon.png") },
   openGraph: {
     type: "website",
     siteName: "Prince Chakusa",
