@@ -96,7 +96,7 @@ function Daniels() {
           <rect x={10} y={-4} width={34} height={8} fill={C.signal} />
         </g>
       </Svg>
-      <Header frame={f} kicker="Chapter 01 · Jan 2023 to Oct 2024" title="Guest Relations Officer" sub="Daniels Holiday Homes" />
+      <Header frame={f} kicker="Chapter 01 · Jan 2023 to Nov 2024" title="Guest Relations Officer" sub="Daniels Holiday Homes" />
       <Bubble frame={f} from={d2.from} to={key - 6} x={930} y={440} text="Welcome! I'm here to assist you with your check-in." />
       <Bubble frame={f} from={bye} to={leave + 44} x={960} y={440} text="Have a great stay!" />
       <Stat frame={f} at={part(d3, 0.42)} x={1240} y={100} n="+25%" label="Guest review scores" />

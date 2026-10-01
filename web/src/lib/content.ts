@@ -86,7 +86,7 @@ export const ROLES: Role[] = [
   },
   {
     id: "daniels",
-    when: "Jan 2023 to Oct 2024",
+    when: "Jan 2023 to Nov 2024",
     title: "Guest Relations Officer",
     company: "Daniels Holiday Homes",
     location: "Dubai, UAE",

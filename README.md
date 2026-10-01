@@ -67,7 +67,7 @@ Every film is rendered straight from the site's code with Remotion (`cd web && n
 - Standardised operating procedures across all units, reducing annual operational costs by 15%.
 - Ensured full DTCM compliance, and managed vendor contracts and service level agreements.
 
-**Guest Relations Officer** · Daniels Holiday Homes, Dubai · *Jan 2023 to Oct 2024*
+**Guest Relations Officer** · Daniels Holiday Homes, Dubai · *Jan 2023 to Nov 2024*
 - Optimised check-in and check-out processes, improving guest review scores by 25%.
 - Integrated digital concierge tools, reducing front desk workload by 40%.
 - Implemented a CSAT and NPS feedback system, improving guest satisfaction by 20%.
