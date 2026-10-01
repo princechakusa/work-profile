@@ -71,7 +71,7 @@ INFO = [
     ("gap",),
     ("section", "Contact"),
     ("kv", "Website", "princechakusa.com"),
-    ("kv", "Email", "chakusaprince@gmail.com"),
+    ("kv", "Email", "hello@princechakusa.com"),
     ("kv", "LinkedIn", "princechakusa"),
 ]
 

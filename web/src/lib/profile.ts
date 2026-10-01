@@ -40,7 +40,7 @@ export const PROFILE = {
     "AML-CFT (professional development, in progress)",
   ],
 
-  email: "chakusaprince@gmail.com",
+  email: "hello@princechakusa.com",
   phone: "+971 58 977 2645",
   whatsapp: "https://wa.me/971589772645?text=Hi%20Prince%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20talk%20about%20a%20role.",
   linkedin: "https://www.linkedin.com/in/princechakusa",

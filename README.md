@@ -165,6 +165,6 @@ github-profile/     profile README and the ASCII profile card generator
 
 <div align="center">
 
-**Let's talk.** [princechakusa.com](https://princechakusa.com) · chakusaprince@gmail.com · [LinkedIn](https://linkedin.com/in/princechakusa) · [GitHub](https://github.com/princechakusa) · [WhatsApp](https://wa.me/971589772645)
+**Let's talk.** [princechakusa.com](https://princechakusa.com) · hello@princechakusa.com · [LinkedIn](https://linkedin.com/in/princechakusa) · [GitHub](https://github.com/princechakusa) · [WhatsApp](https://wa.me/971589772645)
 
 </div>

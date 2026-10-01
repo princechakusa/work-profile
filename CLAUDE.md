@@ -118,3 +118,6 @@ Next: CV page with PDF export (Playwright), skills.
 - Cloudflare dashboard automation: the dashboard's API blocks scripted fetches (WAF 403), and Playwright `connect_over_cdp` hangs on that Chrome; drive the UI with raw CDP (Input.dispatchMouseEvent / insertText) instead.
 - **Stale public copy outside this repo:** the old portfolio at https://princechakusa.github.io/ (repo princechakusa.github.io) still shows "Operations Leader and PropTech Builder", Dubai and GuestCare. It competes with this site for "Prince Chakusa" searches. Not changed without Prince's go-ahead.
 - Checks: `validate.py`-style audit of `web/out` (titles, canonicals, JSON-LD, headings, sitemap). Build from PowerShell: Git Bash rewrites `NEXT_PUBLIC_BASE_PATH=/work-profile` into a Windows path.
+- **Email (2026-10-01):** public address is hello@princechakusa.com (Cloudflare Email Routing, forwards to chakusaprince@gmail.com; MX/SPF/DKIM records added by Cloudflare). Receive-only: replies go out from Gmail. Set in `lib/profile.ts`, the CV and both READMEs.
+- **GitHub profile README:** draft in `github-profile/README.md`. Creating the public repo `princechakusa/princechakusa` is blocked for Claude by the auto-mode classifier; Prince creates it himself (github.com/new, name `princechakusa`, Public, paste the README).
+
