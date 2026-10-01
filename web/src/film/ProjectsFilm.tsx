@@ -1,5 +1,6 @@
 import { Img, useCurrentFrame } from "remotion";
 import { C, Chips, F, Header, Narration, PRINCE, Person, Scenes, Stage, Svg, lin, noise, part, ramp, talking, timeline, type Timeline } from "./kit";
+import { asset } from "@/lib/site";
 
 /** The Projects film is about PaMarket only: why it exists, what it does, where it runs and who it helps. Real screenshots throughout. */
 
@@ -52,7 +53,7 @@ function Why() {
       <div style={{ position: "absolute", left: 640, top: 330, fontFamily: F.mono, fontSize: 22, letterSpacing: "0.1em", color: C.steel, opacity: ramp(f, p2.from, p2.from + 14) * lin(f, into, into + 14, 1, 0) }}>
         BEFORE: SCATTERED ACROSS GROUP CHATS
       </div>
-      <Phone src="/pamarket/pamarket-splash.jpg" x={1400} y={250} w={300} opacity={ramp(f, into + 30, into + 50)} />
+      <Phone src={asset("/pamarket/pamarket-splash.jpg")} x={1400} y={250} w={300} opacity={ramp(f, into + 30, into + 50)} />
       {POSTS.map((t, i) => {
         const m = ramp(f, into + i * 4, into + 30 + i * 4);
         const sx = 660 + noise(i + 3) * 520 + Math.sin(f * 0.05 + i * 1.7) * 18;
@@ -89,7 +90,7 @@ function What() {
         <div style={{ display: "flex", gap: 10, padding: "14px 18px", borderBottom: `2px solid ${C.line}` }}>
           {[0, 1, 2].map((i) => <div key={i} style={{ width: 14, height: 14, borderRadius: 7, background: C.line }} />)}
         </div>
-        <Img src="/pamarket/web-desktop.jpg" style={{ display: "block", width: "100%" }} />
+        <Img src={asset("/pamarket/web-desktop.jpg")} style={{ display: "block", width: "100%" }} />
       </div>
       <div style={{ position: "absolute", left: 1230, top: 340, width: 600, display: "flex", flexDirection: "column", gap: 16 }}>
         {FEATURES.map((t, i) => {
@@ -128,7 +129,7 @@ function Where() {
   return (
     <Stage frame={f}>
       <Header frame={f} kicker="Where it runs" title="Web, iPhone and Android" sub="Live today" />
-      {["/pamarket/web-mobile.jpg", "/pamarket/pamarket-splash.jpg", "/pamarket/pamarket-account.jpg"].map((src, i) => {
+      {[asset("/pamarket/web-mobile.jpg"), asset("/pamarket/pamarket-splash.jpg"), asset("/pamarket/pamarket-account.jpg")].map((src, i) => {
         const q = ramp(f, 6 + i * 8, 34 + i * 8);
         return <Phone key={src} src={src} x={110 + i * 290} y={330} w={250} opacity={q} lift={(1 - q) * 80} />;
       })}

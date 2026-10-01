@@ -9,6 +9,7 @@ import { IntroFilm, INTRO_DUR, INTRO_POSTER } from "@/film/IntroFilm";
 import { ProjectsFilm, PROJECTS_DUR, PROJECTS_POSTER } from "@/film/ProjectsFilm";
 import { EducationFilm, EDUCATION_DUR, EDUCATION_POSTER } from "@/film/EducationFilm";
 import s from "./Film.module.css";
+import { asset } from "@/lib/site";
 
 const FILMS = {
   intro: { component: IntroFilm, dur: INTRO_DUR, poster: INTRO_POSTER, label: "my work story" },
@@ -22,7 +23,7 @@ let preloaded = false;
 export function preloadVoice() {
   if (preloaded) return;
   preloaded = true;
-  for (const id of Object.keys(voice)) prefetch(`/voice/${id}.mp3`, { method: "blob-url" });
+  for (const id of Object.keys(voice)) prefetch(asset(`/voice/${id}.mp3`), { method: "blob-url" });
 }
 
 type Props = {

@@ -1,6 +1,8 @@
+import { asset } from "@/lib/site";
+
 /**
  * Every fact on the site lives here, so the pages never disagree with each other.
- * Numbers come from Prince. Lines marked DRAFT were written for him and still need his confirmation.
+ * Numbers and wording are confirmed by Prince (2026-10-01).
  */
 
 export const CONTACT = {
@@ -108,7 +110,7 @@ export type Study = {
   levelUp: string;
 };
 
-// DRAFT: the "what" and "levelUp" lines were written for Prince from his roles; confirm them.
+// The "what" and "levelUp" lines were written from his roles and confirmed by Prince.
 export const STUDY: Study[] = [
   {
     name: "Associate of Science in Computer Science",
@@ -193,20 +195,20 @@ export const PAMARKET = {
     { t: "Code", h: "https://github.com/princechakusa/PaMarket" },
   ],
   shots: [
-    { src: "/pamarket/web-desktop.jpg", alt: "PaMarket website home page", kind: "desktop" },
-    { src: "/pamarket/web-mobile.jpg", alt: "PaMarket website on a phone", kind: "phone" },
-    { src: "/pamarket/pamarket-splash.jpg", alt: "PaMarket app opening screen", kind: "phone" },
-    { src: "/pamarket/pamarket-account.jpg", alt: "PaMarket app account screen", kind: "phone" },
+    { src: asset("/pamarket/web-desktop.jpg"), alt: "PaMarket website home page", kind: "desktop" },
+    { src: asset("/pamarket/web-mobile.jpg"), alt: "PaMarket website on a phone", kind: "phone" },
+    { src: asset("/pamarket/pamarket-splash.jpg"), alt: "PaMarket app opening screen", kind: "phone" },
+    { src: asset("/pamarket/pamarket-account.jpg"), alt: "PaMarket app account screen", kind: "phone" },
   ],
 };
 
 export const FIXHUB = {
   summary:
     "A maintenance ticketing system for property managers. A manager can log a job, assign it and track it until it is fixed. I built it because maintenance requests were getting lost in group chats.",
-  links: [{ t: "Code", h: "https://github.com/princechakusa/fixhub-backend" }],
+  links: [{ t: "Code", h: "https://github.com/princechakusa" }],
 };
 
-// DRAFT: Home page about lines, written for Prince from his story.
+// Home page about lines, confirmed by Prince.
 export const ABOUT = [
   "I am Prince Chakusa, from Zimbabwe and based in Abu Dhabi.",
   "I have worked in UAE holiday homes since 2023. I started at the front desk, checking guests in, and I have moved up to lead teams, run a portfolio of more than 350 units, and supervise guest relations.",

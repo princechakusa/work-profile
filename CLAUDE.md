@@ -41,7 +41,7 @@ Prince's 350+ managed units are rendered as 350 instanced towers (25 x 14 grid) 
 - Home page sections now: hero, proof, Work (3 roles + "Watch the film again"), Projects (film + PaMarket and FixHub cards), Education (film + 5 entries), Why hire me (3 reasons + email CTA), contact.
 - `archive/` - old static HTML and the Python/Reflex attempt. Reference only; do not reuse the design.
 
-Status: works in Chrome at 1036px and 1600px wide, typechecks clean, no console errors, no horizontal overflow. Not yet done: mobile (the pop-up film is tiny in portrait), other browsers, CV page with PDF export, MP4 export of the films, deployment. Nobody has listened to the generated voice yet for pronunciation (DTCM, SOPs, SLAs, AML-CFT, Homevy, Chakusa, PaMarket).
+Status: works in Chrome at 1036px and 1600px wide, typechecks clean, no console errors, no horizontal overflow. Not yet done: mobile (the pop-up film is tiny in portrait), other browsers, CV page with PDF export, deployment to the custom domain. Nobody has listened to the generated voice yet for pronunciation (DTCM, SOPs, SLAs, AML-CFT, Homevy, Chakusa, PaMarket).
 
 Dev notes: a dev server is often already running on port 3000 (Next refuses a second one in the same folder). Git fails for the `Prince 1` Windows account with "dubious ownership" until `git config --global --add safe.directory 'C:/Projects/Work Profile'` is run. For checks, run Playwright headless (swiftshader flags below); Prince clicks around in headed test windows.
 
@@ -59,10 +59,8 @@ Next: CV page with PDF export (Playwright), skills.
 - Dates (Prince, 2026-09-30): Luxury Homevy Jan 2026 to Mar 2026; The Authors Holiday Homes Apr 2026 to now (name confirmed). He left Homevy after the company lost bookings in February for worldwide and internal reasons; the site words it as "The company scaled back after a market-wide drop in bookings, and I moved on to my current role." The film does not mention it.
 - Hero line is now "From the front desk to leading the team, I have run 350+ holiday homes in Dubai, and I build the software that keeps them running."
 - Stonetree title is **Customer Care Agent** (not Customer Agent), promoted to Team Leader.
-- The "how I use it" line for each qualification in the Education film and section is Claude's draft.
 - Canva: no Canva connector is available in this environment (only Claude Docs and Descript). Prince wants the CV made in Canva next; he has to add the Canva connector in claude.ai Settings > Connectors first.
-- The "what I learned" lines in the film are drafts written by Claude; Prince has not confirmed them.
-- The Anna Wilcox LinkedIn recommendation (from `assets/recommendation.jpg`) is quoted in the Why hire me section; confirm he is happy for it to be shown.
+- Confirmed by Prince (2026-10-01): all former DRAFT lines (what I learned, how I use each qualification, Home about lines) and showing the Anna Wilcox recommendation.
 - The hero proof says "5 yrs" in the UAE short-term rental market, but the roles listed only go back to Jan 2023. Ask what the earlier experience was, or change the number.
 - FixHub: the old site claimed it was deployed on 350+ units with a 40% faster maintenance response. Unconfirmed, so not used. Ask.
 - Years for the Business Management Diploma and CompTIA A+ (shown as "Completed", no year).
@@ -77,7 +75,7 @@ Next: CV page with PDF export (Playwright), skills.
 - `/projects`: PaMarket first (film, real screenshots in `public/pamarket/`, why / what / who it helps, links). FixHub is a small card below and is **not** in the film.
 - `/why-me`: four reasons, the Anna Wilcox recommendation with a View on LinkedIn link, skills and tools, email CTA.
 - `/contact`: email, LinkedIn, GitHub, location.
-- Shared: `SiteNav` (mobile menu under 900px), `SiteFooter`, `Backdrop` (animated SVG dusk skyline behind inner pages), `Page.module.css`. All copy lives in `src/lib/content.ts`; lines marked DRAFT there were written for Prince and need his confirmation.
+- Shared: `SiteNav` (mobile menu under 900px), `SiteFooter`, `Backdrop` (animated SVG dusk skyline behind inner pages), `Page.module.css`. All copy lives in `src/lib/content.ts` (all confirmed by Prince).
 - PaMarket website screenshots were captured from https://pamarketzw.com with Playwright (cookie banner dismissed with "Reject Optional"). Features described come from the live site.
 - Checks: headless swiftshader Chrome stalls on the Projects page; use headed Chrome (`channel="chrome"`, `headless=False`), which is also what Prince wants.
 
@@ -104,3 +102,8 @@ Next: CV page with PDF export (Playwright), skills.
 - WhatsApp: `CONTACT.whatsapp` (+971 58 977 2645, from Prince's resume), floating button on every page (`WhatsAppButton.tsx`), plus Contact page and footer links.
 - Role bullets on /work are written in professional resume style (action verbs, no "I"), per Prince. Labels are Responsibilities / Achievements / Key learning.
 - The film player loads lazily (`next/dynamic` in `Intro.tsx`), so the greeting shows in about 1 s instead of 5 to 9 s.
+
+## Films as MP4 and GitHub Pages (2026-10-01)
+- Prince: never screen-record the films. Render them from code: `cd web && npm run films` (Remotion CLI, `remotion/index.tsx`, `remotion.config.ts`) writes `docs/media/prince-chakusa-film.mp4`, `projects-film.mp4` and `education-film.mp4`. The entry loads the site fonts with `@remotion/google-fonts`; `remotion.config.ts` maps `@` to `src` and sets `NEXT_PUBLIC_BASE_PATH=/public` so `asset()` paths resolve in the render. The "hover a building" hint is hidden while rendering.
+- Deploy: `.github/workflows/deploy.yml` builds the static export with `NEXT_PUBLIC_BASE_PATH=/work-profile` and publishes to https://princechakusa.github.io/work-profile. Every public file path must go through `asset()` from `lib/site.ts`. Pages source must be "GitHub Actions" (the old branch build ran Jekyll and failed on `archive/`). When princechakusa.com is connected, drop the base path env and set `NEXT_PUBLIC_SITE_URL`.
+

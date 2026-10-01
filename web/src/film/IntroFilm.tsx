@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCurrentFrame } from "remotion";
+import { getRemotionEnvironment, useCurrentFrame } from "remotion";
 import { City3D } from "./City3D";
 import {
   Bubble, C, Chips, F, FLOOR, Header, Narration, PRINCE, Person, SKIN, Scenes, Stage, Stat, Svg, Tag,
@@ -135,11 +135,14 @@ function Stonetree() {
         ))}
         <Person {...PRINCE} frame={f} x={lin(f, 6, 44, -140, 960)} s={1.15} walk={f > 6 && f < 44 ? f * 0.6 : 0} talk={speak(T_STONE, f)} />
       </Svg>
+      {/* the hover hint only makes sense in the live player, not in the rendered MP4 */}
+      {!getRemotionEnvironment().isRendering && (
       <div style={{ position: "absolute", right: 80, top: 400, textAlign: "right", fontFamily: F.mono, fontSize: 22, letterSpacing: "0.1em", pointerEvents: "none", opacity: ramp(f, s2.from + 40, s2.from + 56) }}>
         <div style={{ display: "inline-block", padding: "10px 16px", background: "rgba(7, 8, 11, 0.8)", border: `2px solid ${unit === null ? C.line : C.signal}`, color: unit === null ? C.sand : C.signal }}>
           {unit === null ? "MOVE YOUR MOUSE · HOVER A BUILDING" : `UNIT ${String(unit + 1).padStart(3, "0")} / 350`}
         </div>
       </div>
+      )}
       <Header frame={f} kicker="Chapter 02 · Stonetree" title={f < promoted ? "Customer Care Agent" : "Team Leader"} sub={f < promoted ? "Stonetree" : "Property Operations · Stonetree"} />
       <div style={{ position: "absolute", left: 1300, top: 96, opacity: lin(f, s2.from, s2.from + 10) }}>
         <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: 200, lineHeight: 0.85 }}>

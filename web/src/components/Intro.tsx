@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import s from "./Intro.module.css";
+import { asset } from "@/lib/site";
 
 // the film player is the heaviest part of the site; the greeting shows at once and the player loads behind it
 const Film = dynamic(() => import("./Film"), { ssr: false });
@@ -84,7 +85,7 @@ export default function Intro({ onDone }: { onDone: (openWork: boolean) => void 
         ) : (
           <div className={s.greet}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/prince.jpg" alt="Prince Chakusa" className={s.photo} />
+            <img src={asset("/prince.jpg")} alt="Prince Chakusa" className={s.photo} />
             <div className={s.words}>
               <p className="mono">Operations leader · Software builder · Abu Dhabi</p>
               <h2 id="intro-title" className="display">Hi, I&apos;m Prince Chakusa.</h2>

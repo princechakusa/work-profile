@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { scrollState } from "@/lib/scrollState";
 import { ABOUT, CAREER_STATS, CONTACT, DRIVES, STRENGTHS } from "@/lib/content";
 import s from "./Home.module.css";
+import { asset } from "@/lib/site";
 
 const CityScene = dynamic(() => import("./CityScene"), { ssr: false });
 
@@ -136,7 +137,7 @@ export default function Home() {
       <section id="about" className={`${s.panel} ${s.solid}`}>
         <div className={`${s.aboutGrid} ${s.reveal}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/prince.jpg" alt="Prince Chakusa" className={s.photo} />
+          <img src={asset("/prince.jpg")} alt="Prince Chakusa" className={s.photo} />
           <div>
             <p className={`${s.kicker} mono`}>About me</p>
             <h2 className={`${s.title} display`}>Hospitality at heart. Builder by habit.</h2>

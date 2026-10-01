@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "films": "remotion render remotion/index.tsx intro ../docs/media/prince-chakusa-film.mp4 --public-dir=public && remotion render remotion/index.tsx projects ../docs/media/projects-film.mp4 --public-dir=public && remotion render remotion/index.tsx education ../docs/media/education-film.mp4 --public-dir=public"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
@@ -24,6 +25,10 @@
     "three": "^0.186.1"
   },
   "devDependencies": {
+    "@remotion/bundler": "^4.0.528",
+    "@remotion/cli": "^4.0.528",
+    "@remotion/google-fonts": "^4.0.528",
+    "@remotion/renderer": "^4.0.528",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -13,40 +13,39 @@ PHOTO = ROOT / "web" / "public" / "prince.jpg"
 OUT = ROOT / "github-profile" / "profile-card.svg"
 
 BG, KEY, VAL, DOT, ACC = "#0d1117", "#ff5a1f", "#ece7db", "#3b424c", "#ff5a1f"
-CHARS = " .'`,:;-~=+*ixzXYUJCO0Q#%&8B@"
-COLS, ROWS = 58, 36
-CW, LH = 6.6, 12.6  # portrait: 11px monospace
+CHARS = " .:-=+*#%@8B&WM"
+COLS, ROWS = 100, 62
+CW, LH = 4.2, 7.6  # portrait: 7px monospace
 ICW, ILH = 8.4, 16.0  # info panel: 14px monospace
 
 
 def ascii_portrait():
+    """Coloured ASCII: each character takes the colour of the photo under it, so the face reads clearly."""
     img = Image.open(PHOTO).convert("RGB")
     w, h = img.size
-    img = img.crop((int(w * 0.12), int(h * 0.03), int(w * 0.88), int(h * 0.72)))  # head and shoulders
+    img = img.crop((int(w * 0.14), int(h * 0.05), int(w * 0.86), int(h * 0.80)))
+    orig = img.resize((COLS, ROWS), Image.LANCZOS)  # backdrop mask comes from the untouched photo
+    img = ImageOps.autocontrast(img, cutoff=1)
+    # equalise the person only (not the grey backdrop) so eyes, nose and mouth separate clearly
+    from PIL import ImageFilter
+    eq = ImageOps.equalize(img)
+    img = Image.blend(img, eq, 0.55).filter(ImageFilter.UnsharpMask(radius=2, percent=160, threshold=2))
     small = img.resize((COLS, ROWS), Image.LANCZOS)
-    mask = [[False] * COLS for _ in range(ROWS)]
-    vals = []
-    for y in range(ROWS):
-        for x in range(COLS):
-            r, g, b = small.getpixel((x, y))
-            if abs(r - g) < 12 and abs(g - b) < 14 and r > 150:  # the light studio backdrop
-                mask[y][x] = True
-            else:
-                vals.append(0.299 * r + 0.587 * g + 0.114 * b)
-    vals.sort()
-    lo, hi = vals[int(len(vals) * 0.03)], vals[int(len(vals) * 0.97)]
     rows = []
     for y in range(ROWS):
-        line = ""
+        cells = []
         for x in range(COLS):
-            if mask[y][x]:
-                line += " "
-                continue
+            r0, g0, b0 = orig.getpixel((x, y))
             r, g, b = small.getpixel((x, y))
-            v = (0.299 * r + 0.587 * g + 0.114 * b - lo) / max(1, hi - lo)
-            v = min(1, max(0, v)) ** 0.8  # lift the mid tones so the face keeps its features
-            line += CHARS[1 + int(v * (len(CHARS) - 2))]
-        rows.append(line.rstrip())
+            if abs(r0 - g0) < 14 and abs(g0 - b0) < 16 and r0 > 160:  # light studio backdrop
+                cells.append((" ", None))
+                continue
+            lum = 0.299 * r + 0.587 * g + 0.114 * b
+            ch = CHARS[1 + int(min(1, lum / 255) ** 0.7 * (len(CHARS) - 2))]
+            # lift dark tones so they stay visible on the dark card
+            lift = lambda c: int(min(255, 38 + c * 1.35))
+            cells.append((ch, f"#{lift(r):02x}{lift(g):02x}{lift(b):02x}"))
+        rows.append(cells)
     return rows
 
 
@@ -89,8 +88,9 @@ def build():
         f'<rect width="100%" height="100%" rx="12" fill="{BG}"/>',
         '<style>text{font-family:Consolas,"SFMono-Regular",Menlo,monospace;font-size:14px;white-space:pre}</style>',
     ]
-    for i, line in enumerate(art):
-        out.append(f'<text x="24" y="{30 + i * LH:.1f}" fill="{VAL}" font-size="11" opacity="0.95">{escape(line)}</text>')
+    for i, cells in enumerate(art):
+        spans = "".join(f'<tspan fill="{c}">{escape(ch)}</tspan>' if c else " " for ch, c in cells).rstrip()
+        out.append(f'<text x="24" y="{28 + i * LH:.1f}" style="font-size:7px;font-weight:bold" xml:space="preserve">{spans}</text>')
 
     y = 36
     for item in INFO:

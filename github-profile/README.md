@@ -10,7 +10,7 @@ Guest Relations Executive Supervisor at The Authors Holiday Homes. Since 2023 I 
 |:---:|:---:|:---:|:---:|
 | units under my responsibility | people led | guest review scores | lower operating costs |
 
-**Portfolio:** launching soon &nbsp;·&nbsp; **CV:** [download PDF](https://github.com/princechakusa/work-profile/raw/main/web/public/Prince-Chakusa-CV.pdf) &nbsp;·&nbsp; **LinkedIn:** [princechakusa](https://linkedin.com/in/princechakusa) &nbsp;·&nbsp; **Email:** chakusaprince@gmail.com
+**Portfolio:** [princechakusa.github.io/work-profile](https://princechakusa.github.io/work-profile/) &nbsp;·&nbsp; **CV:** [download PDF](https://github.com/princechakusa/work-profile/raw/main/web/public/Prince-Chakusa-CV.pdf) &nbsp;·&nbsp; **LinkedIn:** [princechakusa](https://linkedin.com/in/princechakusa) &nbsp;·&nbsp; **GitHub:** [princechakusa](https://github.com/princechakusa) &nbsp;·&nbsp; **Email:** chakusaprince@gmail.com
 
 ## What I have built
 

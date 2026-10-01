@@ -1,6 +1,7 @@
 import { useId, type FC, type ReactNode } from "react";
 import { AbsoluteFill, Easing, Html5Audio, Sequence, Series, interpolate } from "remotion";
 import voice from "./voice.json";
+import { asset } from "@/lib/site";
 
 /** Shared building blocks for the films. Everything is driven by the frame number, never by CSS animation. */
 
@@ -377,7 +378,7 @@ export function Narration({ t, frame, spoken = [] }: { t: Timeline; frame: numbe
     <>
       {t.list.map((c) => (
         <Sequence key={c.id} from={c.from} durationInFrames={c.to - c.from + 10} layout="none">
-          <Html5Audio src={`/voice/${c.id}.mp3`} />
+          <Html5Audio src={asset(`/voice/${c.id}.mp3`)} />
         </Sequence>
       ))}
       {now && (
