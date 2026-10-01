@@ -70,6 +70,7 @@ INFO = [
     ("kv", "Portfolio", "3D city of 350 units"),
     ("gap",),
     ("section", "Contact"),
+    ("kv", "Website", "princechakusa.com"),
     ("kv", "Email", "chakusaprince@gmail.com"),
     ("kv", "LinkedIn", "princechakusa"),
 ]

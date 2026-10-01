@@ -7,6 +7,7 @@
 **Guest Relations Supervisor · Hospitality and property operations · Software developer**
 Abu Dhabi, UAE · Open to roles in the UAE, the GCC and remote
 
+<a href="https://princechakusa.com"><img alt="Live site" src="https://img.shields.io/badge/Live-princechakusa.com-ff5a1f?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
 <a href="docs/media/prince-chakusa-film.mp4"><img alt="Watch the film" src="https://img.shields.io/badge/%E2%96%B6%20Watch%20the%20film-2%20min%2C%20with%20voice-ff5a1f?style=for-the-badge" /></a>
 <a href="web/public/Prince-Chakusa-CV.pdf"><img alt="Download CV" src="https://img.shields.io/badge/Download-CV%20(PDF)-ece7db?style=for-the-badge&labelColor=07080b" /></a>
 <a href="https://linkedin.com/in/princechakusa"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-princechakusa-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
@@ -140,7 +141,7 @@ npm run dev      # http://localhost:3000
 npm run build    # static site in web/out
 ```
 
-Set `NEXT_PUBLIC_SITE_URL` to the live address when deploying, and optionally `NEXT_PUBLIC_CF_BEACON_TOKEN` for Cloudflare Web Analytics.
+Pushing to `main` deploys to https://princechakusa.com through GitHub Actions (`.github/workflows/deploy.yml`), which sets `NEXT_PUBLIC_SITE_URL` and the Cloudflare Web Analytics token.
 
 </details>
 
@@ -164,6 +165,6 @@ github-profile/     profile README and the ASCII profile card generator
 
 <div align="center">
 
-**Let's talk.** chakusaprince@gmail.com · [LinkedIn](https://linkedin.com/in/princechakusa) · [GitHub](https://github.com/princechakusa) · [WhatsApp](https://wa.me/971589772645)
+**Let's talk.** [princechakusa.com](https://princechakusa.com) · chakusaprince@gmail.com · [LinkedIn](https://linkedin.com/in/princechakusa) · [GitHub](https://github.com/princechakusa) · [WhatsApp](https://wa.me/971589772645)
 
 </div>

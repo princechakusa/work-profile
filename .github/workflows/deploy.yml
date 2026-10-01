@@ -23,6 +23,8 @@ jobs:
     env:
       # served at the custom domain (Cloudflare DNS -> GitHub Pages), so no base path
       NEXT_PUBLIC_SITE_URL: https://princechakusa.com
+      # Cloudflare Web Analytics (cookie-free); the token is public, it ships in every page
+      NEXT_PUBLIC_CF_BEACON_TOKEN: 069f14bd81414c159e8fcfb4b2345481
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
