@@ -55,8 +55,8 @@ Next: CV page with PDF export (Playwright), skills.
 
 ## Open questions waiting on Prince
 - Stonetree is **350+ units** (Prince, 2026-09-30). Settled. He joined Stonetree as a **Customer Agent** and was promoted to Team Leader of Property Operations; the promotion date is unknown.
-- **Current role: Guest Relations Supervisor at The Authors Holiday Homes, Abu Dhabi (since Apr 2026).** Prince, 2026-10-01: never write "Guest Relations Executive Supervisor". The title lives in `web/src/lib/profile.ts` (`PROFILE.currentRole`); everything else reads it from there.
-- Dates (Prince, 2026-09-30): Luxury Homevy Jan 2026 to Mar 2026; The Authors Holiday Homes Apr 2026 to now (name confirmed). He left Homevy after the company lost bookings in February for worldwide and internal reasons; the site words it as "The company scaled back after a market-wide drop in bookings, and I moved on to my current role." The film does not mention it.
+- **Current role: Guest Relations Supervisor at The Authors Holiday Homes, Abu Dhabi (since May 2026).** Prince, 2026-10-01: never write "Guest Relations Executive Supervisor". The title lives in `web/src/lib/profile.ts` (`PROFILE.currentRole`); everything else reads it from there.
+- Dates (Prince, 2026-09-30): Luxury Homevy Jan 2026 to May 2026; The Authors Holiday Homes May 2026 to now (corrected 2026-10-01 to match LinkedIn) (name confirmed). He left Homevy after the company lost bookings in February for worldwide and internal reasons; the site words it as "The company scaled back after a market-wide drop in bookings, and I moved on to my current role." The film does not mention it.
 - Hero line is now "From the front desk to leading the team, I have run 350+ holiday homes in Dubai, and I build the software that keeps them running."
 - Stonetree title is **Customer Care Agent** (not Customer Agent), promoted to Team Leader.
 - Canva: no Canva connector is available in this environment (only Claude Docs and Descript). Prince wants the CV made in Canva next; he has to add the Canva connector in claude.ai Settings > Connectors first.
@@ -120,4 +120,4 @@ Next: CV page with PDF export (Playwright), skills.
 - Checks: `validate.py`-style audit of `web/out` (titles, canonicals, JSON-LD, headings, sitemap). Build from PowerShell: Git Bash rewrites `NEXT_PUBLIC_BASE_PATH=/work-profile` into a Windows path.
 - **Email (2026-10-01):** public address is hello@princechakusa.com (Cloudflare Email Routing, forwards to chakusaprince@gmail.com; MX/SPF/DKIM records added by Cloudflare). Receive-only: replies go out from Gmail. Set in `lib/profile.ts`, the CV and both READMEs.
 - **GitHub profile README:** draft in `github-profile/README.md`. Creating the public repo `princechakusa/princechakusa` is blocked for Claude by the auto-mode classifier; Prince creates it himself (github.com/new, name `princechakusa`, Public, paste the README).
-
+- **Dates confirmed by Prince (2026-10-01, LinkedIn is right):** The Authors (Guest Relations Supervisor) May 2026 to now; Luxury Homevy Jan 2026 to May 2026; Stonetree Customer Care Agent Nov 2024, promoted to Team Leader May 2025, left Dec 2025. CompTIA A+ is certified (Prince confirmed). LinkedIn direction: blend operations + software with the move into AML and financial crime compliance.

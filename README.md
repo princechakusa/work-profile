@@ -51,18 +51,18 @@ Every film is rendered straight from the site's code with Remotion (`cd web && n
 
 ### Experience
 
-**Guest Relations Supervisor** · The Authors Holiday Homes, Abu Dhabi · *Apr 2026 to Present*
+**Guest Relations Supervisor** · The Authors Holiday Homes, Abu Dhabi · *May 2026 to Present*
 - Supervise the guest relations team, ensuring every guest is looked after from arrival to departure.
 - Handle escalated guest issues and coach the team to resolve problems at first contact.
 - Improved the company's operating systems and team management, so service standards hold on every shift.
 
-**Guest Experience Lead** · Luxury Homevy Vacation Homes, Dubai · *Jan 2026 to Mar 2026*
+**Guest Experience Lead** · Luxury Homevy Vacation Homes, Dubai · *Jan 2026 to May 2026*
 - Led guest experience operations across a 40-property short-term rental portfolio with a team of 5.
 - Built SLA and SOP compliance tracking across Hostaway and WhatsApp.
 - Analysed more than 200 guest reviews to identify recurring issues and what guests value most.
 
-**Team Leader, Property Operations** · Stonetree Vacation Homes, Dubai · *Nov 2024 to Dec 2025*
-- Promoted from Customer Care Agent to Team Leader of Property Operations.
+**Team Leader, Property Operations** · Stonetree Vacation Homes, Dubai · *May 2025 to Dec 2025*
+- Joined as a Customer Care Agent in Nov 2024 and was promoted to Team Leader of Property Operations in May 2025.
 - Directed day-to-day operations for more than 350 short-term rental units, leading a cross-functional team of 12.
 - Standardised operating procedures across all units, reducing annual operational costs by 15%.
 - Ensured full DTCM compliance, and managed vendor contracts and service level agreements.

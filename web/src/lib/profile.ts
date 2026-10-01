@@ -10,7 +10,7 @@ export const PROFILE = {
   name: "Prince Chakusa",
   currentRole: "Guest Relations Supervisor",
   currentEmployer: "The Authors Holiday Homes",
-  currentSince: "April 2026",
+  currentSince: "May 2026",
   location: { city: "Abu Dhabi", country: "United Arab Emirates", countryCode: "AE", label: "Abu Dhabi, UAE" },
   from: "Zimbabwe",
 

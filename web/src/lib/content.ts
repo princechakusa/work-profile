@@ -34,7 +34,7 @@ export type Role = {
 export const ROLES: Role[] = [
   {
     id: "authors",
-    when: "Apr 2026 to now",
+    when: "May 2026 to now",
     title: PROFILE.currentRole,
     company: PROFILE.currentEmployer,
     location: "Abu Dhabi, UAE",
@@ -51,7 +51,7 @@ export const ROLES: Role[] = [
   },
   {
     id: "homevy",
-    when: "Jan 2026 to Mar 2026",
+    when: "Jan 2026 to May 2026",
     title: "Guest Experience Lead",
     company: "Luxury Homevy Vacation Homes",
     location: "Dubai, UAE",
@@ -73,7 +73,7 @@ export const ROLES: Role[] = [
     company: "Stonetree Vacation Homes",
     location: "Dubai, UAE",
     did: [
-      "Promoted from Customer Care Agent to Team Leader of Property Operations.",
+      "Joined as a Customer Care Agent in November 2024 and was promoted to Team Leader of Property Operations in May 2025.",
       "Directed day-to-day operations for more than 350 short-term rental units, ensuring guest satisfaction and operational efficiency.",
       "Led a cross-functional team of 12 across concierge, maintenance and housekeeping.",
     ],
@@ -275,7 +275,7 @@ export const ANSWERS: { q: string; a: string; link?: { href: string; t: string }
   },
   {
     q: "What is Prince Chakusa's professional background?",
-    a: "He started in 2023 as a Guest Relations Officer at Daniels Holiday Homes in Dubai, joined Stonetree Vacation Homes as a Customer Care Agent and was promoted to Team Leader of Property Operations, led guest experience at Luxury Homevy Vacation Homes, and became Guest Relations Supervisor at The Authors Holiday Homes in April 2026.",
+    a: "He started in 2023 as a Guest Relations Officer at Daniels Holiday Homes in Dubai, joined Stonetree Vacation Homes as a Customer Care Agent and was promoted to Team Leader of Property Operations, led guest experience at Luxury Homevy Vacation Homes, and became Guest Relations Supervisor at The Authors Holiday Homes in May 2026.",
   },
   {
     q: "What experience does Prince Chakusa have in hospitality operations?",
