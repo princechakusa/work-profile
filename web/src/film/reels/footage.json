@@ -1,0 +1,151 @@
+{
+ "note": "Every stock clip used in a reel (all Pexels, free licence). Before building a new video, pick clips that are NOT listed here, so no two videos share footage or people. The original showreel clips (keys a- to k- and r1- to r9-) predate this register and have no recorded Pexels IDs; treat them as used. The same rule applies to music: each reel gets its own track.",
+ "clips": {
+  "a-marina": {
+   "video": "linkedin-human-ai, linkedin-reviews v1"
+  },
+  "b-phone": {
+   "video": "linkedin-human-ai"
+  },
+  "c-apartment": {
+   "video": "linkedin-human-ai, linkedin-reviews v1"
+  },
+  "d-bed": {
+   "video": "linkedin-human-ai"
+  },
+  "e-reception": {
+   "video": "linkedin-human-ai"
+  },
+  "f-lobby": {
+   "video": "linkedin-human-ai, linkedin-reviews v1"
+  },
+  "g-citynight": {
+   "video": "linkedin-human-ai"
+  },
+  "h-coding": {
+   "video": "linkedin-human-ai"
+  },
+  "i-team": {
+   "video": "linkedin-human-ai"
+  },
+  "j-sunrise": {
+   "video": "linkedin-human-ai, linkedin-reviews v1"
+  },
+  "k-roomservice": {
+   "video": "linkedin-human-ai"
+  },
+  "r1-guest": {
+   "video": "linkedin-reviews v1"
+  },
+  "r2-data": {
+   "video": "linkedin-reviews v1"
+  },
+  "r3-notes": {
+   "video": "linkedin-reviews v1"
+  },
+  "r4-charts": {
+   "video": "linkedin-reviews v1"
+  },
+  "r5-cushions": {
+   "video": "linkedin-reviews v1"
+  },
+  "r6-team": {
+   "video": "linkedin-reviews v1"
+  },
+  "r7-towels": {
+   "video": "linkedin-reviews v1"
+  },
+  "r9-success": {
+   "video": "linkedin-reviews v1"
+  },
+  "rv-phone-smile": {
+   "pexels_id": "7100960",
+   "page": "https://www.pexels.com/video/woman-using-a-smartphone-7100960/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-head-laptop": {
+   "pexels_id": "6623022",
+   "page": "https://www.pexels.com/video/man-holding-his-head-6623022/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-spreadsheet": {
+   "pexels_id": "8480291",
+   "page": "https://www.pexels.com/video/a-man-using-a-laptop-8480291/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-magnifier": {
+   "pexels_id": "6120119",
+   "page": "https://www.pexels.com/video/a-hand-with-a-magnifying-glass-6120119/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-notes-flatlay": {
+   "pexels_id": "32893125",
+   "page": "https://www.pexels.com/video/organizing-creative-thoughts-with-sticky-notes-32893125/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-note-writing": {
+   "pexels_id": "9305771",
+   "page": "https://www.pexels.com/video/person-writing-on-a-sticky-note-9305771/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-calculator": {
+   "pexels_id": "6781916",
+   "page": "https://www.pexels.com/video/person-using-a-calculator-6781916/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-maid-cushions": {
+   "pexels_id": "6466567",
+   "page": "https://www.pexels.com/video/hotel-maid-arranging-cushions-on-bed-6466567/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-presenting": {
+   "pexels_id": "5439241",
+   "page": "https://www.pexels.com/video/group-of-people-in-a-business-meeting-5439241/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-maid-pillow": {
+   "pexels_id": "9472826",
+   "page": "https://www.pexels.com/video/a-woman-in-a-white-uniform-is-standing-in-front-of-a-bed-9472826/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-man-sheet": {
+   "pexels_id": "7641639",
+   "page": "https://www.pexels.com/video/a-man-making-bed-7641639/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-checkin": {
+   "pexels_id": "7820494",
+   "page": "https://www.pexels.com/video/woman-taking-selfie-at-the-reception-area-7820494/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-reception-tablet": {
+   "pexels_id": "13737126",
+   "page": "https://www.pexels.com/video/a-woman-serving-a-customer-at-a-coffee-shop-13737126/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-charts-coffee": {
+   "pexels_id": "8062336",
+   "page": "https://www.pexels.com/video/a-person-using-a-smartphone-while-computing-8062336/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-team-talk": {
+   "pexels_id": "8632204",
+   "page": "https://www.pexels.com/video/team-discussing-together-8632204/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-abudhabi": {
+   "pexels_id": "31541334",
+   "page": "https://www.pexels.com/video/skyscrapers-and-flag-in-abu-dhabi-fountain-plaza-31541334/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  },
+  "rv-counter": {
+   "pexels_id": "6202074",
+   "page": "https://www.pexels.com/video/woman-with-calculator-at-the-counter-6202074/",
+   "video": "linkedin-reviews (v2, 2026-10-03)"
+  }
+ },
+ "music": {
+  "human-ai-music.mp3": "linkedin-human-ai, linkedin-reviews v1",
+  "reviews-music.mp3": "Mixkit #175 Digital Clouds (https://mixkit.co/free-stock-music/), linkedin-reviews v2"
+ }
+}

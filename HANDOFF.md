@@ -38,7 +38,21 @@ clips in `C:/Users/Dev Prince/voice-clone/voices/` (see the README there):
 - **conversational**: relaxed and chatty. Use for informal explainers and walk-through videos.
 - The old `prince_ref.wav` (10:06 note) sounded flat; Prince called it lazy. Do not use it.
 Generate with `VOICE=confident .venv/Scripts/python.exe speak.py lines.txt out.wav cues.json` (cached lines are kept per voice).
-The reviews reel was re-voiced with **confident** (45.8 s). Loudness step works with `npx remotion ffmpeg ... -af loudnorm=...`.
+The reviews reel was re-voiced with **confident** (45.8 s), then rebuilt as v2 with new footage, music and the motion kit. Loudness step works with `npx remotion ffmpeg ... -af loudnorm=...`.
+
+## Every reel must look different, with a dynamic edit (Prince, 2026-10-02)
+- **New footage, people and music per video.** `web/src/film/reels/footage.json` lists every clip and track already used;
+  pick only unlisted ones. Footage: Pexels, searched and downloaded with Playwright (headed Chrome; open a new page per
+  search; 1080p file `ID-hd_1080_1920_FPS.mp4` when it exists, else the /download/video/ID/ link), then converted with
+  `npx remotion ffmpeg -i in.mp4 -t 8 -vf scale=1080:-2 -r 30 -c:v libx264 -crf 21 -an out.mp4` (this ffmpeg build has
+  no fps, null or PNG output). Music: Mixkit tracks (`assets.mixkit.co/music/N/N.mp3`); avoid Envato "preview" files,
+  they carry audio watermarks.
+- **Its own look:** palette, caption treatment and grade per video (reviews v2 = teal and amber).
+- **Edit style:** use `web/src/film/reels/motion.tsx`: a camera move on every shot (zoom, pan, tilt, rotate, dolly,
+  orbit) and motion-matched cuts (whip, zoom-through, spin, vertical push, flash). Cut every 1.5 to 2.5 s; split long
+  narration lines into several shots; put each beat's graphics in its shot's `children` so they leave with the cut.
+  Not static, not frantic.
+- Music sits about 15 dB under the voice (volume 0.07 under speech, 0.6 in the intro and outro).
 
 ## 2. Job hunt
 - Tracker (live, shared db): https://claude.ai/artifact/KQFFjatUAaMCmFibrBp1ED, collections `jobs` and `recruiters` (10 + 10 seeded). Prince updates statuses there.
