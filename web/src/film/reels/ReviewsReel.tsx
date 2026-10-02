@@ -86,7 +86,7 @@ function Review({ start, stars, text, top, left, tilt }: { start: number; stars:
 /** A number that counts up while the camera pushes in on it. */
 function Count({ start, to, prefix = "", suffix, label, sub }: { start: number; to: number; prefix?: string; suffix: string; label: string; sub?: string }) {
   const f = useCurrentFrame();
-  const n = Math.round(e(f, start + 4, start + 40, 0, to));
+  const n = Math.round(e(f, start + 2, start + 14, 0, to)); // lands within the shortest count shot
   const q = e(f, start, start + 10);
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", paddingBottom: 200, transform: `scale(${0.85 + 0.15 * q + interpolate(f, [start, start + 90], [0, 0.06], clamp)})`, opacity: q }}>

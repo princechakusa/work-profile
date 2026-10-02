@@ -31,6 +31,12 @@ Steps left:
 4. **Show Prince**, then schedule on LinkedIn for tomorrow ~9:00 with the styled caption in `%TEMP%\reel\cap-reviews.txt` (source `.md` beside it; convert with `docs/linkedin/style.py`). LinkedIn automation: raw CDP helper `%TEMP%\cdo.mjs` against Chrome on port 9333 (see CLAUDE.md). Note: the auto-mode safety check has blocked LinkedIn scheduling and job applications before; if blocked, give Prince the steps instead.
 5. Commit and push (ReviewsReel.tsx, cues json, index.tsx, the mp4).
 
+## Narration voice for every video (Prince, 2026-10-02, final)
+Use the **same voice as the portfolio welcome film**: Microsoft `en-US-SteffanNeural` at `+10%` (edge-tts).
+Prince found the cloned voices too low and not confident. Generate a reel's narration with
+`python web/scripts/reel_voice.py web/src/film/reels/scripts/NAME.txt web/remotion/assets/reels/NAME-vo.wav web/src/film/reels/NAME-cues.json`
+(needs edge-tts and soundfile; the voice-clone venv plus the pylibs path both work). The cloned-voice notes below are kept for reference only.
+
 ## Prince's two cloned voices (2026-10-02)
 Recorded by Prince at 13:29 and 13:30 (WhatsApp notes in `C:/Users/Surface/Downloads`), cut into F5-TTS reference
 clips in `C:/Users/Dev Prince/voice-clone/voices/` (see the README there):
