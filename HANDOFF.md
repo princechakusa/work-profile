@@ -8,8 +8,8 @@ Status 2026-10-02 afternoon: steps 1 to 3 and 5 are done. Voice generated in his
 composition `linkedin-reviews` registered, rendered and loudness-normalised to
 `docs/media/linkedin/prince-chakusa-reviews.mp4` (40.4 s, 1080x1350, 30 fps, stereo AAC, peak -1.2 dBFS, no silent gaps).
 Frames checked against every narration line. Committed and pushed.
-**Only step 4 is left:** Prince watches it, then it is scheduled for 2026-10-03 ~9:00 with `%TEMP%eel\cap-reviews.txt`
-(Dev Prince's %TEMP%). If LinkedIn automation is blocked, give him the manual steps.
+**Only step 4 is left:** Prince watches it, then it is scheduled for 2026-10-03 ~9:00 with the caption in `C:\Users\Dev Prince\AppData\Local\Temp\reel\cap-reviews.txt`.
+If LinkedIn automation is blocked, give him the manual steps.
 Note: the `Prince 1` Windows account cannot run Dev Prince's WinGet ffmpeg (access denied); Remotion's bundled
 ffmpeg (`npx remotion ffmpeg`) has no null or PNG encoder, so check frames and audio through Chrome instead.
 
