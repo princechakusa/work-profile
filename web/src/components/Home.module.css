@@ -117,6 +117,49 @@
 .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; list-style: none; }
 .facts li { border: 1px solid var(--line); padding: 8px 12px; }
 .num { color: var(--signal); }
+
+/* role line under the name */
+.roleLine { margin-top: 22px; font-size: clamp(18px, 1.8vw, 26px); line-height: 1.4; color: var(--sand); text-shadow: 0 2px 14px rgba(7, 8, 11, 0.9); }
+.roleLine strong { color: var(--signal); font-weight: 600; }
+.roleLine span { display: block; font-size: 0.72em; color: #c9c6be; margin-top: 4px; }
+
+/* career evidence */
+.career { list-style: none; max-width: 1200px; display: flex; flex-direction: column; }
+.careerRow { display: grid; grid-template-columns: 200px 1fr 1fr; gap: 28px; padding: 26px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.careerWhen { color: var(--steel); display: flex; flex-direction: column; gap: 8px; line-height: 1.6; }
+.careerWhen b { align-self: flex-start; background: var(--signal); color: var(--ink); padding: 3px 8px; font-weight: 500; }
+.careerTitle { font-size: clamp(20px, 2vw, 28px); font-weight: 600; line-height: 1.2; }
+.careerCompany { color: var(--signal); margin-top: 6px; }
+.careerWin { color: #c9c6be; line-height: 1.5; border-left: 2px solid var(--signal); padding-left: 16px; }
+
+/* drives inside About */
+.drivesHead { margin-top: 30px; font-size: 11px; }
+.drives { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 12px; line-height: 1.5; max-width: 60ch; color: #c9c6be; }
+.drives strong { color: var(--sand); font-weight: 600; }
+
+/* quick answers fold open */
+.answer summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.answer summary::-webkit-details-marker { display: none; }
+.answer summary::after { content: "+"; color: var(--signal); font-size: 22px; line-height: 1; }
+.answer[open] summary::after { content: "−"; }
+
+/* the film offer card */
+.filmOffer {
+  position: fixed; right: clamp(16px, 3vw, 40px); bottom: 104px; z-index: 50; display: flex; align-items: stretch;
+  background: rgba(7, 8, 11, 0.92); border: 1px solid var(--signal); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  animation: offerIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes offerIn { from { opacity: 0; transform: translateY(30px); } }
+.filmOfferPlay { padding: 16px 20px; display: flex; gap: 12px; align-items: center; color: var(--sand); transition: background 0.25s, color 0.25s; }
+.filmOfferPlay span { color: var(--signal); }
+.filmOfferPlay:hover { background: var(--signal); color: var(--ink); }
+.filmOfferPlay:hover span { color: var(--ink); }
+.filmOfferClose { padding: 0 16px; border-left: 1px solid var(--line); color: var(--steel); }
+.filmOfferClose:hover { color: var(--sand); }
+
+@media (max-width: 900px) {
+  .careerRow { grid-template-columns: 1fr; gap: 10px; }
+}
 .profileSummary { max-width: 70ch; margin-top: 24px; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.6; }
 .answers { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 0 48px; max-width: 1200px; }
 .answer { padding: 24px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; line-height: 1.55; }

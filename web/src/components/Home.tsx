@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { scrollState } from "@/lib/scrollState";
-import { ABOUT, ANSWERS, CAREER_STATS, CONTACT, DRIVES, STRENGTHS } from "@/lib/content";
+import { ABOUT, ANSWERS, CAREER_STATS, CONTACT, DRIVES, ROLES, STRENGTHS } from "@/lib/content";
 import { PROFILE } from "@/lib/profile";
 import s from "./Home.module.css";
 import { asset } from "@/lib/site";
@@ -46,14 +46,32 @@ const SEEN = "pc-intro-seen";
 export default function Home() {
   const root = useRef<HTMLElement>(null);
   const router = useRouter();
-  const [introOpen, setIntroOpen] = useState(true);
+  const [introOpen, setIntroOpen] = useState(false);
+  const [autoplay, setAutoplay] = useState(false);
+  const [offer, setOffer] = useState(false);
 
-  // the pop-up greets a visitor once per visit, not every time they come back to the home page
+  // recruiters see the headline first; the film is offered by a small card a few seconds later, once per visit
   useEffect(() => {
+    let seen = false;
     try {
-      if (sessionStorage.getItem(SEEN)) setIntroOpen(false);
+      seen = !!sessionStorage.getItem(SEEN);
     } catch {}
+    if (seen) return;
+    const t = window.setTimeout(() => setOffer(true), 4500);
+    return () => window.clearTimeout(t);
   }, []);
+
+  const openFilm = (play: boolean) => {
+    setOffer(false);
+    setAutoplay(play);
+    setIntroOpen(true);
+  };
+  const dismissOffer = () => {
+    setOffer(false);
+    try {
+      sessionStorage.setItem(SEEN, "1");
+    } catch {}
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -70,9 +88,8 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
-  // the name lands once the opening film hands over
+  // the name lands as the page arrives
   useEffect(() => {
-    if (introOpen) return;
     const ctx = gsap.context(() => {
       gsap
         .timeline({ defaults: { ease: "power4.out" } })
@@ -80,7 +97,7 @@ export default function Home() {
         .from(`.${s.fadeIn}`, { opacity: 0, y: 24, duration: 0.9, stagger: 0.1 }, "-=0.6");
     }, root);
     return () => ctx.revert();
-  }, [introOpen]);
+  }, []);
 
   const onHover = (unit: number | null) => {
     window.dispatchEvent(new CustomEvent("cursor:unit", { detail: unit }));
@@ -96,14 +113,24 @@ export default function Home() {
 
   return (
     <main id="main-content" ref={root} className={s.root}>
-      {introOpen && <Intro onDone={onIntroDone} />}
+      {introOpen && <Intro onDone={onIntroDone} autoplay={autoplay} />}
+      {offer && !introOpen && (
+        <aside className={`${s.filmOffer} mono`} aria-label="Watch Prince's two-minute story">
+          <button className={s.filmOfferPlay} onClick={() => openFilm(true)}>
+            <span aria-hidden>▶</span> Watch my 2-minute story
+          </button>
+          <button className={s.filmOfferClose} onClick={dismissOffer} aria-label="Dismiss">
+            ✕
+          </button>
+        </aside>
+      )}
 
       {/* the 3D city rests while the pop-up is open, so the film and the pointer stay smooth */}
       <div className={s.canvas}>{!introOpen && <CityScene onHover={onHover} />}</div>
 
       <section className={s.hero}>
         <div className={`${s.heroMeta} ${s.fadeIn}`}>
-          <p className={`${s.kicker} mono`}>{PROFILE.currentRole} / Hospitality operations / Software builder</p>
+          <p className={`${s.kicker} mono`}>Based in {PROFILE.location.label}</p>
           <span className={`${s.available} mono`}>Open to work</span>
         </div>
         <h1 className={`${s.name} display`}>
@@ -112,9 +139,15 @@ export default function Home() {
           <Letters text="Prince" />
           <Letters text="Chakusa" />
         </h1>
+        <p className={`${s.roleLine} ${s.fadeIn}`}>
+          <strong>{PROFILE.currentRole}</strong> · Hospitality &amp; Property Operations · UAE
+          <span>
+            Now at {PROFILE.currentEmployer}, {PROFILE.location.city}
+          </span>
+        </p>
         <div className={s.heroFoot}>
           <p className={`${s.lede} ${s.fadeIn}`}>
-            From the front desk to leading the team, I have run 350+ holiday homes in Dubai, and I build the software that
+            From the front desk to leading the team, I have run 350+ holiday homes in the UAE, and I build the software that
             keeps them running. Every tower behind me stands for one of them.
           </p>
           <div className={`${s.heroActions} ${s.fadeIn}`}>
@@ -124,7 +157,7 @@ export default function Home() {
             <Link href="/cv" className={`${s.cta} mono`}>
               View CV
             </Link>
-            <button className={`${s.cta} mono`} onClick={() => setIntroOpen(true)}>
+            <button className={`${s.cta} mono`} onClick={() => openFilm(true)}>
               ▶ Watch my story
             </button>
           </div>
@@ -140,6 +173,34 @@ export default function Home() {
         <p className={`${s.hint} mono ${s.fadeIn}`}>Drag to turn the city · Hover a tower · Scroll to fly in</p>
       </section>
 
+      <section id="career" className={`${s.panel} ${s.solid}`} aria-labelledby="career-heading">
+        <div className={s.reveal}>
+          <p className={`${s.kicker} mono`}>Career</p>
+          <h2 id="career-heading" className={`${s.title} display`}>Four companies, one direction</h2>
+        </div>
+        <ol className={s.career}>
+          {ROLES.map((r) => (
+            <li key={r.id} className={`${s.careerRow} ${s.reveal}`}>
+              <p className={`mono ${s.careerWhen}`}>
+                {r.when}
+                {r.current && <b>Current</b>}
+              </p>
+              <div>
+                <h3 className={s.careerTitle}>{r.title}</h3>
+                <p className={s.careerCompany}>
+                  {r.company} · {r.location}
+                </p>
+              </div>
+              <p className={s.careerWin}>{r.added[0]}</p>
+            </li>
+          ))}
+        </ol>
+        <div className={s.links}>
+          <Link href="/work">Full work history →</Link>
+          <Link href="/cv">View my CV</Link>
+        </div>
+      </section>
+
       <section id="about" className={`${s.panel} ${s.solid}`}>
         <div className={`${s.aboutGrid} ${s.reveal}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -152,49 +213,20 @@ export default function Home() {
                 <p key={a}>{a}</p>
               ))}
             </div>
+            <h3 className={`${s.kicker} mono ${s.drivesHead}`}>What drives me</h3>
+            <ul className={s.drives}>
+              {DRIVES.map((d) => (
+                <li key={d.t}>
+                  <strong>{d.t}.</strong> {d.d}
+                </li>
+              ))}
+            </ul>
             <ul className={`${s.facts} mono`}>
               <li>Based in {CONTACT.location}</li>
               <li>From {CONTACT.from}</li>
               <li>{CONTACT.open}</li>
             </ul>
           </div>
-        </div>
-      </section>
-
-      <section id="profile" className={`${s.panel} ${s.solid}`} aria-labelledby="profile-heading">
-        <div className={s.reveal}>
-          <p className={`${s.kicker} mono`}>Profile at a glance</p>
-          <h2 id="profile-heading" className={`${s.title} display`}>Prince Chakusa in brief</h2>
-          <p className={s.profileSummary}>{PROFILE.summary}</p>
-        </div>
-        <div className={s.answers}>
-          {ANSWERS.map((x) => (
-            <div key={x.q} className={s.answer}>
-              <h3>{x.q}</h3>
-              <p>{x.a}</p>
-              {x.link && (
-                <Link href={x.link.href} className="mono">
-                  {x.link.t} →
-                </Link>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className={`${s.panel} ${s.solid}`}>
-        <div className={s.reveal}>
-          <p className={`${s.kicker} mono`}>What drives me</p>
-          <h2 className={`${s.title} display`}>Why I do this work</h2>
-        </div>
-        <div className={s.cards}>
-          {DRIVES.map((d, i) => (
-            <article key={d.t} className={`${s.card} ${s.reveal}`}>
-              <p className={`mono ${s.num}`}>0{i + 1}</p>
-              <h3 className={`${s.cardTitle} display`}>{d.t}</h3>
-              <p>{d.d}</p>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -209,6 +241,29 @@ export default function Home() {
               <h3 className="display">{t.t}</h3>
               <p>{t.d}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="profile" className={`${s.panel} ${s.solid}`} aria-labelledby="profile-heading">
+        <div className={s.reveal}>
+          <p className={`${s.kicker} mono`}>Profile at a glance</p>
+          <h2 id="profile-heading" className={`${s.title} display`}>Quick answers</h2>
+          <p className={s.profileSummary}>{PROFILE.summary}</p>
+        </div>
+        <div className={s.answers}>
+          {ANSWERS.map((x) => (
+            <details key={x.q} className={s.answer}>
+              <summary>
+                <h3>{x.q}</h3>
+              </summary>
+              <p>{x.a}</p>
+              {x.link && (
+                <Link href={x.link.href} className="mono">
+                  {x.link.t} →
+                </Link>
+              )}
+            </details>
           ))}
         </div>
       </section>

@@ -12,10 +12,10 @@ const Film = dynamic(() => import("./Film"), { ssr: false });
  * The opening film as a pop-up over the site. It greets with Prince's photo and waits for a click
  * (browsers only allow the voice after one), and can be closed at any point.
  */
-export default function Intro({ onDone }: { onDone: (openWork: boolean) => void }) {
+export default function Intro({ onDone, autoplay = false }: { onDone: (openWork: boolean) => void; autoplay?: boolean }) {
   const dialog = useRef<HTMLDivElement>(null);
   const [run, setRun] = useState(0);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(autoplay);
   const [ended, setEnded] = useState(false);
   const [leaving, setLeaving] = useState(false);
 
