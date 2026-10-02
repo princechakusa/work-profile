@@ -9,6 +9,8 @@ import { ProjectsFilm, PROJECTS_DUR } from "../src/film/ProjectsFilm";
 import { EducationFilm, EDUCATION_DUR } from "../src/film/EducationFilm";
 import { InsightReel, RH, RW, reelDuration } from "../src/film/reels/InsightReel";
 import { REELS } from "../src/film/reels/reels";
+import { HAI_DUR, HAI_FPS, HAI_H, HAI_W, HumanAI } from "../src/film/reels/HumanAI";
+import { SR_DUR, SR_FPS, SR_H, SR_W, Showreel } from "../src/film/reels/Showreel";
 
 // the site loads these with next/font; the render loads the same fonts and exposes the same CSS variables
 const fonts = {
@@ -33,6 +35,8 @@ function Root() {
       <Composition id="intro" component={withFonts(IntroFilm)} durationInFrames={INTRO_DUR} fps={FPS} width={W} height={H} />
       <Composition id="projects" component={withFonts(ProjectsFilm)} durationInFrames={PROJECTS_DUR} fps={FPS} width={W} height={H} />
       <Composition id="education" component={withFonts(EducationFilm)} durationInFrames={EDUCATION_DUR} fps={FPS} width={W} height={H} />
+      <Composition id="linkedin-showreel" component={Showreel} durationInFrames={SR_DUR} fps={SR_FPS} width={SR_W} height={SR_H} />
+      <Composition id="linkedin-human-ai" component={HumanAI} durationInFrames={HAI_DUR} fps={HAI_FPS} width={HAI_W} height={HAI_H} />
       {Object.entries(REELS).map(([id, r]) => (
         <Composition key={id} id={id} component={withFonts(() => <InsightReel {...r} />)} durationInFrames={reelDuration(r)} fps={FPS} width={RW} height={RH} />
       ))}

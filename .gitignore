@@ -19,3 +19,6 @@ __pycache__/
 # build artefacts
 output/
 tmp/
+
+# reel footage (Pexels, re-downloadable) used only for Remotion renders
+web/remotion/assets/reels/c/

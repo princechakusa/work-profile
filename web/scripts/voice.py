@@ -7,6 +7,7 @@ Scene timing in the films is derived from voice.json, so re-run this after chang
     python scripts/voice.py              # regenerate every line with VOICE
     python scripts/voice.py --samples    # write public/voice/samples/<voice>.mp3 for each CANDIDATE
     python scripts/voice.py --measure    # keep the MP3s, only refresh the lengths
+    python scripts/voice.py --only=h1,h2 # regenerate just these lines
 
 To use Prince's own recorded voice instead, drop MP3s with the same names into public/voice/ and run
 with --measure.
@@ -37,8 +38,8 @@ SAMPLE = (
 # Each role covers: responsibility, results, and what it taught him.
 LINES = {
     # opening film
-    "h1": ("Hi, I'm Prince Chakusa.", None),
-    "h2": ("Please don't scroll yet. Give me two minutes, and I will show you what I have done.", None),
+    "h1": ("Three hundred and fifty homes. Twelve people. One standard.", "350+ homes. 12 people. One standard."),
+    "h2": ("I'm Prince Chakusa. I lead hospitality operations in the UAE, and I build the software that makes them better.", None),
     "d1": ("I started my career in 2023 as a Guest Relations Officer at Daniels Holiday Homes.", None),
     "d2": ("I was responsible for welcoming guests, checking them in, and supporting them throughout their stay.", None),
     "d3": ("During my time there, guest review scores increased by twenty-five percent, and guest satisfaction increased by twenty percent.",
@@ -69,7 +70,7 @@ LINES = {
     "w2": ("First, I have worked at every level, from the front desk to leading a team.", None),
     "w3": ("Second, my results are measurable.", None),
     "w4": ("Third, I build software, so I can solve operational problems at the source.", None),
-    "o1": ("That is the short version. Open the Work section to read the full story.", None),
+    "o1": ("If your team needs someone who can lead the floor and fix the system behind it, let's talk.", None),
     # projects film: PaMarket only
     "p1": ("This is PaMarket, an online marketplace that I designed and built for Zimbabwe. People use it to buy, sell, find work, and discover trusted businesses.", None),
     "p2": ("Buying, selling, and job hunting were scattered across many different group chats, with no search and no protection.", None),
@@ -108,9 +109,10 @@ async def samples() -> None:
 async def main(measure_only: bool) -> None:
     os.makedirs(OUT, exist_ok=True)
     manifest = {}
+    only = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--only=")), None)
     for key, (say, show) in LINES.items():
         path = os.path.join(OUT, f"{key}.mp3")
-        if not measure_only:
+        if not measure_only and (only is None or key in only):
             import edge_tts
 
             await edge_tts.Communicate(say, VOICE, rate=RATE).save(path)

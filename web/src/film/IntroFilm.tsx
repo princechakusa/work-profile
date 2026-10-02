@@ -44,18 +44,24 @@ function Hello() {
       <Svg>
         <Person {...PRINCE} frame={f} x={lin(f, 0, 32, -140, 620)} s={1.7} walk={f < 32 ? f * 0.6 : 0} wave={ramp(f, 32, 42) * (1 - ramp(f, h2.from, h2.from + 12))} talk={speak(T_HELLO, f)} />
       </Svg>
-      <Bubble frame={f} from={h1.from} to={HELLO + 30} x={700} y={250} text="Hi, I'm Prince Chakusa." />
-      <div style={{ position: "absolute", left: 1020, top: 400 }}>
-        <div style={{ overflow: "hidden" }}>
-          <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: 124, lineHeight: 0.92, textTransform: "uppercase", whiteSpace: "nowrap", translate: `0 ${ramp(f, h2.from, h2.from + 20, 110, 0)}%` }}>
-            Don&apos;t scroll yet.
-          </div>
-        </div>
-        <div style={{ fontSize: 52, lineHeight: 1.2, marginTop: 22, maxWidth: 800, opacity: ramp(f, h2.from + 40, h2.from + 56) }}>
-          Let me show you what I have done.
+      <Bubble frame={f} from={h2.from} to={HELLO + 30} x={700} y={250} text="Hi, I'm Prince Chakusa." />
+      {/* the hook: three facts land with the voice, before anything else is said */}
+      <div style={{ position: "absolute", left: 1020, top: 250 }}>
+        {["350+ homes.", "12 people.", "One standard."].map((t, i) => {
+          const at = part(h1, [0, 0.36, 0.66][i]);
+          return (
+            <div key={t} style={{ overflow: "hidden" }}>
+              <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: 132, lineHeight: 0.95, textTransform: "uppercase", whiteSpace: "nowrap", color: i === 2 ? C.signal : C.sand, translate: `0 ${ramp(f, at, at + 14, 110, 0)}%` }}>
+                {t}
+              </div>
+            </div>
+          );
+        })}
+        <div style={{ fontSize: 46, lineHeight: 1.25, marginTop: 30, maxWidth: 820, opacity: ramp(f, h2.from + 30, h2.from + 46) }}>
+          Hospitality operations in the UAE, and the software that makes them better.
         </div>
       </div>
-      <Narration t={T_HELLO} frame={f} spoken={["h1"]} />
+      <Narration t={T_HELLO} frame={f} />
     </Stage>
   );
 }
@@ -299,10 +305,10 @@ function Outro() {
       </Svg>
       <div style={{ position: "absolute", left: 860, top: 300, maxWidth: 940 }}>
         <div style={{ fontFamily: F.display, fontWeight: 900, fontSize: 130, lineHeight: 0.92, textTransform: "uppercase", opacity: ramp(f, 12, 28), translate: `0 ${ramp(f, 12, 32, 40, 0)}px` }}>
-          That is the short version.
+          Lead the floor. Fix the system.
         </div>
         <div style={{ fontSize: 50, lineHeight: 1.2, marginTop: 28, opacity: ramp(f, 50, 66) }}>
-          Open <span style={{ color: C.signal, fontWeight: 600 }}>Work</span> to read the full story.
+          <span style={{ color: C.signal, fontWeight: 600 }}>Let&apos;s talk.</span> hello@princechakusa.com
         </div>
       </div>
       <Narration t={T_OUTRO} frame={f} />
