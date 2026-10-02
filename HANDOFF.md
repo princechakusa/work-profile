@@ -2,7 +2,16 @@
 
 Read CLAUDE.md first for the project. This file is only the unfinished work.
 
-## 1. Tomorrow's LinkedIn video: "Read the reviews properly" (IN PROGRESS)
+## 1. Tomorrow's LinkedIn video: "Read the reviews properly" (RENDERED, waiting for Prince)
+
+Status 2026-10-02 afternoon: steps 1 to 3 and 5 are done. Voice generated in his cloned voice (13 lines, 35 s), copied in,
+composition `linkedin-reviews` registered, rendered and loudness-normalised to
+`docs/media/linkedin/prince-chakusa-reviews.mp4` (40.4 s, 1080x1350, 30 fps, stereo AAC, peak -1.2 dBFS, no silent gaps).
+Frames checked against every narration line. Committed and pushed.
+**Only step 4 is left:** Prince watches it, then it is scheduled for 2026-10-03 ~9:00 with `%TEMP%eel\cap-reviews.txt`
+(Dev Prince's %TEMP%). If LinkedIn automation is blocked, give him the manual steps.
+Note: the `Prince 1` Windows account cannot run Dev Prince's WinGet ffmpeg (access denied); Remotion's bundled
+ffmpeg (`npx remotion ffmpeg`) has no null or PNG encoder, so check frames and audio through Chrome instead.
 
 Prince approved the showreel format (see `docs/media/linkedin/prince-chakusa-human-with-ai.mp4`, built by `web/src/film/reels/Showreel.tsx`). He wants the next video voiced in **his own cloned voice** and **scheduled to post tomorrow (2026-10-03)**, after he watches it.
 
