@@ -79,7 +79,7 @@ export const ROLES: Role[] = [
     ],
     added: [
       "Ensured full DTCM compliance across property listings, permits and regulatory documentation.",
-      "Standardised operating procedures across all units, reducing annual operational costs by 15%.",
+      "Standardised operating procedures across all 350+ units, cutting the portfolio's annual operating costs by 15%.",
       "Managed vendor contracts and service level agreements, and prepared performance reports for management.",
     ],
     learned: "How to lead a team, and how to keep standards consistent across a large portfolio.",
@@ -92,7 +92,7 @@ export const ROLES: Role[] = [
     location: "Dubai, UAE",
     did: ["Delivered guest check-in and front desk support, looking after guests throughout their stay.", "Conducted service audits based on guest surveys to guide operational improvements."],
     added: [
-      "Optimised check-in and check-out processes, improving guest review scores by 25%.",
+      "Redesigned the check-in and check-out process, raising the average guest review score by 25%.",
       "Implemented a CSAT and NPS feedback system, improving guest satisfaction by 20%.",
       "Integrated digital concierge tools, reducing front desk workload by 40%.",
       "Mentored new team members, reducing onboarding time by 20%.",
@@ -123,7 +123,7 @@ export const CAREER_STATS = [
   { n: "4", l: "UAE holiday home companies" },
   { n: "350+", l: "Units I was responsible for" },
   { n: "12", l: "People in my largest team" },
-  { n: "+25%", l: "Guest review scores at Daniels" },
+  { n: "+25%", l: "Average guest review score at Daniels" },
 ];
 
 export type Study = {
@@ -279,7 +279,7 @@ export const ANSWERS: { q: string; a: string; link?: { href: string; t: string }
   },
   {
     q: "What experience does Prince Chakusa have in hospitality operations?",
-    a: "At Stonetree he directed day-to-day operations for more than 350 short-term rental units, including DTCM compliance, standard operating procedures, vendor SLAs and performance reporting; standardising procedures cut annual operating costs by 15%. At Luxury Homevy he led guest experience for a 40-property portfolio, and at Daniels Holiday Homes he raised guest review scores by 25%.",
+    a: "At Stonetree he directed day-to-day operations for more than 350 short-term rental units, including DTCM compliance, standard operating procedures, vendor SLAs and performance reporting; standardising procedures cut annual operating costs by 15%. At Luxury Homevy he led guest experience for a 40-property portfolio, and at Daniels Holiday Homes he raised the average guest review score by 25%.",
   },
   {
     q: "What leadership experience does Prince Chakusa have?",
@@ -333,7 +333,7 @@ export const REASONS = [
   },
   {
     t: "My results are measurable",
-    d: "At Daniels Holiday Homes, review scores rose by 25% and satisfaction by 20%, while front desk workload fell by 40% and onboarding time by 20%. At Stonetree I was responsible for more than 350 units.",
+    d: "At Daniels Holiday Homes, the average guest review score rose by 25% and satisfaction by 20%, while front desk workload fell by 40% and onboarding time by 20%. At Stonetree I was responsible for more than 350 units.",
   },
   {
     t: "I bring operations and technology together",

@@ -128,4 +128,4 @@ Next: CV page with PDF export (Playwright), skills.
 ## Home page for recruiters (2026-10-02)
 - Order: hero (name, then the role line "Guest Relations Supervisor · Hospitality & Property Operations · UAE" and current employer), Career (all four roles with dates and the strongest result, links to /work and /cv), About (with What drives me folded in), Strengths, Quick answers (the AEO Q&A, folded into expandable answers; still in the HTML), Explore, closing CTA.
 - The opening film no longer opens by itself. A small "Watch my 2-minute story" card appears bottom-right after 4.5 s, once per visit; clicking it opens the film already playing (`Intro autoplay`). "Watch my story" in the hero does the same.
-- Pending from Prince: how the +25% review scores and 15% cost reduction were measured (period, method), and FixHub screenshots or a demo.
+- The two results are worded as "average guest review score +25%" (Daniels) and "annual operating costs across all 350+ units -15%" (Stonetree). Prince asked Claude to choose the wording (2026-10-02); he has not given the measurement period or before/after figures. Still pending: FixHub screenshots or a demo.
