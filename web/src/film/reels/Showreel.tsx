@@ -8,7 +8,7 @@ import { asset } from "@/lib/site";
  * glass UI cards, a live count, PaMarket in a phone, and a split screen, all cut to the ElevenLabs voice and music.
  */
 
-const { fontFamily } = loadFont("normal", { weights: ["400", "500", "700", "800"], subsets: ["latin"] });
+export const { fontFamily } = loadFont("normal", { weights: ["400", "500", "700", "800"], subsets: ["latin"] });
 
 export const SR_W = 1080;
 export const SR_H = 1350;
@@ -16,16 +16,16 @@ export const SR_FPS = 30;
 const VO_AT = 0.5;
 export const SR_DUR = Math.round(44 * SR_FPS);
 const s = (sec: number) => Math.round((sec + VO_AT) * SR_FPS);
-const EASE = Easing.bezier(0.2, 0.9, 0.1, 1);
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const e = (f: number, a: number, b: number, from = 0, to = 1) => interpolate(f, [a, b], [from, to], { ...clamp, easing: EASE });
+export const EASE = Easing.bezier(0.2, 0.9, 0.1, 1);
+export const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
+export const e = (f: number, a: number, b: number, from = 0, to = 1) => interpolate(f, [a, b], [from, to], { ...clamp, easing: EASE });
 
-const GRAD = "linear-gradient(90deg, #7fb2ff 0%, #b897ff 45%, #ffa877 100%)";
-const grad: CSSProperties = { background: GRAD, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" };
+export const GRAD = "linear-gradient(90deg, #7fb2ff 0%, #b897ff 45%, #ffa877 100%)";
+export const grad: CSSProperties = { background: GRAD, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" };
 const clip = (k: string) => asset(`/reels/c/${k}.mp4`);
 
 /** A footage shot with a slow push-in, a soft crossfade in and out, and a grade. */
-function Shot({ src, from, to, push = 0.1, grade = "", children }: { src: string; from: number; to: number; push?: number; grade?: string; children?: ReactNode }) {
+export function Shot({ src, from, to, push = 0.1, grade = "", children }: { src: string; from: number; to: number; push?: number; grade?: string; children?: ReactNode }) {
   const f = useCurrentFrame();
   if (f < from - 8 || f > to + 8) return null;
   const k = e(f, from - 8, from + 4) * (1 - e(f, to - 2, to + 8));
@@ -41,7 +41,7 @@ function Shot({ src, from, to, push = 0.1, grade = "", children }: { src: string
 }
 
 /** Words resolve out of a blur, one after another, in time with the voice. */
-function Words({ f, at, text, size = 92, weight = 800, accent = [] as string[], style }: { f: number; at: number; text: string; size?: number; weight?: number; accent?: string[]; style?: CSSProperties }) {
+export function Words({ f, at, text, size = 92, weight = 800, accent = [] as string[], style }: { f: number; at: number; text: string; size?: number; weight?: number; accent?: string[]; style?: CSSProperties }) {
   const words = text.split(" ");
   return (
     <div style={{ fontFamily, fontWeight: weight, fontSize: size, lineHeight: 1.02, letterSpacing: "-0.04em", color: "#fff", textShadow: "0 4px 30px rgba(0,0,0,0.35)", ...style }}>
@@ -57,13 +57,13 @@ function Words({ f, at, text, size = 92, weight = 800, accent = [] as string[], 
   );
 }
 
-const Bottom = ({ children }: { children: ReactNode }) => <div style={{ position: "absolute", left: 80, right: 80, bottom: 110 }}>{children}</div>;
-const Kicker = ({ f, at, children }: { f: number; at: number; children: ReactNode }) => (
+export const Bottom = ({ children }: { children: ReactNode }) => <div style={{ position: "absolute", left: 80, right: 80, bottom: 110 }}>{children}</div>;
+export const Kicker = ({ f, at, children }: { f: number; at: number; children: ReactNode }) => (
   <div style={{ fontFamily, fontWeight: 500, fontSize: 30, letterSpacing: "0.04em", color: "rgba(255,255,255,0.75)", marginBottom: 20, opacity: e(f, at, at + 10) }}>{children}</div>
 );
 
 /** Frosted UI card, the kind an AI system would push. */
-function Card({ f, at, icon, title, value, top, left, tone = "#7fb2ff" }: { f: number; at: number; icon: string; title: string; value: string; top: number; left: number; tone?: string }) {
+export function Card({ f, at, icon, title, value, top, left, tone = "#7fb2ff" }: { f: number; at: number; icon: string; title: string; value: string; top: number; left: number; tone?: string }) {
   const k = e(f, at, at + 12);
   return (
     <div style={{ position: "absolute", top, left, width: 560, padding: "26px 30px", borderRadius: 28, background: "rgba(20,22,30,0.55)", border: "1px solid rgba(255,255,255,0.18)", backdropFilter: "blur(18px)", boxShadow: "0 20px 60px rgba(0,0,0,0.35)", opacity: k, transform: `translateY(${(1 - k) * 30}px) scale(${0.96 + k * 0.04})`, fontFamily, display: "flex", gap: 22, alignItems: "center" }}>
