@@ -6,7 +6,7 @@ Read CLAUDE.md first for the project. This file is only the unfinished work.
 
 Status 2026-10-02 afternoon: steps 1 to 3 and 5 are done. Voice generated in his cloned voice (13 lines, 35 s), copied in,
 composition `linkedin-reviews` registered, rendered and loudness-normalised to
-`docs/media/linkedin/prince-chakusa-reviews.mp4` (40.4 s, 1080x1350, 30 fps, stereo AAC, peak -1.2 dBFS, no silent gaps).
+`docs/media/linkedin/prince-chakusa-reviews.mp4` (now 45.8 s in the confident voice, 1080x1350, 30 fps, stereo AAC, peak -1.3 dBFS, no silent gaps).
 Frames checked against every narration line. Committed and pushed.
 **Only step 4 is left:** Prince watches it, then it is scheduled for 2026-10-03 ~9:00 with the caption in `C:\Users\Dev Prince\AppData\Local\Temp\reel\cap-reviews.txt`.
 If LinkedIn automation is blocked, give him the manual steps.
@@ -30,6 +30,15 @@ Steps left:
    Footage clips are in `web/remotion/assets/reels/c/` (git-ignored; originals in `%TEMP%\reel\orig2`). Check a few stills first.
 4. **Show Prince**, then schedule on LinkedIn for tomorrow ~9:00 with the styled caption in `%TEMP%\reel\cap-reviews.txt` (source `.md` beside it; convert with `docs/linkedin/style.py`). LinkedIn automation: raw CDP helper `%TEMP%\cdo.mjs` against Chrome on port 9333 (see CLAUDE.md). Note: the auto-mode safety check has blocked LinkedIn scheduling and job applications before; if blocked, give Prince the steps instead.
 5. Commit and push (ReviewsReel.tsx, cues json, index.tsx, the mp4).
+
+## Prince's two cloned voices (2026-10-02)
+Recorded by Prince at 13:29 and 13:30 (WhatsApp notes in `C:/Users/Surface/Downloads`), cut into F5-TTS reference
+clips in `C:/Users/Dev Prince/voice-clone/voices/` (see the README there):
+- **confident**: clear and energetic. Use for LinkedIn reels and showreels, portfolio films, hooks and calls to action.
+- **conversational**: relaxed and chatty. Use for informal explainers and walk-through videos.
+- The old `prince_ref.wav` (10:06 note) sounded flat; Prince called it lazy. Do not use it.
+Generate with `VOICE=confident .venv/Scripts/python.exe speak.py lines.txt out.wav cues.json` (cached lines are kept per voice).
+The reviews reel was re-voiced with **confident** (45.8 s). Loudness step works with `npx remotion ffmpeg ... -af loudnorm=...`.
 
 ## 2. Job hunt
 - Tracker (live, shared db): https://claude.ai/artifact/KQFFjatUAaMCmFibrBp1ED, collections `jobs` and `recruiters` (10 + 10 seeded). Prince updates statuses there.
