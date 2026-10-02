@@ -2,7 +2,7 @@
 
 Read CLAUDE.md first for the project. This file is only the unfinished work.
 
-## 1. Tomorrow's LinkedIn video: "Read the reviews properly" (RENDERED, waiting for Prince)
+## 1. LinkedIn video "Read the reviews properly": DONE, scheduled on LinkedIn for Sat 2026-10-03 09:00 (Prince approved; LinkedIn confirmed "Post scheduled")
 
 Status 2026-10-02 afternoon: steps 1 to 3 and 5 are done. Voice generated in his cloned voice (13 lines, 35 s), copied in,
 composition `linkedin-reviews` registered, rendered and loudness-normalised to
